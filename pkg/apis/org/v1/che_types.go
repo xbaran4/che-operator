@@ -131,8 +131,12 @@ type CheClusterSpecServer struct {
 	// +optional
 	GitSelfSignedCert bool `json:"gitSelfSignedCert"`
 	// Instructs the operator to deploy Che in TLS mode, ie with TLS routes or ingresses.
-	// This is disabled by default.
-	// WARNING: Enabling TLS might require enabling the `selfSignedCert` field also in some cases.
+	// This is enabled by default and cannot be turned off.
+	// The option is left for backward compatibility.
+	// Also see `selfSignedCert` field.
+	//
+	// Deprecated: Che is always deployed in TLS mode. The flag is ignored.
+	//
 	// +optional
 	TlsSupport bool `json:"tlsSupport"`
 	// Public URL of the Devfile registry, that serves sample, ready-to-use devfiles.
@@ -375,7 +379,7 @@ type CheClusterSpecK8SOnly struct {
 	// NB: This drives the `is kubernetes.io/ingress.class` annotation on Che-related ingresses.
 	// +optional
 	IngressClass string `json:"ingressClass,omitempty"`
-	// Name of a secret that will be used to setup ingress TLS termination if TLS is enabled.
+	// Name of a secret that will be used to setup ingress TLS termination.
 	// See also the `tlsSupport` field.
 	// +optional
 	TlsSecretName string `json:"tlsSecretName,omitempty"`
@@ -447,9 +451,9 @@ type CheCluster struct {
 	// several config maps that will contain the appropriate environment variables
 	// the various components of the Che installation.
 	// These generated config maps should NOT be updated manually.
-	Spec   CheClusterSpec   `json:"spec,omitempty"`
-	
-	// CheClusterStatus defines the observed state of Che installation	
+	Spec CheClusterSpec `json:"spec,omitempty"`
+
+	// CheClusterStatus defines the observed state of Che installation
 	Status CheClusterStatus `json:"status,omitempty"`
 }
 

@@ -13,6 +13,8 @@ package che
 
 import (
 	"context"
+	"reflect"
+
 	orgv1 "github.com/eclipse/che-operator/pkg/apis/org/v1"
 	"github.com/eclipse/che-operator/pkg/deploy"
 	"github.com/eclipse/che-operator/pkg/util"
@@ -22,7 +24,6 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
-	"reflect"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 )
@@ -78,7 +79,7 @@ func (r *ReconcileChe) UpdateConfigMap(instance *orgv1.CheCluster) (updated bool
 	return false, nil
 }
 
-func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request reconcile.Request, cheFlavor string, tlsSupport bool, isOpenShift bool) (updated bool, err error) {
+func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request reconcile.Request, cheFlavor string, isOpenShift bool) (updated bool, err error) {
 
 	updateRegistryRoute := func(registryType string) (bool, error) {
 		registryName := registryType + "-registry"
@@ -110,11 +111,7 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 			logrus.Errorf("Failed to delete %s route: %s", currentRegistryRoute.Name, err)
 			return false, err
 		}
-		registryRoute := deploy.NewRoute(instance, registryName, registryName, 8080)
-
-		if tlsSupport {
-			registryRoute = deploy.NewTlsRoute(instance, registryName, registryName, 8080)
-		}
+		registryRoute := deploy.NewTlsRoute(instance, registryName, registryName, 8080)
 
 		if err := r.CreateNewRoute(instance, registryRoute); err != nil {
 			logrus.Errorf("Failed to create %s %s: %s", registryRoute.Name, registryRoute.Kind, err)
@@ -133,10 +130,6 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 		return updated, err
 	}
 
-	protocol := "http"
-	if tlsSupport {
-		protocol = "https"
-	}
 	// reconcile ingresses
 	if !isOpenShift {
 		ingressDomain := instance.Spec.K8s.IngressDomain
@@ -160,9 +153,9 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 		if currentKeycloakIngress == nil {
 			return false, err
 		} else {
-			keycloakURL := protocol + "://" + ingressDomain
+			keycloakURL := "https://" + ingressDomain
 			if ingressStrategy == "multi-host" {
-				keycloakURL = protocol + "://keycloak-" + instance.Namespace + "." + ingressDomain
+				keycloakURL = "https://keycloak-" + instance.Namespace + "." + ingressDomain
 			}
 			instance.Spec.Auth.IdentityProviderURL = keycloakURL
 			if err := r.UpdateCheCRSpec(instance, "Keycloak URL", keycloakURL); err != nil {
@@ -193,11 +186,7 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 		logrus.Errorf("Failed to delete %s route: %s", currentCheRoute.Name, err)
 		return false, err
 	}
-	cheRoute := deploy.NewRoute(instance, cheFlavor, "che-host", 8080)
-
-	if tlsSupport {
-		cheRoute = deploy.NewTlsRoute(instance, cheFlavor, "che-host", 8080)
-	}
+	cheRoute := deploy.NewTlsRoute(instance, cheFlavor, "che-host", 8080)
 
 	if err := r.CreateNewRoute(instance, cheRoute); err != nil {
 		logrus.Errorf("Failed to create %s %s: %s", cheRoute.Name, cheRoute.Kind, err)
@@ -211,8 +200,8 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 
 	} else {
 		keycloakURL := currentKeycloakRoute.Spec.Host
-		instance.Spec.Auth.IdentityProviderURL = protocol + "://" + keycloakURL
-		if err := r.UpdateCheCRSpec(instance, "Keycloak URL", protocol+"://"+keycloakURL); err != nil {
+		instance.Spec.Auth.IdentityProviderURL = "https://" + keycloakURL
+		if err := r.UpdateCheCRSpec(instance, "Keycloak URL", "https://"+keycloakURL); err != nil {
 			return false, err
 		}
 	}
@@ -222,11 +211,8 @@ func (r *ReconcileChe) ReconcileTLSObjects(instance *orgv1.CheCluster, request r
 		logrus.Errorf("Failed to delete %s route: %s", currentKeycloakRoute.Name, err)
 		return false, err
 	}
-	keycloakRoute := deploy.NewRoute(instance, "keycloak", "keycloak", 8080)
+	keycloakRoute := deploy.NewTlsRoute(instance, "keycloak", "keycloak", 8080)
 
-	if tlsSupport {
-		keycloakRoute = deploy.NewTlsRoute(instance, "keycloak", "keycloak", 8080)
-	}
 	if err := r.CreateNewRoute(instance, keycloakRoute); err != nil {
 		logrus.Errorf("Failed to create Keycloak route: %s", err)
 		return false, err

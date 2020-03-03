@@ -317,11 +317,10 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 
 	if isOpenShift {
 		// create a secret with router tls cert when on OpenShift infra and router is configured with a self signed certificate
-		if instance.Spec.Server.SelfSignedCert ||
+		if instance.Spec.Server.SelfSignedCert {
 			// To use Openshift v4 OAuth, the OAuth endpoints are served from a namespace
 			// and NOT from the Openshift API Master URL (as in v3)
 			// So we also need the self-signed certificate to access them (same as the Che server)
-			(isOpenShift4 && instance.Spec.Auth.OpenShiftoAuth && !instance.Spec.Server.TlsSupport) {
 			if err := r.CreateTLSSecret(instance, "", "self-signed-certificate"); err != nil {
 				return reconcile.Result{}, err
 			}
@@ -521,11 +520,7 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 
 	ingressStrategy := util.GetValue(instance.Spec.K8s.IngressStrategy, deploy.DefaultIngressStrategy)
 	ingressDomain := instance.Spec.K8s.IngressDomain
-	tlsSupport := instance.Spec.Server.TlsSupport
-	protocol := "http"
-	if tlsSupport {
-		protocol = "https"
-	}
+	protocol := "https"
 
 	// create Che service and route
 	cheLabels := deploy.GetLabels(instance, util.GetValue(instance.Spec.Server.CheFlavor, deploy.DefaultCheFlavor))
@@ -550,10 +545,7 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 			}
 		}
 	} else {
-		cheRoute := deploy.NewRoute(instance, cheFlavor, "che-host", 8080)
-		if tlsSupport {
-			cheRoute = deploy.NewTlsRoute(instance, cheFlavor, "che-host", 8080)
-		}
+		cheRoute := deploy.NewTlsRoute(instance, cheFlavor, "che-host", 8080)
 		if err := r.CreateNewRoute(instance, cheRoute); err != nil {
 			return reconcile.Result{}, err
 		}
@@ -598,10 +590,7 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 			}
 		} else {
 			// create Keycloak route
-			keycloakRoute := deploy.NewRoute(instance, "keycloak", "keycloak", 8080)
-			if tlsSupport {
-				keycloakRoute = deploy.NewTlsRoute(instance, "keycloak", "keycloak", 8080)
-			}
+			keycloakRoute := deploy.NewTlsRoute(instance, "keycloak", "keycloak", 8080)
 			if err = r.CreateNewRoute(instance, keycloakRoute); err != nil {
 				return reconcile.Result{}, err
 			}
@@ -712,10 +701,7 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 				host = registryName + "-" + instance.Namespace + "." + ingressDomain
 			}
 		} else {
-			route := deploy.NewRoute(instance, registryName, registryName, 8080)
-			if tlsSupport {
-				route = deploy.NewTlsRoute(instance, registryName, registryName, 8080)
-			}
+			route := deploy.NewTlsRoute(instance, registryName, registryName, 8080)
 			if err := r.CreateNewRoute(instance, route); err != nil {
 				return "", err
 			}
@@ -970,7 +956,7 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 	if serverTrustStoreConfigMapName := instance.Spec.Server.ServerTrustStoreConfigMapName; serverTrustStoreConfigMapName != "" {
 		certMap := r.GetEffectiveConfigMap(instance, serverTrustStoreConfigMapName)
 		if err := controllerutil.SetControllerReference(instance, certMap, r.scheme); err != nil {
-		   logrus.Errorf("An error occurred: %s", err)
+			logrus.Errorf("An error occurred: %s", err)
 		}
 	}
 
@@ -1079,17 +1065,9 @@ func (r *ReconcileChe) Reconcile(request reconcile.Request) (reconcile.Result, e
 	if err := r.client.Get(context.TODO(), types.NamespacedName{Name: "che", Namespace: instance.Namespace}, activeConfigMap); err != nil {
 		logrus.Errorf("ConfigMap %s not found: %s", activeConfigMap.Name, err)
 	}
-	if !tlsSupport && activeConfigMap.Data["CHE_INFRA_OPENSHIFT_TLS__ENABLED"] == "true" {
-		routesUpdated, err := r.ReconcileTLSObjects(instance, request, cheFlavor, tlsSupport, isOpenShift)
-		if err != nil {
-			logrus.Errorf("An error occurred when updating routes %s", err)
-		}
-		if routesUpdated {
-			logrus.Info("Routes have been updated with TLS config")
-		}
-	}
-	if tlsSupport && activeConfigMap.Data["CHE_INFRA_OPENSHIFT_TLS__ENABLED"] == "false" {
-		routesUpdated, err := r.ReconcileTLSObjects(instance, request, cheFlavor, tlsSupport, isOpenShift)
+
+	if activeConfigMap.Data["CHE_INFRA_OPENSHIFT_TLS__ENABLED"] == "false" {
+		routesUpdated, err := r.ReconcileTLSObjects(instance, request, cheFlavor, isOpenShift)
 		if err != nil {
 			logrus.Errorf("An error occurred when updating routes %s", err)
 		}

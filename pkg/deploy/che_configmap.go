@@ -90,7 +90,6 @@ func GetConfigMapData(cr *orgv1.CheCluster) (cheEnv map[string]string) {
 	}
 	defaultTargetNamespace := util.GetValue(cr.Spec.Server.WorkspaceNamespaceDefault, cr.Namespace)
 	namespaceAllowUserDefined := strconv.FormatBool(cr.Spec.Server.AllowUserDefinedWorkspaceNamespaces)
-	tls := "false"
 	openShiftIdentityProviderId := "NULL"
 	openshiftOAuth := cr.Spec.Auth.OpenShiftoAuth
 	if openshiftOAuth && isOpenShift {
@@ -99,14 +98,6 @@ func GetConfigMapData(cr *orgv1.CheCluster) (cheEnv map[string]string) {
 		if isOpenshift4 {
 			openShiftIdentityProviderId = "openshift-v4"
 		}
-	}
-	tlsSupport := cr.Spec.Server.TlsSupport
-	protocol := "http"
-	wsprotocol := "ws"
-	if tlsSupport {
-		protocol = "https"
-		wsprotocol = "wss"
-		tls = "true"
 	}
 	proxyJavaOpts := ""
 	proxyUser := cr.Spec.Server.ProxyUser
@@ -159,9 +150,9 @@ func GetConfigMapData(cr *orgv1.CheCluster) (cheEnv map[string]string) {
 		CheMultiUser:                           "true",
 		CheHost:                                cheHost,
 		ChePort:                                "8080",
-		CheApi:                                 protocol + "://" + cheHost + "/api",
-		CheWebSocketEndpoint:                   wsprotocol + "://" + cheHost + "/api/websocket",
-		WebSocketEndpointMinor:                 wsprotocol + "://" + cheHost + "/api/websocket-minor",
+		CheApi:                                 "https://" + cheHost + "/api",
+		CheWebSocketEndpoint:                   "wss://" + cheHost + "/api/websocket",
+		WebSocketEndpointMinor:                 "wss://" + cheHost + "/api/websocket-minor",
 		CheDebugServer:                         cheDebug,
 		CheInfrastructureActive:                infra,
 		CheInfraKubernetesServiceAccountName:   "che-workspace",
@@ -172,8 +163,8 @@ func GetConfigMapData(cr *orgv1.CheCluster) (cheEnv map[string]string) {
 		WorkspacePvcStorageClassName:           workspacePvcStorageClassName,
 		PvcJobsImage:                           pvcJobsImage,
 		PreCreateSubPaths:                      preCreateSubPaths,
-		TlsSupport:                             tls,
-		K8STrustCerts:                          tls,
+		TlsSupport:                             "true",
+		K8STrustCerts:                          "true",
 		DatabaseURL:                            "jdbc:postgresql://" + chePostgresHostName + ":" + chePostgresPort + "/" + chePostgresDb,
 		DbUserName:                             chePostgresUser,
 		DbPassword:                             chePostgresPassword,
@@ -212,7 +203,7 @@ func GetConfigMapData(cr *orgv1.CheCluster) (cheEnv map[string]string) {
 		"CHE_INFRA_KUBERNETES_INGRESS_DOMAIN":                      ingressDomain,
 		"CHE_INFRA_KUBERNETES_SERVER__STRATEGY":                    ingressStrategy,
 		"CHE_INFRA_KUBERNETES_TLS__SECRET":                         tlsSecretName,
-		"CHE_INFRA_KUBERNETES_INGRESS_ANNOTATIONS__JSON":           "{\"kubernetes.io/ingress.class\": " + ingressClass + ", \"nginx.ingress.kubernetes.io/rewrite-target\": \"/$1\",\"nginx.ingress.kubernetes.io/ssl-redirect\": " + tls + ",\"nginx.ingress.kubernetes.io/proxy-connect-timeout\": \"3600\",\"nginx.ingress.kubernetes.io/proxy-read-timeout\": \"3600\"}",
+		"CHE_INFRA_KUBERNETES_INGRESS_ANNOTATIONS__JSON":           "{\"kubernetes.io/ingress.class\": " + ingressClass + ", \"nginx.ingress.kubernetes.io/rewrite-target\": \"/$1\",\"nginx.ingress.kubernetes.io/ssl-redirect\": \"true\",\"nginx.ingress.kubernetes.io/proxy-connect-timeout\": \"3600\",\"nginx.ingress.kubernetes.io/proxy-read-timeout\": \"3600\"}",
 		"CHE_INFRA_KUBERNETES_INGRESS_PATH__TRANSFORM":             "%s(.*)",
 	}
 	if !isOpenShift {

@@ -20,7 +20,6 @@ import (
 )
 
 func NewIngress(cr *orgv1.CheCluster, name string, serviceName string, port int) *v1beta1.Ingress {
-	tlsSupport := cr.Spec.Server.TlsSupport
 	ingressStrategy := cr.Spec.K8s.IngressStrategy
 	if len(ingressStrategy) < 1 {
 		ingressStrategy = "multi-host"
@@ -29,10 +28,6 @@ func NewIngress(cr *orgv1.CheCluster, name string, serviceName string, port int)
 	ingressClass := util.GetValue(cr.Spec.K8s.IngressClass, DefaultIngressClass)
 	labels := GetLabels(cr, name)
 	tlsSecretName := cr.Spec.K8s.TlsSecretName
-	tls := "false"
-	if tlsSupport {
-		tls = "true"
-	}
 	host := ""
 	path := "/"
 	if name == "keycloak" && ingressStrategy != "multi-host" {
@@ -43,16 +38,13 @@ func NewIngress(cr *orgv1.CheCluster, name string, serviceName string, port int)
 	} else if ingressStrategy == "single-host" {
 		host = ingressDomain
 	}
-	tlsIngress := []v1beta1.IngressTLS{}
-	if tlsSupport {
-		tlsIngress = []v1beta1.IngressTLS{
-			{
-				Hosts: []string{
-					ingressDomain,
-				},
-				SecretName: tlsSecretName,
+	tlsIngress := []v1beta1.IngressTLS{
+		{
+			Hosts: []string{
+				ingressDomain,
 			},
-		}
+			SecretName: tlsSecretName,
+		},
 	}
 
 	return &v1beta1.Ingress{
@@ -68,7 +60,7 @@ func NewIngress(cr *orgv1.CheCluster, name string, serviceName string, port int)
 				"kubernetes.io/ingress.class":                       ingressClass,
 				"nginx.ingress.kubernetes.io/proxy-read-timeout":    "3600",
 				"nginx.ingress.kubernetes.io/proxy-connect-timeout": "3600",
-				"nginx.ingress.kubernetes.io/ssl-redirect":          tls,
+				"nginx.ingress.kubernetes.io/ssl-redirect":          "true",
 			},
 		},
 		Spec: v1beta1.IngressSpec{
