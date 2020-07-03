@@ -72,7 +72,17 @@ testUpdates() {
   "${OPERATOR_REPO}"/olm/testUpdate.sh ${PLATFORM} ${CHANNEL} ${NAMESPACE}
   printInfo "Successfully installed Eclipse Che previous version."
 
+  getCheAcessToken
+  chectl workspace:create --devfile=$OPERATOR_REPO/.ci/util/devfile-test.yaml
+
   waitCheUpdateInstall
+  getCheAcessToken
+
+  workspaceList=$(chectl workspace:list)
+  workspaceID=$(echo "$workspaceList" | grep -oP '\bworkspace.*?\b')
+  chectl workspace:start $workspaceID
+
+  waitWorkspaceStart
 }
 
 init
