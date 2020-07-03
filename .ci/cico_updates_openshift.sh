@@ -21,25 +21,19 @@ catchFinish() {
 }
 
 init() {
-  SCRIPT=$(readlink -f "$0")
-  SCRIPT_DIR=$(dirname "$SCRIPT")
+  export SCRIPT=$(readlink -f "$0")
+  export SCRIPT_DIR=$(dirname "$SCRIPT")
 
   if [[ ${WORKSPACE} ]] && [[ -d ${WORKSPACE} ]]; then
-    OPERATOR_REPO=${WORKSPACE};
+    export OPERATOR_REPO=${WORKSPACE};
   else
-    OPERATOR_REPO=$(dirname "$SCRIPT_DIR");
+    export OPERATOR_REPO=$(dirname "$SCRIPT_DIR");
   fi
 
-  RAM_MEMORY=8192
-  PLATFORM="openshift"
-  NAMESPACE="che"
-  CHANNEL="stable"
-}
-
-installDependencies() {
-  installYQ
-  installJQ
-  installChectl
+  export RAM_MEMORY=8192
+  export PLATFORM="openshift"
+  export NAMESPACE="che"
+  export CHANNEL="stable"
 }
 
 waitCheUpdateInstall() {
@@ -77,9 +71,10 @@ waitCheUpdateInstall() {
 testUpdates() {
   "${OPERATOR_REPO}"/olm/testUpdate.sh ${PLATFORM} ${CHANNEL} ${NAMESPACE}
   printInfo "Successfully installed Eclipse Che previous version."
+
+  waitCheUpdateInstall
 }
 
 init
 source "${OPERATOR_REPO}"/.ci/util/ci_common.sh
-installDependencies
 testUpdates
