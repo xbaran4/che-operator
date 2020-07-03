@@ -152,10 +152,11 @@ getCheAcessToken() {
 
 waitWorkspaceStart() {
   export x=0
-  set +e
-  getCheAcessToken
+
   while [ $x -le 180 ]
   do
+    kubectl get pods -n ${NAMESPACE}
+    getCheAcessToken
     workspaceList=$(chectl workspace:list --chenamespace=${NAMESPACE})
     workspaceStatus=$(echo "$workspaceList" | grep -oP '\bRUNNING.*?\b')
 
