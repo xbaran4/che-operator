@@ -83,10 +83,6 @@ testUpdates() {
 
   echo "[INFO] Successfully installed Eclipse Che: ${cheVersion}"
 
-  workspaceList=$(chectl workspace:list)
-  workspaceID=$(echo "$workspaceList" | grep -oP '\bworkspace.*?\b')
-  chectl workspace:start $workspaceID
-
   # Wait to start an workspace and print success message
   waitWorkspaceStart
   echo "[INFO] Successfully started an workspace on Eclipse Che: ${cheVersion}"
