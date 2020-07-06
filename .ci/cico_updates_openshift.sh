@@ -12,12 +12,11 @@
 
 set -ex
 
-#Stop execution on any error
-trap "catchFinish" EXIT SIGINT
+trap 'Catch_Finish $?' EXIT SIGINT
 
-# Catch_Finish is executed after finish script.
-catchFinish() {
-  exit $result
+# Catch errors and force to delete minikube VM.
+Catch_Finish() {
+  echo $?
 }
 
 init() {
@@ -70,7 +69,6 @@ waitCheUpdateInstall() {
 
 testUpdates() {
   "${OPERATOR_REPO}"/olm/testUpdate.sh ${PLATFORM} ${CHANNEL} ${NAMESPACE}
-  printInfo "Successfully installed Eclipse Che previous version."
 
   getCheAcessToken
   chectl workspace:create --devfile=$OPERATOR_REPO/.ci/util/devfile-test.yaml
@@ -78,12 +76,17 @@ testUpdates() {
   waitCheUpdateInstall
   getCheAcessToken
 
-  sleep 120
   local cheVersion=$(kubectl get checluster/eclipse-che -n "${NAMESPACE}" -o jsonpath={.status.cheVersion})
 
   echo "[INFO] Successfully installed Eclipse Che: ${cheVersion}"
+  sleep 120
 
-  # Wait to start an workspace and print success message
+  getCheAcessToken
+  workspaceList=$(chectl workspace:list)
+  workspaceID=$(echo "$workspaceList" | grep -oP '\bworkspace.*?\b')
+  chectl workspace:start $workspaceID
+  chectl workspace:list
+
   waitWorkspaceStart
   echo "[INFO] Successfully started an workspace on Eclipse Che: ${cheVersion}"
 }

@@ -9,7 +9,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-set -e
+set -ex
 
 printInfo() {
   set +x
@@ -151,15 +151,16 @@ getCheAcessToken() {
 }
 
 waitWorkspaceStart() {
+  set +e
   export x=0
-
+  echo "Hello"
   while [ $x -le 180 ]
   do
     getCheAcessToken
     workspaceList=$(chectl workspace:list --chenamespace=${NAMESPACE})
     workspaceStatus=$(echo "$workspaceList" | grep -oP '\bRUNNING.*?\b')
 
-    if [ "${workspaceStatus}" == "RUNNING" ]
+    if [ "${workspaceStatus:-NOT_RUNNING}" == "RUNNING" ]
     then
       printInfo "Workspace started started successfully"
       break
