@@ -90,7 +90,7 @@ function buildCatalogSource() {
 
 
   echo "[INFO] LOGGING...."
-  PASS=$(cat ${PWD}/kubeadmin-password)
+  PASS=$(cat /tmp/artifacts/installer/auth/kubeadmin-password)
   oc login -u kubeadmin -p ${PASS} --insecure-skip-tls-verify
   podman login -u kubeadmin -p $(oc whoami -t) ${IMAGE_REGISTRY_HOST} --tls-verify=false
   
