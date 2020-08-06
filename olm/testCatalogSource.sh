@@ -9,7 +9,7 @@
 #
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
-
+set -e
 # bash ansi colors
 GREEN='\033[0;32m'
 NC='\033[0m'
@@ -80,6 +80,21 @@ fi
 # Assign catalog source image
 CATALOG_SOURCE_IMAGE=$5
 
+function buildCatalogSource() {
+  oc new-project ${NAMESPACE}
+
+  # Get Openshift Image registry host
+  IMAGE_REGISTRY_HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
+  podman login -u kubeadmin -p $(oc whoami -t) ${IMAGE_REGISTRY_HOST} --tls-verify=false
+
+  podman build -t ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE} -f "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"/Dockerfile \
+    "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"
+  podman push ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}:latest --tls-verify=false
+
+  # For some reason CRC external registry exposed is not working. I'll use the internal registry in cluster which is:image-registry.openshift-image-registry.svc:5000
+  export CATALOG_SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}
+}
+
 init() {
   # GET the package version to apply. In case of CRC we should detect somehow the platform is openshift to get packageversion
   if [[ "${PLATFORM}" == "crc" ]]
@@ -112,7 +127,9 @@ init() {
 
   elif [[ "${PLATFORM}" == "openshift" ]]
   then
-    echo "[INFO]: Catalog Source container image to run olm tests in openshift platform is: ${CATALOG_SOURCE_IMAGE}"
+    oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
+    buildCatalogSource
+    echo "[INFO]: Successfully added catalog source image to crc image registry: ${CATALOG_SOURCE_IMAGE}"
 
   elif [[ "${PLATFORM}" == "crc" ]]
   then
@@ -122,16 +139,7 @@ init() {
     oc login -u kubeadmin -p $(crc console --credentials | awk -F "kubeadmin" '{print $2}' | cut -c 5- | rev | cut -c31- | rev) https://api.crc.testing:6443
     oc new-project ${NAMESPACE}
 
-    # Get Openshift Image registry host
-    IMAGE_REGISTRY_HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
-    podman login -u kubeadmin -p $(oc whoami -t) ${IMAGE_REGISTRY_HOST} --tls-verify=false
-
-    podman build -t ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE} -f "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"/Dockerfile \
-        "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"
-    podman push ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}:latest --tls-verify=false
-
-    # For some reason CRC external registry exposed is not working. I'll use the internal registry in cluster which is:image-registry.openshift-image-registry.svc:5000
-    export CATALOG_SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}
+    buildCatalogSource
     echo "[INFO]: Successfully added catalog source image to crc image registry: ${CATALOG_SOURCE_IMAGE}"
 
   else

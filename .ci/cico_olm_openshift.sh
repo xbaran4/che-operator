@@ -21,13 +21,7 @@ export OPERATOR_REPO
 ARTIFACTS_DIR="/tmp/artifacts"
 export ARTIFACTS_DIR
 
-# Component is defined in Openshift CI job configuration. See: https://github.com/openshift/release/blob/master/ci-operator/config/devfile/devworkspace-operator/devfile-devworkspace-operator-master__v4.yaml#L8
-CI_COMPONENT="che-operator-catalog"
-export CI_COMPONENT
-
-# This image is builded by Openshift CI and exposed to be consumed for olm tests.
-#OPENSHIFT_BUILD_NAMESPACE env var exposed by Openshift CI. More info about how images are builded in Openshift CI: https://github.com/openshift/ci-tools/blob/master/TEMPLATES.md#parameters-available-to-templates
-CATALOG_SOURCE_IMAGE=registry.svc.ci.openshift.org/${OPENSHIFT_BUILD_NAMESPACE}/stable:${CI_COMPONENT}
+CATALOG_SOURCE_IMAGE="che_catalog"
 export CATALOG_SOURCE_IMAGE
 
 # Choose if install Eclipse Che using an operatorsource or Custom Catalog Source
@@ -43,7 +37,7 @@ CHANNEL="nightly"
 export CHANNEL
 
 # Test nightly olm files
-NAMESPACE="che"
+NAMESPACE="che-operator"
 export NAMESPACE
 
 # run function run the tests in ci of custom catalog source.
