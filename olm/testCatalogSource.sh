@@ -9,7 +9,7 @@
 #
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
-set -e
+set -ex
 # bash ansi colors
 GREEN='\033[0;32m'
 NC='\033[0m'
@@ -81,13 +81,13 @@ fi
 CATALOG_SOURCE_IMAGE=$5
 
 function buildCatalogSource() {
-  oc new-project ${NAMESPACE}
+  podman --version
+  oc create namespace {NAMESPACE}
 
   # Get Openshift Image registry host
   IMAGE_REGISTRY_HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
   podman build -t ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE} -f "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"/Dockerfile \
     "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"
-
 
   echo "[INFO] LOGGING...."
   PASS=$(cat /tmp/artifacts/installer/auth/kubeadmin-password)
