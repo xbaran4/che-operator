@@ -88,12 +88,13 @@ function buildCatalogSource() {
   podman build -t ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE} -f "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"/Dockerfile \
     "${ROOT_DIR}"/eclipse-che-preview-"${PLATFORM}"
 
-  podman push ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}:latest --tls-verify=false
 
   echo "[INFO] LOGGING...."
   PASS=$(cat ${PWD}/kubeadmin-password)
   oc login -u kubeadmin -p ${PASS} --insecure-skip-tls-verify
   podman login -u kubeadmin -p $(oc whoami -t) ${IMAGE_REGISTRY_HOST} --tls-verify=false
+  
+  podman push ${IMAGE_REGISTRY_HOST}/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}:latest --tls-verify=false
 
   # For some reason CRC external registry exposed is not working. I'll use the internal registry in cluster which is:image-registry.openshift-image-registry.svc:5000
   export CATALOG_SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${CATALOG_SOURCE_IMAGE}
