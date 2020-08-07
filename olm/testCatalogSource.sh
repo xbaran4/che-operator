@@ -132,8 +132,6 @@ init() {
 
   elif [[ "${PLATFORM}" == "openshift" ]]
   then
-    oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
-    buildCatalogSource
     echo "[INFO]: Successfully added catalog source image to crc image registry: ${CATALOG_SOURCE_IMAGE}"
 
   elif [[ "${PLATFORM}" == "crc" ]]
