@@ -1,5 +1,5 @@
 FROM quay.io/operator-framework/upstream-registry-builder as builder
-COPY deploy manifests/eclipse-che-preview-openshift
+COPY . manifests/eclipse-che-preview-openshift
 RUN ./bin/initializer -o ./bundles.db
 
 FROM openshift/origin-base
