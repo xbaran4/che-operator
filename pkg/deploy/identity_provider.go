@@ -3,6 +3,7 @@ package deploy
 import (
 	"context"
 	"strings"
+	"fmt"
 
 	"github.com/eclipse/che-operator/pkg/util"
 	oauth "github.com/openshift/api/oauth/v1"
@@ -48,6 +49,9 @@ func SyncIdentityProviderToCluster(deployContext *DeployContext, cheHost string,
 			return false, serviceStatus.Err
 		}
 	}
+
+	deployContext.InternalService.KeycloakHost = fmt.Sprintf("%s://%s.%s.svc.cluster.local:%d", "http", "keycloak", deployContext.CheCluster.Namespace, 8080)
+	logrus.Infof("--------------------------------Keycloak internal host url is %s", deployContext.InternalService.KeycloakHost)
 
 	exposureStrategy := util.GetServerExposureStrategy(instance, DefaultServerExposureStrategy)
 	singleHostExposureType := GetSingleHostExposureType(instance)
@@ -217,8 +221,9 @@ func CreateIdentityProviderItems(deployContext *DeployContext, cheFlavor string)
 	}
 
 	keycloakURL := instance.Spec.Auth.IdentityProviderURL
+	keycloakInternalUrl := deployContext.InternalService.KeycloakHost
 	keycloakRealm := util.GetValue(instance.Spec.Auth.IdentityProviderRealm, cheFlavor)
-	oAuthClient := NewOAuthClient(oAuthClientName, oauthSecret, keycloakURL, keycloakRealm, isOpenShift4)
+	oAuthClient := NewOAuthClient(oAuthClientName, oauthSecret, keycloakURL, keycloakInternalUrl, keycloakRealm, isOpenShift4)
 	if err := createNewOauthClient(deployContext, oAuthClient); err != nil {
 		return err
 	}

@@ -354,6 +354,7 @@ func getSpecKeycloakDeployment(
 				Name:  "DB_SERVICE_PREFIX_MAPPING",
 				Value: "keycloak-postgresql=DB",
 			},
+			// 
 			{
 				Name:  "KEYCLOAK_POSTGRESQL_SERVICE_HOST",
 				Value: util.GetValue(deployContext.CheCluster.Spec.Database.ChePostgresHostName, DefaultChePostgresHostName),

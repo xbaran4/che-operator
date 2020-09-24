@@ -12,13 +12,15 @@
 package deploy
 
 import (
+	"fmt"
 	"strings"
+
 	oauth "github.com/openshift/api/oauth/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 
-func NewOAuthClient(name string, oauthSecret string, keycloakURL string, keycloakRealm string, isOpenShift4 bool) *oauth.OAuthClient {
+func NewOAuthClient(name string, oauthSecret string, keycloakURL string, keycloakInternalUrl string, keycloakRealm string, isOpenShift4 bool) *oauth.OAuthClient {
 	providerName := "openshift-v3"
 	if isOpenShift4 {
 		providerName = "openshift-v4"
@@ -36,6 +38,8 @@ func NewOAuthClient(name string, oauthSecret string, keycloakURL string, keycloa
 			"https://" + keycloakURL + redirectURLSuffix,
 		}
 	}
+	redirectURIs = append(redirectURIs, keycloakInternalUrl)
+	fmt.Printf("Keycloak urls for oauth: %v", redirectURIs)
 	return &oauth.OAuthClient{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "OAuthClient",

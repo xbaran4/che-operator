@@ -57,6 +57,7 @@ type CheConfigMap struct {
 	DbPassword                             string `json:"CHE_JDBC_PASSWORD,omitempty"`
 	CheLogLevel                            string `json:"CHE_LOG_LEVEL"`
 	KeycloakURL                            string `json:"CHE_KEYCLOAK_AUTH__SERVER__URL,omitempty"`
+	KeycloakInternalURL                    string `json:"CHE_KEYCLOAK_AUTH__INTERNAL__SERVER__URL,omitempty"`
 	KeycloakRealm                          string `json:"CHE_KEYCLOAK_REALM,omitempty"`
 	KeycloakClientId                       string `json:"CHE_KEYCLOAK_CLIENT__ID,omitempty"`
 	OpenShiftIdentityProvider              string `json:"CHE_INFRA_OPENSHIFT_OAUTH__IDENTITY__PROVIDER"`
@@ -97,7 +98,6 @@ func SyncCheConfigMapToCluster(deployContext *DeployContext) (*corev1.ConfigMap,
 // which is used in CheCluster ConfigMap to configure CheCluster master behavior
 func GetCheConfigMapData(deployContext *DeployContext) (cheEnv map[string]string, err error) {
 	cheHost := deployContext.CheCluster.Spec.Server.CheHost
-	keycloakURL := deployContext.CheCluster.Spec.Auth.IdentityProviderURL
 	isOpenShift, isOpenshift4, err := util.DetectOpenShift()
 	if err != nil {
 		logrus.Errorf("Failed to get current infra: %s", err)
@@ -171,6 +171,16 @@ func GetCheConfigMapData(deployContext *DeployContext) (cheEnv map[string]string
 	ingressClass := util.GetValue(deployContext.CheCluster.Spec.K8s.IngressClass, DefaultIngressClass)
 	devfileRegistryUrl := deployContext.CheCluster.Status.DevfileRegistryURL
 	pluginRegistryUrl := deployContext.CheCluster.Status.PluginRegistryURL
+
+	keycloakURL := deployContext.CheCluster.Spec.Auth.IdentityProviderURL
+	var keycloakInternalURL string
+
+	if deployContext.CheCluster.Spec.Server.UseServiceHostNames {
+		keycloakInternalURL = deployContext.InternalService.KeycloakHost
+	} else {
+		keycloakInternalURL = keycloakURL
+	}
+
 	cheLogLevel := util.GetValue(deployContext.CheCluster.Spec.Server.CheLogLevel, DefaultCheLogLevel)
 	cheDebug := util.GetValue(deployContext.CheCluster.Spec.Server.CheDebug, DefaultCheDebug)
 	cheMetrics := strconv.FormatBool(deployContext.CheCluster.Spec.Metrics.Enable)
@@ -222,6 +232,7 @@ func GetCheConfigMapData(deployContext *DeployContext) (cheEnv map[string]string
 
 	if cheMultiUser == "true" {
 		data.KeycloakURL = keycloakURL + "/auth"
+		data.KeycloakInternalURL = keycloakInternalURL + "/auth"
 		data.KeycloakRealm = keycloakRealm
 		data.KeycloakClientId = keycloakClientId
 		data.DatabaseURL = "jdbc:postgresql://" + chePostgresHostName + ":" + chePostgresPort + "/" + chePostgresDb
