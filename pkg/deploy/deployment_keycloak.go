@@ -248,6 +248,10 @@ func getSpecKeycloakDeployment(
 			Value: "keycloak",
 		},
 		{
+			Name: "KEYCLOAK_LOGLEVEL",
+			Value: "DEBUG" ,
+		},
+		{
 			Name:  "POSTGRES_USER",
 			Value: "keycloak",
 		},

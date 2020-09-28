@@ -38,8 +38,9 @@ func NewOAuthClient(name string, oauthSecret string, keycloakURL string, keycloa
 			"https://" + keycloakURL + redirectURLSuffix,
 		}
 	}
-	redirectURIs = append(redirectURIs, keycloakInternalUrl)
-	fmt.Printf("Keycloak urls for oauth: %v", redirectURIs)
+	internalRedirectLink := keycloakInternalUrl + redirectURLSuffix
+	redirectURIs = append(redirectURIs, internalRedirectLink)
+	fmt.Printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++Keycloak urls for oauth: %v", redirectURIs)
 	return &oauth.OAuthClient{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "OAuthClient",
