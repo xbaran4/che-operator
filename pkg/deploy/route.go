@@ -13,7 +13,7 @@ package deploy
 
 import (
 	"context"
-	"fmt"
+	// "fmt"
 	"reflect"
 
 	"github.com/google/go-cmp/cmp"
@@ -71,22 +71,22 @@ func SyncRouteToCluster(
 		return nil, nil
 	}
 
-	diffOpts := routeDiffOpts
-	if host != "" {
-		diffOpts = routeWithHostDiffOpts
-	}
-	diff := cmp.Diff(clusterRoute, specRoute, diffOpts)
-	if len(diff) > 0 {
-		logrus.Infof("Deleting existed object: %s, name: %s", clusterRoute.Kind, clusterRoute.Name)
-		fmt.Printf("Difference:\n%s", diff)
+	// diffOpts := routeDiffOpts
+	// if host != "" {
+	// 	diffOpts = routeWithHostDiffOpts
+	// }
+	// diff := cmp.Diff(clusterRoute, specRoute, diffOpts)
+	// if len(diff) > 0 {
+	// 	logrus.Infof("Deleting existed object: %s, name: %s", clusterRoute.Kind, clusterRoute.Name)
+	// 	fmt.Printf("Difference:\n%s", diff)
 
-		err := deployContext.ClusterAPI.Client.Delete(context.TODO(), clusterRoute)
-		if !errors.IsNotFound(err) {
-			return nil, err
-		}
+	// 	err := deployContext.ClusterAPI.Client.Delete(context.TODO(), clusterRoute)
+	// 	if !errors.IsNotFound(err) {
+	// 		return nil, err
+	// 	}
 
-		return nil, nil
-	}
+	// 	return nil, nil
+	// }
 
 	return clusterRoute, nil
 }

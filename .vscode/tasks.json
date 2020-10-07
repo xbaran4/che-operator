@@ -16,7 +16,7 @@
         },
         {
             "label": "Build and push custom che-operator image: '${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly'",
-            "command": "docker build -t ${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly . && docker push ${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly",
+            "command": "docker build -t ${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly .",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -26,7 +26,19 @@
                 "reveal": "always"
             },
             "group": "build"
-        }    
+        },
+        {
+            "label": "Local debug",
+            "command": "./local-debug.sh",
+            "args": ["./deploy/crds/org_v1_che_cr.yaml"],
+            "problemMatcher": [
+                "$go"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "none"
+        }
     ]
 }
 

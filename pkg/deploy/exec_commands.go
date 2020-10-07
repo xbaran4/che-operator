@@ -34,17 +34,17 @@ func GetPostgresProvisionCommand(identityProviderPostgresPassword string) (comma
 }
 
 func GetKeycloakProvisionCommand(cr *orgv1.CheCluster) (command string) {
-	requiredActions := ""
-	updateAdminPassword := cr.Spec.Auth.UpdateAdminPassword
+	// requiredActions := ""
+	// updateAdminPassword := cr.Spec.Auth.UpdateAdminPassword
 	cheFlavor := DefaultCheFlavor(cr)
 	keycloakRealm := util.GetValue(cr.Spec.Auth.IdentityProviderRealm, cheFlavor)
 	keycloakClientId := util.GetValue(cr.Spec.Auth.IdentityProviderClientId, cheFlavor+"-public")
 	keycloakUserEnvVar := "${KEYCLOAK_USER}"
 	keycloakPasswordEnvVar := "${KEYCLOAK_PASSWORD}"
 
-	if updateAdminPassword {
-		requiredActions = "\"UPDATE_PASSWORD\""
-	}
+	// if updateAdminPassword {
+	// 	requiredActions = "\"UPDATE_PASSWORD\""
+	// }
 	file, err := ioutil.ReadFile("/tmp/keycloak_provision")
 	if err != nil {
 		logrus.Errorf("Failed to locate keycloak entrypoint file: %s", err)
@@ -52,13 +52,6 @@ func GetKeycloakProvisionCommand(cr *orgv1.CheCluster) (command string) {
 	keycloakTheme := "che"
 	realmDisplayName := "Eclipse Che"
 	script := "/opt/jboss/keycloak/bin/kcadm.sh"
-	if cheFlavor == "codeready" {
-		keycloakTheme = "rh-sso"
-		realmDisplayName = "CodeReady Workspaces"
-		script = "/opt/eap/bin/kcadm.sh"
-		keycloakUserEnvVar = "${SSO_ADMIN_USERNAME}"
-		keycloakPasswordEnvVar = "${SSO_ADMIN_PASSWORD}"
-	}
 	str := string(file)
 	r := strings.NewReplacer("$script", script,
 		"$keycloakAdminUserName", keycloakUserEnvVar,
@@ -68,11 +61,13 @@ func GetKeycloakProvisionCommand(cr *orgv1.CheCluster) (command string) {
 		"$keycloakClientId", keycloakClientId,
 		"$keycloakTheme", keycloakTheme,
 		"$cheHost", cr.Spec.Server.CheHost,
-		"$requiredActions", requiredActions)
+		// "$requiredActions", requiredActions
+	)
 	createRealmClientUserCommand := r.Replace(str)
 	command = createRealmClientUserCommand
 	if cheFlavor == "che" {
-		command = "cd /scripts && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + createRealmClientUserCommand
+		// java home fix....
+		command = "cd ${HOME} && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + createRealmClientUserCommand
 	}
 	return command
 }
@@ -148,7 +143,8 @@ func GetOpenShiftIdentityProviderProvisionCommand(cr *orgv1.CheCluster, oAuthCli
 	command = buffer.String()
 
 	if cheFlavor == "che" {
-		command = "cd /scripts && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + command
+		// todo
+		command = "cd ${HOME} && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + command
 	}
 	return command, nil
 }
@@ -176,7 +172,8 @@ func GetDeleteOpenShiftIdentityProviderProvisionCommand(cr *orgv1.CheCluster, is
 			script + " delete identity-provider/instances/" + providerName + " -r " + keycloakRealm + " ; fi"
 	command = deleteOpenShiftIdentityProviderCommand
 	if cheFlavor == "che" {
-		command = "cd /scripts && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + deleteOpenShiftIdentityProviderCommand
+		// todo
+		command = "cd ${HOME} && export JAVA_TOOL_OPTIONS=-Duser.home=. && " + deleteOpenShiftIdentityProviderCommand
 	}
 	return command
 }

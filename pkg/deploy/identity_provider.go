@@ -115,6 +115,7 @@ func SyncIdentityProviderToCluster(deployContext *DeployContext, cheHost string,
 			// create Keycloak route
 			additionalLabels := deployContext.CheCluster.Spec.Auth.IdentityProviderRoute.Labels
 			route, err := SyncRouteToCluster(deployContext, "keycloak", "", "keycloak", 8080, additionalLabels)
+
 			if !tests {
 				if route == nil {
 					logrus.Info("Waiting on route 'keycloak' to be ready")
@@ -159,6 +160,7 @@ func SyncIdentityProviderToCluster(deployContext *DeployContext, cheHost string,
 	}
 
 	if !tests {
+		// execs...
 		if !instance.Status.KeycloakProvisoned {
 			if err := ProvisionKeycloakResources(deployContext); err != nil {
 				logrus.Error(err)
@@ -178,6 +180,7 @@ func SyncIdentityProviderToCluster(deployContext *DeployContext, cheHost string,
 		}
 	}
 
+	// Oauth ==========================================================
 	if isOpenShift {
 		doInstallOpenShiftoAuthProvider := instance.Spec.Auth.OpenShiftoAuth
 		if doInstallOpenShiftoAuthProvider {
@@ -233,7 +236,7 @@ func CreateIdentityProviderItems(deployContext *DeployContext, cheFlavor string)
 			logrus.Errorf("Failed to retrieve pod name. Further exec will fail")
 			return err
 		}
-		_, err = util.K8sclient.ExecIntoPod(podToExec, openShiftIdentityProviderCommand, "create OpenShift identity provider", instance.Namespace)
+		_, err = util.K8sclient.ExecIntoPod(podToExec, openShiftIdentityProviderCommand, "create OpenShift identity provider", instance.Namespace)// exec oauth
 		if err == nil {
 			for {
 				instance.Status.OpenShiftoAuthProvisioned = true
