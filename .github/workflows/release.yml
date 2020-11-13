@@ -72,7 +72,7 @@ jobs:
             ./make-release.sh ${CHE_VERSION} --release --release-olm-files --update-nightly-olm-files 
           else
             git checkout ${BRANCH}
-            ./make-release.sh ${CHE_VERSION} --release --release-olm-files
+            bash -x ./make-release.sh ${CHE_VERSION} --release --release-olm-files
           fi
           
           # default robot account on quay does not have permissions for application repos
