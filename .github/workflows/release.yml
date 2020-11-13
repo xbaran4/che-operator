@@ -62,14 +62,13 @@ jobs:
           CHE_VERSION=${{ github.event.inputs.version }}
           BRANCH=${CHE_VERSION%.*}.x
 
-          docker login quay.io --username ${{ secrets.QUAY_USERNAME }} --password ${{ secrets.QUAY_PASSWORD }}
+          export QUAY_ECLIPSE_CHE_USERNAME=${{ secrets.QUAY_USERNAME }} 
+          export QUAY_ECLIPSE_CHE_PASSWORD=${{ secrets.QUAY_PASSWORD }}
           
           # we usually do not update nightly files during major releases
           if [[ ${CHE_VERSION} == *".0" ]]; then
             ./make-release.sh ${CHE_VERSION} --release --release-olm-files --update-nightly-olm-files 
           else
-            ls -l
-            git status
             git checkout ${BRANCH}
             ./make-release.sh ${CHE_VERSION} --release --release-olm-files
           fi
