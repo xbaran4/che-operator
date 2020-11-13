@@ -77,7 +77,7 @@ jobs:
           
           # default robot account on quay does not have permissions for application repos
           # so we provide credentials for accounts that do
-          export QUAY_USERNAME_K8S=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_PASSWORD }}
+          export QUAY_USERNAME_K8S=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_USERNAME }}
           export QUAY_PASSWORD_K8S=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_PASSWORD }}
           export QUAY_USERNAME_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_USERNAME }}
           export QUAY_USERNAME_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_PASSWORD }}
