@@ -52,6 +52,10 @@ jobs:
           CHE_VERSION=${{ github.event.inputs.version }}
           BRANCH=${CHE_VERSION%.*}.x
 
+          git config --global user.name "Mykhailo Kuznietsov"
+          git config --global user.email "mkuznets@redhat.com"
+          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
           set -e
 
           OP_SDK_DIR=/opt/operator-sdk
