@@ -67,13 +67,13 @@ jobs:
           export QUAY_ECLIPSE_CHE_USERNAME=${{ secrets.QUAY_USERNAME }} 
           export QUAY_ECLIPSE_CHE_PASSWORD=${{ secrets.QUAY_PASSWORD }}
           
-          # # we usually do not update nightly files during major releases
-          # if [[ ${CHE_VERSION} == *".0" ]]; then
-          #   ./make-release.sh ${CHE_VERSION} --release --release-olm-files --update-nightly-olm-files 
-          # else
-          #   git checkout ${BRANCH}
-          #   bash -x ./make-release.sh ${CHE_VERSION} --release --release-olm-files
-          # fi
+          # we usually do not update nightly files during major releases
+          if [[ ${CHE_VERSION} == *".0" ]]; then
+            ./make-release.sh ${CHE_VERSION} --release --release-olm-files --update-nightly-olm-files 
+          else
+            git checkout ${BRANCH}
+            bash -x ./make-release.sh ${CHE_VERSION} --release --release-olm-files
+          fi
           
           # default robot account on quay does not have permissions for application repos
           # so we provide credentials for accounts that do
@@ -82,17 +82,8 @@ jobs:
           export QUAY_USERNAME_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_USERNAME }}
           export QUAY_PASSWORD_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_PASSWORD }}
           
-          echo "normal login1"
-          docker login quay.io --username "${{ secrets.QUAY_USERNAME }}" --password "${{ secrets.QUAY_PASSWORD }}"
-          echo "k8s robot login1"
-          docker login quay.io --username "${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_USERNAME }}" --password "${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_PASSWORD }}"
-          echo "normal login2"
-          docker login quay.io --username "$QUAY_ECLIPSE_CHE_USERNAME" --password "$QUAY_ECLIPSE_CHE_PASSWORD"
-          echo "k8s robot login2"
-          docker login quay.io --username "$QUAY_USERNAME_K8S" --password "$QUAY_PASSWORD_K8S"
-
-          git checkout ${CHE_VERSION}-release
-          ./make-release.sh ${CHE_VERSION} --push-olm-files
+          # git checkout ${CHE_VERSION}-release
+          # ./make-release.sh ${CHE_VERSION} --push-olm-files
           
           # perform extra checkouts to ensure branches exist locally
           git checkout ${BRANCH}
