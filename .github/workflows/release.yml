@@ -81,12 +81,14 @@ jobs:
           export QUAY_PASSWORD_K8S=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_PASSWORD }}
           export QUAY_USERNAME_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_USERNAME }}
           export QUAY_PASSWORD_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_PASSWORD }}
-
-          echo "normal login"
-          docker login --username "$QUAY_ECLIPSE_CHE_USERNAME" --password "$QUAY_ECLIPSE_CHE_PASSWORD"
-          echo "k8s robot login"
+          
+          echo "normal login1"
+          docker login --username "${{ secrets.QUAY_USERNAME }}" --password "${{ secrets.QUAY_PASSWORD }}"
+          echo "k8s robot login1"
           docker login --username "${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_USERNAME }}" --password "${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_KUBERNETES_PASSWORD }}"
-          echo "k8s var-secrets login"
+          echo "normal login2"
+          docker login --username "$QUAY_ECLIPSE_CHE_USERNAME" --password "$QUAY_ECLIPSE_CHE_PASSWORD"
+          echo "k8s robot login2"
           docker login --username "$QUAY_USERNAME_K8S" --password "$QUAY_PASSWORD_K8S"
 
           git checkout ${CHE_VERSION}-release
