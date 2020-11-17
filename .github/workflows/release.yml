@@ -82,6 +82,7 @@ jobs:
           export QUAY_USERNAME_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_USERNAME }}
           export QUAY_PASSWORD_OS=${{ secrets.QUAY_ECLIPSE_CHE_OPERATOR_OPENSHIFT_PASSWORD }}
           
+          # uncomment after https://github.com/eclipse/che/issues/18393 fix
           # git checkout ${CHE_VERSION}-release
           # ./make-release.sh ${CHE_VERSION} --push-olm-files
           
