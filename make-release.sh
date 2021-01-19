@@ -251,7 +251,14 @@ createPRToMasterBranch() {
 
 prepareCommunityOperatorsUpdate() {
   export BASE_DIR=${RELEASE_DIR}/olm
-  "${BASE_DIR}/prepare-community-operators-update.sh" $FORCE_UPDATE
+
+  INCUBATOR_TOKEN=${CHE_INCUBATOR_BOT_GITHUB_TOKEN:-$GITHUB_TOKEN}
+  if [[ ${CHE_INCUBATOR_BOT_GITHUB_TOKEN} ]]; then 
+    GITHUB_USER="che-incubator"
+  else
+    GITHUB_USER="che-bot"
+  fi
+  "${BASE_DIR}/prepare-community-operators-update.sh" --user=${GITHUB_USER} --token="${INCUBATOR_TOKEN}" "${FORCE_UPDATE}"
   unset BASE_DIR
 }
 run() {
