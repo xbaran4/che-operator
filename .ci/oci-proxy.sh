@@ -8,11 +8,6 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-################################ !!!   IMPORTANT   !!! ################################
-########### THIS JOB USE openshift ci operators workflows to run  #####################
-##########  More info about how it is configured can be found here: https://docs.ci.openshift.org/docs/how-tos/testing-operator-sdk-operators #############
-#######################################################################################################################################################
-
 # exit immediately when a command fails
 set -e
 # only exit with zero if all commands of the pipeline exit successfully
@@ -33,23 +28,9 @@ overrideDefaults() {
 }
 
 runTests() {
-    export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
-    echo $DOMAIN
-
-    cat >/tmp/che-cr-patch.yaml <<EOL
-spec:
-  server:
-    nonProxyHosts: oauth-openshift.apps.$DOMAIN|api.$DOMAIN
-EOL
-    # Deploy Eclipse Che applying CR
-    echo -e  "CR"
-    cat /tmp/che-cr-patch.yaml
-
-    echo -e "Start to deploy"
-    chectl server:deploy --installer=operator --platform=openshift --telemetry=off
+    # Deploy Eclipse Che behind proxy using chectl cli
+    deployCheBehindProxy
     provisionOAuth
-    sleep 50m
-
     startNewWorkspace
     waitWorkspaceStart
 }

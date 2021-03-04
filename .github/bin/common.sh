@@ -338,3 +338,17 @@ login() {
     chectl auth:login --chenamespace=${NAMESPACE}
   fi
 }
+
+# Deploy Eclipse Che behind proxy in openshift ci
+deployCheBehindProxy() {
+  export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
+
+    cat >/tmp/che-cr-patch.yaml <<EOL
+spec:
+  server:
+    nonProxyHosts: oauth-openshift.apps.$DOMAIN|api.$DOMAIN
+EOL
+
+  chectl server:deploy --installer=operator --platform=openshift --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --telemetry=off
+  oc get checluster eclipse-che -n eclipse-che -o yaml
+}
