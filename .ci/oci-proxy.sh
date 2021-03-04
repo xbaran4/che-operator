@@ -33,8 +33,20 @@ overrideDefaults() {
 }
 
 runTests() {
+    export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
+    echo $DOMAIN
+
+    cat >/tmp/che-cr-patch.yaml <<EOL
+spec:
+  server:
+    nonProxyHosts: oauth-openshift.apps.$DOMAIN|api.$DOMAIN
+EOL
     # Deploy Eclipse Che applying CR
-    chectl server:deploy --installer=operator --platform=operator --telemetry=off
+    echo -e  "CR"
+    cat /tmp/che-cr-patch.yaml
+
+    echo -e "Start to deploy"
+    chectl server:deploy --installer=operator --platform=openshift --telemetry=off
     provisionOAuth
     startNewWorkspace
     waitWorkspaceStart
