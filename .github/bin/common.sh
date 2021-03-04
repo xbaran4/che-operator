@@ -349,6 +349,6 @@ spec:
     nonProxyHosts: oauth-openshift.apps.$DOMAIN|api.$DOMAIN
 EOL
 
-  chectl server:deploy --installer=operator --platform=openshift --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --telemetry=off
+  chectl server:deploy --installer=operator --platform=openshift --batch --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --telemetry=off
   oc get checluster eclipse-che -n eclipse-che -o yaml
 }
