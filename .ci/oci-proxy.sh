@@ -48,6 +48,8 @@ EOL
     echo -e "Start to deploy"
     chectl server:deploy --installer=operator --platform=openshift --telemetry=off
     provisionOAuth
+    sleep 50m
+
     startNewWorkspace
     waitWorkspaceStart
 }
