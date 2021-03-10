@@ -12,6 +12,7 @@
 #
 # Scripts to prepare OLM(operator lifecycle manager) and install che-operator package
 # with specific version using OLM.
+set -ex
 
 BASE_DIR=$(dirname $(readlink -f "${BASH_SOURCE[0]}"))
 ROOT_DIR=$(dirname "${BASE_DIR}")
