@@ -504,8 +504,8 @@ getCatalogSourcePod() {
   CURRENT_TIME=$(date +%s)
   ENDTIME=$(($CURRENT_TIME + 300))
   CATALOG_POD=$(kubectl get pods -n "${namespace}" -o yaml | yq -r ".items[] | select(.metadata.name | startswith(\"${packageName}\")) | .metadata.name")
-  while [ CA$(date +%s) -lt $ENDTIME ]; do
-    if [ -z "$CATALOG_POD" ]
+  while [ $(date +%s) -lt $ENDTIME ]; do
+    if [[ -z "$CATALOG_POD" ]]
     then
         CATALOG_POD=$(kubectl get pods -n "${namespace}" -o yaml | yq -r ".items[] | select(.metadata.name | startswith(\"${packageName}\")) | .metadata.name")
         sleep 10
