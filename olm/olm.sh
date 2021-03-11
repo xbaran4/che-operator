@@ -500,6 +500,21 @@ waitCheServerDeploy() {
   fi
 }
 
+getCatalogSourcePod() {
+  CURRENT_TIME=$(date +%s)
+  ENDTIME=$(($CURRENT_TIME + 300))
+  CATALOG_POD=$(kubectl get pods -n "${namespace}" -o yaml | yq -r ".items[] | select(.metadata.name | startswith(\"${packageName}\")) | .metadata.name")
+  while [ CA$(date +%s) -lt $ENDTIME ]; do
+    if [ -z "$CATALOG_POD" ]
+    then
+        CATALOG_POD=$(kubectl get pods -n "${namespace}" -o yaml | yq -r ".items[] | select(.metadata.name | startswith(\"${packageName}\")) | .metadata.name")
+        sleep 10
+    else
+        break
+    fi
+  done
+}
+
 getBundleListFromCatalogSource() {
   platform="${1}"
   if [ -z "${platform}" ]; then
@@ -513,7 +528,7 @@ getBundleListFromCatalogSource() {
   fi
   packageName=$(getPackageName "${platform}")
 
-  CATALOG_POD=$(kubectl get pods -n "${namespace}" -o yaml | yq -r ".items[] | select(.metadata.name | startswith(\"${packageName}\")) | .metadata.name")
+  getCatalogSourcePod
   kubectl wait --for=condition=ready "pods/${CATALOG_POD}" --timeout=60s -n "${namespace}"
 
   CATALOG_SERVICE=$(kubectl get service "${packageName}" -n "${namespace}" -o yaml)

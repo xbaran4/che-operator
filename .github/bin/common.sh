@@ -207,7 +207,7 @@ startNewWorkspace() {
   # Create and start a workspace
   sleep 5s
   login
-  chectl workspace:create --start --chenamespace=${NAMESPACE} --devfile="${DEFAULT_DEVFILE}"
+  chectl workspace:create --start --chenamespace=${NAMESPACE} --devfile="${-}"
 }
 
 createWorkspace() {
