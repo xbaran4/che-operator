@@ -100,7 +100,7 @@ EOL
 
 # Start a golang workspace
 initDefaults
-provisionOpenShiftOAuthUser
+#provisionOpenShiftOAuthUser
 
 # Deploy Eclipse Che
 chectl server:deploy --telemetry=off --k8spodwaittimeout=1800000 --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --che-operator-image=${INTERNAL_REGISTRY_URL}/eclipse/che-operator:nightly --platform=openshift --installer=operator
