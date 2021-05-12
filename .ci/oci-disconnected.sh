@@ -168,6 +168,18 @@ if [[ "$SIDECAR_IMAGE" =~ ^quay.io* ]]; then
     sudo skopeo copy --authfile=${REG_CREDS} --dest-tls-verify=false docker://"${SIDECAR_IMAGE}" docker://"${REGISTRY_IMG_NAME}"
 fi
 
+# Obtain golang devfile
+IFS=$'\r\n' GLOBIGNORE='*' command eval 'DEVFILE_IMAGES=($(podman run --authfile=${XDG_RUNTIME_DIR}/containers/auth.json -it --rm \
+  --entrypoint cat ${INTERNAL_REGISTRY_URL}/eclipse/che-devfile-registry:nightly /var/www/html/devfiles/external_images.txt))'
+
+for container in "${DEVFILE_IMAGES[@]}"
+do
+    if [[ $container == *"che-golang"* ]]; then
+        REGISTRY_IMG_NAME=$(echo $container | sed -e "s/quay.io/"${INTERNAL_REGISTRY_URL}"/g")
+        sudo skopeo copy --authfile=${REG_CREDS} --dest-tls-verify=false docker://"${container}" docker://"${REGISTRY_IMG_NAME}"
+    fi
+done
+
 # Get the ocp domain for che custom resources
 export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
 
