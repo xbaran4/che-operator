@@ -108,16 +108,9 @@ export SKIP_TEST=true && ./build.sh --organization "${ORGANIZATION}" \
 
 cd .. && rm -rf che-plugin-registry
 
-# Build Che-Machine-Exec
-git clone git@github.com:eclipse-che/che-machine-exec.git
-cd che-machine-exec
-podman build -f build/dockerfiles/Dockerfile -t "${INTERNAL_REGISTRY_URL}"/"${ORGANIZATION}"/che-machine-exec:"${TAG_NIGHTLY}" .
-cd .. && rm -rf che-machine-exec
-
 # Push che-machine-exec, devfile and plugins image to private registry
 podman push --authfile="${REG_CREDS}" --tls-verify=false "${INTERNAL_REGISTRY_URL}"/"${ORGANIZATION}"/che-devfile-registry:"${TAG_NIGHTLY}"
 podman push --authfile="${REG_CREDS}" --tls-verify=false "${INTERNAL_REGISTRY_URL}"/"${ORGANIZATION}"/che-plugin-registry:"${TAG_NIGHTLY}"
-podman push --authfile="${REG_CREDS}" --tls-verify=false "${INTERNAL_REGISTRY_URL}"/"${ORGANIZATION}"/che-machine-exec:"${TAG_NIGHTLY}"
 
 # Get all containers images used in eclipse-che deployment(postgresql, che-server-che-broket...)
 curl -sSLo- https://raw.githubusercontent.com/eclipse-che/che-operator/main/deploy/operator.yaml > /tmp/yam.yaml
@@ -156,7 +149,6 @@ do
     :
     if [[ $container != *"che-plugin-sidecar"* ]] &&
        [[ $container != *"che-editor"* ]] && \
-       [[ $container != *"che-machine-exec"* ]] && \
        [[ $container != *"codercom"* ]] && \
        [[ $container != "docker.io"* ]]; then
         REGISTRY_IMG_NAME=$(echo $container | sed -e "s/quay.io/"${INTERNAL_REGISTRY_URL}"/g")
@@ -203,7 +195,7 @@ EOL
 
 # Start a golang workspace
 initDefaults
-#provisionOpenShiftOAuthUser
+provisionOpenShiftOAuthUser
 
 # Deploy Eclipse Che
 chectl server:deploy --telemetry=off --k8spodwaittimeout=1800000 --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --che-operator-image=${INTERNAL_REGISTRY_URL}/eclipse/che-operator:nightly --platform=openshift --installer=operator
