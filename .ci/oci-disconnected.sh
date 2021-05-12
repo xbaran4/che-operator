@@ -168,18 +168,6 @@ if [[ "$SIDECAR_IMAGE" =~ ^quay.io* ]]; then
     sudo skopeo copy --authfile=${REG_CREDS} --dest-tls-verify=false docker://"${SIDECAR_IMAGE}" docker://"${REGISTRY_IMG_NAME}"
 fi
 
-# Obtain golang devfile
-IFS=$'\r\n' GLOBIGNORE='*' command eval 'DEVFILE_IMAGES=($(podman run --authfile=${XDG_RUNTIME_DIR}/containers/auth.json -it --rm \
-  --entrypoint cat ${INTERNAL_REGISTRY_URL}/eclipse/che-devfile-registry:nightly /var/www/html/devfiles/external_images.txt))'
-
-for container in "${DEVFILE_IMAGES[@]}"
-do
-    if [[ $container == *"che-golang"* ]]; then
-        REGISTRY_IMG_NAME=$(echo $container | sed -e "s/quay.io/"${INTERNAL_REGISTRY_URL}"/g")
-        sudo skopeo copy --authfile=${REG_CREDS} --dest-tls-verify=false docker://"${container}" docker://"${REGISTRY_IMG_NAME}"
-    fi
-done
-
 # Get the ocp domain for che custom resources
 export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
 
@@ -195,13 +183,16 @@ EOL
 
 # Start a golang workspace
 initDefaults
-provisionOpenShiftOAuthUser
+#provisionOpenShiftOAuthUser
 
 # Deploy Eclipse Che
 chectl server:deploy --telemetry=off --k8spodwaittimeout=1800000 --che-operator-cr-patch-yaml=/tmp/che-cr-patch.yaml --che-operator-image=${INTERNAL_REGISTRY_URL}/eclipse/che-operator:nightly --platform=openshift --installer=operator
 
 provisionOAuth
 
+DEVFILEURL=$(oc get checluster/eclipse-che -n eclipse-che -o "jsonpath={.status.devfileRegistryURL}")
+curl -sSLo- -vk "${DEVFILEURL}/devfiles/go/devfile.yaml" > /tmp/devfile.yaml
+
 chectl auth:login -u admin -p admin
-chectl workspace:create --start --devfile="https://raw.githubusercontent.com/eclipse-che/che-devfile-registry/master/devfiles/go/devfile.yaml"
+chectl workspace:create --start --devfile=/tmp/devfile.yaml
 waitWorkspaceStart
