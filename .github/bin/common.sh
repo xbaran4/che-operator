@@ -34,7 +34,7 @@ initDefaults() {
   export OPERATOR_IMAGE="test/che-operator:test"
   export DEFAULT_DEVFILE="https://raw.githubusercontent.com/eclipse-che/che-devfile-registry/master/devfiles/go/devfile.yaml"
   export CHE_EXPOSURE_STRATEGY="multi-host"
-  export OPENSHIFT_NIGHTLY_CSV_FILE="${OPERATOR_REPO}/deploy/olm-catalog/nightly/eclipse-che-preview-openshift/manifests/che-operator.clusterserviceversion.yaml"
+  export OPENSHIFT_NIGHTLY_CSV_FILE="${OPERATOR_REPO}/bundle/nightly/eclipse-che-preview-openshift/manifests/che-operator.clusterserviceversion.yaml"
   export DEV_WORKSPACE_CONTROLLER_VERSION="main"
   export DEV_WORKSPACE_ENABLE="false"
 
@@ -48,12 +48,13 @@ initDefaults() {
 }
 
 initLatestTemplates() {
+rm -rf /tmp/devfile-devworkspace-operator-*
 curl -L https://api.github.com/repos/devfile/devworkspace-operator/zipball/${DEV_WORKSPACE_CONTROLLER_VERSION} > /tmp/devworkspace-operator.zip && \
   unzip /tmp/devworkspace-operator.zip */deploy/deployment/* -d /tmp && \
   mkdir -p /tmp/devworkspace-operator/templates/ && \
   mv /tmp/devfile-devworkspace-operator-*/deploy ${TEMPLATES}/devworkspace
 
-  cp -rf ${OPERATOR_REPO}/deploy/* "${TEMPLATES}/che-operator"
+  prepareTemplates "${OPERATOR_REPO}" "${TEMPLATES}/che-operator"
 }
 
 getLatestsStableVersions() {
@@ -89,8 +90,14 @@ initStableTemplates() {
   mkdir -p "${LAST_OPERATOR_TEMPLATE}/che-operator"
   mkdir -p "${PREVIOUS_OPERATOR_TEMPLATE}/che-operator"
 
-  cp -rf ${previousOperatorPath}/deploy/* "${PREVIOUS_OPERATOR_TEMPLATE}/che-operator"
-  cp -rf ${lastOperatorPath}/deploy/* "${LAST_OPERATOR_TEMPLATE}/che-operator"
+  # todo: set up final version before merge pr...
+  compareResult=$(pysemver compare "${LAST_PACKAGE_VERSION}" "7.30.2")
+  if [ "${compareResult}" == "1" ]; then
+      prepareTemplates "${lastOperatorPath}" "${LAST_OPERATOR_TEMPLATE}/che-operator"
+    else
+      cp -rf ${lastOperatorPath}/deploy/* "${LAST_OPERATOR_TEMPLATE}/che-operator"
+  fi
+
 }
 
 # Utility to wait for a workspace to be started after workspace:create.
@@ -150,6 +157,37 @@ copyCheOperatorImageToMinishift() {
   eval $(minishift docker-env) && docker load -i  /tmp/operator.tar && rm  /tmp/operator.tar
 }
 
+# Prepare chectl che-operator templates
+prepareTemplates() {
+  if [ -n "${1}" ]; then
+    SRC_TEMPLATES="${1}"
+  else
+    echo "[ERROR] Specify templates original location"
+    exit 1
+  fi
+
+  if [ -n "${2}" ]; then
+    TARGET_TEMPLATES="${2}"
+  else
+    echo "[ERROR] Specify templates target location"
+    exit 1
+  fi
+
+  mkdir -p "${SRC_TEMPLATES}"
+
+  cp -f "${SRC_TEMPLATES}/config/manager/manager.yaml" "${TARGET_TEMPLATES}/operator.yaml"
+
+  cp -rf "${SRC_TEMPLATES}/config/crd/bases/" "${TARGET_TEMPLATES}/crds/"
+
+  cp -f "${SRC_TEMPLATES}/config/rbac/role.yaml" "${TARGET_TEMPLATES}/"
+  cp -f "${SRC_TEMPLATES}/config/rbac/role_binding.yaml" "${TARGET_TEMPLATES}/"
+  cp -f "${SRC_TEMPLATES}/config/rbac/cluster_role.yaml" "${TARGET_TEMPLATES}/"
+  cp -f "${SRC_TEMPLATES}/config/rbac/cluster_rolebinding.yaml" "${TARGET_TEMPLATES}/"
+  cp -f "${SRC_TEMPLATES}/config/rbac/service_account.yaml" "${TARGET_TEMPLATES}/"
+
+  cp -f "${SRC_TEMPLATES}/config/samples/org.eclipse.che_v1_checluster.yaml" "${TARGET_TEMPLATES}/crds/org_v1_che_cr.yaml"
+}
+
 deployEclipseCheStable(){
   local installer=$1
   local platform=$2
@@ -170,7 +208,8 @@ deployEclipseCheWithTemplates() {
   local templates=$4
 
   echo "[INFO] Eclipse Che custom resource"
-  cat ${templates}/che-operator/crds/org_v1_che_cr.yaml
+  local crSample=${templates}/che-operator/crds/org_v1_che_cr.yaml
+  cat ${crSample}
 
   echo "[INFO] Eclipse Che operator deployment"
   cat ${templates}/che-operator/operator.yaml
@@ -181,7 +220,7 @@ deployEclipseCheWithTemplates() {
     --chenamespace ${NAMESPACE} \
     --che-operator-image ${image} \
     --skip-kubernetes-health-check \
-    --che-operator-cr-yaml ${templates}/che-operator/crds/org_v1_che_cr.yaml \
+    --che-operator-cr-yaml ${crSample} \
     --templates ${templates}
 }
 
@@ -283,18 +322,6 @@ setCustomOperatorImage() {
 insecurePrivateDockerRegistry() {
   IMAGE_REGISTRY_HOST="127.0.0.1:5000"
   export IMAGE_REGISTRY_HOST
-
-  # local dockerDaemonConfig="/etc/docker/daemon.json"
-  # sudo mkdir -p "/etc/docker"
-  # sudo touch "${dockerDaemonConfig}"
-
-  # config="{\"insecure-registries\" : [\"${IMAGE_REGISTRY_HOST}\"]}"
-  # echo "${config}" | sudo tee "${dockerDaemonConfig}"
-
-  # if [ -x "$(command -v docker)" ]; then
-  #     echo "[INFO] Restart docker daemon to set up private registry info."
-  #     sudo service docker restart
-  # fi
 }
 
 # Utility to print objects created by Openshift CI automatically

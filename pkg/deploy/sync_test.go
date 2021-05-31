@@ -14,7 +14,7 @@ package deploy
 import (
 	"context"
 
-	orgv1 "github.com/eclipse-che/che-operator/pkg/apis/org/v1"
+	orgv1 "github.com/eclipse-che/che-operator/api/v1"
 	"github.com/eclipse-che/che-operator/pkg/util"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
@@ -52,9 +52,9 @@ var (
 		},
 		Data: map[string][]byte{"x": []byte("y")},
 	}
-	testObjMeta = &corev1.Secret{}
-	testKey     = client.ObjectKey{Name: "test-secret", Namespace: "eclipse-che"}
-	diffOpts    = cmp.Options{
+	// testObjMeta = &corev1.Secret{}
+	testKey  = client.ObjectKey{Name: "test-secret", Namespace: "eclipse-che"}
+	diffOpts = cmp.Options{
 		cmpopts.IgnoreFields(corev1.Secret{}, "TypeMeta", "ObjectMeta"),
 	}
 )
@@ -62,7 +62,7 @@ var (
 func TestGet(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	err := cli.Create(context.TODO(), testObj)
+	err := cli.Create(context.TODO(), testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
@@ -77,7 +77,7 @@ func TestGet(t *testing.T) {
 func TestCreate(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	done, err := Create(deployContext, testObj)
+	done, err := Create(deployContext, testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
@@ -100,7 +100,7 @@ func TestCreate(t *testing.T) {
 func TestCreateIfNotExistsShouldReturnTrueIfObjectCreated(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	done, err := CreateIfNotExists(deployContext, testObj)
+	done, err := CreateIfNotExists(deployContext, testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
@@ -123,12 +123,12 @@ func TestCreateIfNotExistsShouldReturnTrueIfObjectCreated(t *testing.T) {
 func TestCreateIfNotExistsShouldReturnTrueIfObjectExist(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	err := cli.Create(context.TODO(), testObj)
+	err := cli.Create(context.TODO(), testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
 
-	done, err := CreateIfNotExists(deployContext, testObj)
+	done, err := CreateIfNotExists(deployContext, testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
@@ -141,7 +141,7 @@ func TestCreateIfNotExistsShouldReturnTrueIfObjectExist(t *testing.T) {
 func TestUpdate(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	err := cli.Create(context.TODO(), testObj)
+	err := cli.Create(context.TODO(), testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
@@ -152,7 +152,7 @@ func TestUpdate(t *testing.T) {
 		t.Fatalf("Failed to get object: %v", err)
 	}
 
-	_, err = Update(deployContext, actual, testObjLabeled, cmp.Options{})
+	_, err = Update(deployContext, actual, testObjLabeled.DeepCopy(), cmp.Options{})
 	if err != nil {
 		t.Fatalf("Failed to update object: %v", err)
 	}
@@ -177,7 +177,7 @@ func TestSyncAndAddFinalizer(t *testing.T) {
 	cli.Create(context.TODO(), deployContext.CheCluster)
 
 	// Sync object
-	done, err := SyncAndAddFinalizer(deployContext, testObj, cmp.Options{}, "test-finalizer")
+	done, err := SyncAndAddFinalizer(deployContext, testObj.DeepCopy(), cmp.Options{}, "test-finalizer")
 	if !done || err != nil {
 		t.Fatalf("Error syncing object: %v", err)
 	}
@@ -196,12 +196,12 @@ func TestSyncAndAddFinalizer(t *testing.T) {
 func TestShouldDeleteExistedObject(t *testing.T) {
 	cli, deployContext := initDeployContext()
 
-	err := cli.Create(context.TODO(), testObj)
+	err := cli.Create(context.TODO(), testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to create object: %v", err)
 	}
 
-	done, err := Delete(deployContext, testKey, testObj)
+	done, err := Delete(deployContext, testKey, testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to delete object: %v", err)
 	}
@@ -224,7 +224,7 @@ func TestShouldDeleteExistedObject(t *testing.T) {
 func TestShouldNotDeleteObject(t *testing.T) {
 	_, deployContext := initDeployContext()
 
-	done, err := Delete(deployContext, testKey, testObj)
+	done, err := Delete(deployContext, testKey, testObj.DeepCopy())
 	if err != nil {
 		t.Fatalf("Failed to delete object: %v", err)
 	}

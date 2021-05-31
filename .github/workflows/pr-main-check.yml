@@ -24,10 +24,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install yq
         pip install semver
-    - name: Set up Go 1.13
+    - name: Set up Go 1.15
       uses: actions/setup-go@v2
       with:
-        go-version: 1.13
+        go-version: 1.15
     - name: Check resources
       run: ${GITHUB_WORKSPACE}/.github/bin/check-resources.sh
   bundle-version:

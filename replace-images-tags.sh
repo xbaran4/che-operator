@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2019 Red Hat, Inc.
+# Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -11,7 +11,7 @@
 #   Red Hat, Inc. - initial API and implementation
 #
 # Updates images into:
-# - deploy/operator.yaml
+# - config/manager/manager.yaml
 # Usage:
 #   ./release-operator-code.sh <RELEASE_TAG> <CHE_RELEASE_BRANCH>
 
@@ -28,7 +28,7 @@ function replaceImageTag() {
 }
 
 replaceImagesTags() {
-  OPERATOR_YAML="${BASE_DIR}"/deploy/operator.yaml
+  OPERATOR_YAML="${BASE_DIR}"/config/manager/manager.yaml
 
   lastDefaultCheServerImage=$(yq -r ".spec.template.spec.containers[] | select(.name == \"che-operator\") | .env[] | select(.name == \"RELATED_IMAGE_che_server\") | .value" "${OPERATOR_YAML}")
   lastDefaultKeycloakImage=$(yq -r ".spec.template.spec.containers[] | select(.name == \"che-operator\") | .env[] | select(.name == \"RELATED_IMAGE_keycloak\") | .value" "${OPERATOR_YAML}")

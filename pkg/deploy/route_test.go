@@ -19,7 +19,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 	routev1 "github.com/openshift/api/route/v1"
 
-	orgv1 "github.com/eclipse-che/che-operator/pkg/apis/org/v1"
+	orgv1 "github.com/eclipse-che/che-operator/api/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
@@ -208,7 +208,7 @@ func TestSyncRouteToCluster(t *testing.T) {
 	}
 
 	actual := &routev1.Route{}
-	err = cli.Get(context.TODO(), types.NamespacedName{Name: "test"}, actual)
+	err = cli.Get(context.TODO(), types.NamespacedName{Name: "test", Namespace: "eclipse-che"}, actual)
 	if err != nil {
 		t.Fatalf("Failed to get route: %v", err)
 	}
@@ -223,7 +223,7 @@ func TestSyncRouteToCluster(t *testing.T) {
 	}
 
 	actual = &routev1.Route{}
-	err = cli.Get(context.TODO(), types.NamespacedName{Name: "test"}, actual)
+	err = cli.Get(context.TODO(), types.NamespacedName{Name: "test", Namespace: "eclipse-che"}, actual)
 	if err != nil {
 		t.Fatalf("Failed to get route: %v", err)
 	}

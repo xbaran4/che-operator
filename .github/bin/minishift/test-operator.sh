@@ -20,7 +20,7 @@ source "${OPERATOR_REPO}"/.github/bin/common.sh
 # Stop execution on any error
 trap "catchFinish" EXIT SIGINT
 
-prepareTemplates() {
+patchTemplates() {
   disableOpenShiftOAuth ${TEMPLATES}
   disableUpdateAdminPassword ${TEMPLATES}
   setCustomOperatorImage ${TEMPLATES} ${OPERATOR_IMAGE}
@@ -35,7 +35,7 @@ runTest() {
 initDefaults
 installYq
 initLatestTemplates
-prepareTemplates
+patchTemplates
 if [[ -z "$GITHUB_ACTIONS" ]]; then
   buildCheOperatorImage
 fi

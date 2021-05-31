@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2020 Red Hat, Inc.
+# Copyright (c) 2012-2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -39,7 +39,6 @@ init() {
   IMAGE_REGISTRY_HOST=${IMAGE_REGISTRY_HOST:-quay.io}
   IMAGE_REGISTRY_USER_NAME=${IMAGE_REGISTRY_USER_NAME:-eclipse}
   export CATALOG_IMAGENAME="${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/eclipse-che-${platform}-opm-catalog:preview"
-
   source "${OPERATOR_REPO}/olm/olm.sh"
 
   OPM_BUNDLE_DIR=$(getBundlePath "${platform}" "${channel}")
@@ -50,6 +49,7 @@ run() {
   createNamespace "${namespace}"
 
   installOperatorMarketPlace
+
   installCatalogSource "${platform}" "${namespace}" "${CATALOG_IMAGENAME}"
 
   getBundleListFromCatalogSource "${platform}" "${namespace}"
