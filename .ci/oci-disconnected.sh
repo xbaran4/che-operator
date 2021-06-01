@@ -178,8 +178,10 @@ do
     fi
 done
 
-# Get the ocp domain for che custom resources
+# Get the ocp domain and proxy url and port for che custom resources
 export DOMAIN=$(oc get dns cluster -o json | jq .spec.baseDomain | sed -e 's/^"//' -e 's/"$//')
+export PROXY_URL=$(oc get proxy cluster -o json |jq -r .spec.httpProxy | sed 's/[:0-9]\+$//')
+export PROXY_PORT=$(oc get proxy cluster -o json |jq -r .spec.httpProxy | sed 's#http://##' | sed 's#.*:##')
 
 # Define the CR patch specifying the airgap registry and nonProxy-hosts
 cat >/tmp/che-cr-patch.yaml <<EOL
@@ -189,6 +191,8 @@ spec:
   server:
     airGapContainerRegistryHostname: $INTERNAL_REGISTRY_URL
     airGapContainerRegistryOrganization: 'eclipse'
+    proxyURL: $PROXY_URL
+    proxyPort: $PROXY_PORT
     nonProxyHosts: oauth-openshift.apps.$DOMAIN
 EOL
 
