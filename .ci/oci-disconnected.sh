@@ -192,7 +192,7 @@ spec:
     airGapContainerRegistryHostname: $INTERNAL_REGISTRY_URL
     airGapContainerRegistryOrganization: 'eclipse'
     proxyURL: $PROXY_URL
-    proxyPort: $PROXY_PORT
+    proxyPort: '$PROXY_PORT'
     nonProxyHosts: oauth-openshift.apps.$DOMAIN
 EOL
 
