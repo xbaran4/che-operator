@@ -1,6 +1,6 @@
 package staticcheck
 
-import "honnef.co/go/tools/lint"
+import "honnef.co/go/tools/analysis/lint"
 
 var Docs = map[string]*lint.Documentation{
 	"SA1000": {
@@ -661,6 +661,15 @@ popular package.`,
 		Since: "2020.1",
 	},
 
+	"SA5012": {
+		Title: "Passing odd-sized slice to function expecting even size",
+		Text: `Some functions that take slices as parameters expect the slices to have an even number of elements. 
+Often, these functions treat elements in a slice as pairs. 
+For example, strings.NewReplacer takes pairs of old and new strings, 
+and calling it with an odd number of elements would be an error.`,
+		Since: "Unreleased",
+	},
+
 	"SA6000": {
 		Title: `Using regexp.Match or related in a loop, should use regexp.Compile`,
 		Since: "2017.1",
@@ -876,5 +885,28 @@ This check will not flag calls involving types that define custom
 marshaling behavior, e.g. via MarshalJSON methods. It will also not
 flag empty structs.`,
 		Since: "2019.2",
+	},
+
+	"SA9006": {
+		Title: `Dubious bit shifting of a fixed size integer value`,
+		Text: `Bit shifting a value past its size will always clear the value.
+
+For instance:
+
+    v := int8(42)
+    v >>= 8
+
+will always result in 0.
+
+This check flags bit shifiting operations on fixed size integer values only.
+That is, int, uint and uintptr are never flagged to avoid potential false
+positives in somewhat exotic but valid bit twiddling tricks:
+
+    // Clear any value above 32 bits if integers are more than 32 bits.
+    func f(i int) int {
+        v := i >> 32
+        v = v << 32
+        return i-v
+    }`,
 	},
 }
