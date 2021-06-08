@@ -45,8 +45,8 @@ spec:
               type: object
             spec:
               description: Desired configuration of the Che installation. Based on
-                these settings, the Operator automatically creates and maintains several
-                ConfigMaps that will contain the appropriate environment variables
+                these settings, the  Operator automatically creates and maintains
+                several ConfigMaps that will contain the appropriate environment variables
                 the various components of the Che installation. These generated ConfigMaps
                 must NOT be updated manually.
               properties:

@@ -37,9 +37,12 @@ const (
 	CheNamespaceEditorClusterRoleNameTemplate = "%s-cheworkspaces-namespaces-clusterrole"
 	// CheWorkspacesClusterRoleNameTemplate - manage workspaces "cluster role" and "clusterrolebinding" template name
 	CheWorkspacesClusterRoleNameTemplate = "%s-cheworkspaces-clusterrole"
+	// DevWorkspaceClusterRoleNameTemplate - manage DevWorkspace "cluster role" and "clusterrolebinding" template name
+	DevWorkspaceClusterRoleNameTemplate = "%s-cheworkspaces-devworkspace-clusterrole"
 
 	CheWorkspacesClusterPermissionsFinalizerName = "cheWorkspaces.clusterpermissions.finalizers.che.eclipse.org"
 	NamespacesEditorPermissionsFinalizerName     = "namespaces-editor.permissions.finalizers.che.eclipse.org"
+	DevWorkspacePermissionsFinalizerName         = "devWorkspace.permissions.finalizers.che.eclipse.org"
 )
 
 // Reconcile workspace permissions based on workspace strategy
@@ -50,6 +53,11 @@ func (r *CheClusterReconciler) reconcileWorkspacePermissions(deployContext *depl
 	}
 
 	done, err = r.delegateNamespaceEditorPermissions(deployContext)
+	if !done {
+		return false, err
+	}
+
+	done, err = r.delegateDevWorkspacePermissions(deployContext)
 	if !done {
 		return false, err
 	}
@@ -70,7 +78,7 @@ func (r *CheClusterReconciler) delegateWorkspacePermissionsInTheDifferNamespaceT
 	сheWorkspacesClusterRoleName := fmt.Sprintf(CheWorkspacesClusterRoleNameTemplate, deployContext.CheCluster.Namespace)
 	сheWorkspacesClusterRoleBindingName := сheWorkspacesClusterRoleName
 
-	// Create clusterrole "<workspace-namespace/project-name>-cheworkspaces-namespaces-clusterrole" to create k8s components for Che workspaces.
+	// Create clusterrole +kubebuilder:storageversion"<workspace-namespace/project-name>-cheworkspaces-namespaces-clusterrole" to create k8s components for Che workspaces.
 	done, err := deploy.SyncClusterRoleToCluster(deployContext, сheWorkspacesClusterRoleName, getWorkspacesPolicies())
 	if !done {
 		return false, err
@@ -139,9 +147,50 @@ func (r *CheClusterReconciler) removeNamespaceEditorPermissions(deployContext *d
 	return err == nil, err
 }
 
+func (r *CheClusterReconciler) delegateDevWorkspacePermissions(deployContext *deploy.DeployContext) (bool, error) {
+	devWorkspaceClusterRoleName := fmt.Sprintf(DevWorkspaceClusterRoleNameTemplate, deployContext.CheCluster.Namespace)
+	devWorkspaceClusterRoleBindingName := devWorkspaceClusterRoleName
+
+	done, err := deploy.SyncClusterRoleToCluster(deployContext, devWorkspaceClusterRoleName, getDevWorkspacePolicies())
+	if !done {
+		return false, err
+	}
+
+	done, err = deploy.SyncClusterRoleBindingToCluster(deployContext, devWorkspaceClusterRoleBindingName, CheServiceAccountName, devWorkspaceClusterRoleName)
+	if !done {
+		return false, err
+	}
+
+	err = deploy.AppendFinalizer(deployContext, DevWorkspacePermissionsFinalizerName)
+	return err == nil, err
+}
+
+func (r *CheClusterReconciler) removeDevWorkspacePermissions(deployContext *deploy.DeployContext) (bool, error) {
+	devWorkspaceClusterRoleName := fmt.Sprintf(DevWorkspaceClusterRoleNameTemplate, deployContext.CheCluster.Namespace)
+	devWorkspaceClusterRoleBindingName := devWorkspaceClusterRoleName
+
+	done, err := deploy.Delete(deployContext, types.NamespacedName{Name: devWorkspaceClusterRoleName}, &rbac.ClusterRole{})
+	if !done {
+		return false, err
+	}
+
+	done, err = deploy.Delete(deployContext, types.NamespacedName{Name: devWorkspaceClusterRoleBindingName}, &rbac.ClusterRoleBinding{})
+	if !done {
+		return false, err
+	}
+
+	err = deploy.DeleteFinalizer(deployContext, DevWorkspacePermissionsFinalizerName)
+	return err == nil, err
+}
+
 func (r *CheClusterReconciler) reconcileWorkspacePermissionsFinalizers(deployContext *deploy.DeployContext) (bool, error) {
 	if !deployContext.CheCluster.ObjectMeta.DeletionTimestamp.IsZero() {
 		done, err := r.removeNamespaceEditorPermissions(deployContext)
+		if !done {
+			return false, err
+		}
+
+		done, err = r.removeDevWorkspacePermissions(deployContext)
 		if !done {
 			return false, err
 		}
@@ -150,6 +199,18 @@ func (r *CheClusterReconciler) reconcileWorkspacePermissionsFinalizers(deployCon
 	}
 
 	return true, nil
+}
+
+func getDevWorkspacePolicies() []rbac.PolicyRule {
+	k8sPolicies := []rbac.PolicyRule{
+		{
+			APIGroups: []string{"workspace.devfile.io"},
+			Resources: []string{"devworkspaces", "devworkspacetemplates"},
+			Verbs:     []string{"get", "create", "delete", "list", "update", "patch"},
+		},
+	}
+
+	return k8sPolicies
 }
 
 func getNamespaceEditorPolicies() []rbac.PolicyRule {

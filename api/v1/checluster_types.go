@@ -703,7 +703,14 @@ type CheCluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   CheClusterSpec   `json:"spec,omitempty"`
+	// Desired configuration of the Che installation.
+	// Based on these settings, the  Operator automatically creates and maintains
+	// several ConfigMaps that will contain the appropriate environment variables
+	// the various components of the Che installation.
+	// These generated ConfigMaps must NOT be updated manually.
+	Spec CheClusterSpec `json:"spec,omitempty"`
+
+	// CheClusterStatus defines the observed state of Che installation
 	Status CheClusterStatus `json:"status,omitempty"`
 }
 

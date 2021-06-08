@@ -38,7 +38,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: Desired configuration of the Che installation. Based on these settings, the Operator automatically creates and maintains several ConfigMaps that will contain the appropriate environment variables the various components of the Che installation. These generated ConfigMaps must NOT be updated manually.
+            description: Desired configuration of the Che installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps that will contain the appropriate environment variables the various components of the Che installation. These generated ConfigMaps must NOT be updated manually.
             properties:
               auth:
                 description: Configuration settings related to the Authentication used by the Che installation.
