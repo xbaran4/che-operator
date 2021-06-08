@@ -30,32 +30,35 @@ import (
 
 	"fmt"
 
-	orgv1 "github.com/eclipse-che/che-operator/api/v1"
-	"github.com/eclipse-che/che-operator/controllers"
-	"github.com/eclipse-che/che-operator/pkg/deploy"
-	"github.com/eclipse-che/che-operator/pkg/signal"
-	"github.com/eclipse-che/che-operator/pkg/util"
 	"github.com/go-logr/logr"
 	configv1 "github.com/openshift/api/config/v1"
 	oauthv1 "github.com/openshift/api/config/v1"
 	consolev1 "github.com/openshift/api/console/v1"
 	oauth "github.com/openshift/api/oauth/v1"
 
+	orgv1 "github.com/eclipse-che/che-operator/api/v1"
+	"github.com/eclipse-che/che-operator/controllers"
+	"github.com/eclipse-che/che-operator/pkg/deploy"
+	"github.com/eclipse-che/che-operator/pkg/signal"
+	"github.com/eclipse-che/che-operator/pkg/util"
+
 	admissionregistrationv1 "k8s.io/api/admissionregistration/v1"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 
-	cachev1 "github.com/eclipse-che/che-operator/api/v1"
 	operatorsv1 "github.com/operator-framework/api/pkg/operators/v1"
 	operatorsv1alpha1 "github.com/operator-framework/api/pkg/operators/v1alpha1"
 	packagesv1 "github.com/operator-framework/operator-lifecycle-manager/pkg/package-server/apis/operators/v1"
 	rbac "k8s.io/api/rbac/v1"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 
+	cachev1 "github.com/eclipse-che/che-operator/api/v1"
+
 	image_puller_api "github.com/che-incubator/kubernetes-image-puller-operator/pkg/apis"
 	routev1 "github.com/openshift/api/route/v1"
 	userv1 "github.com/openshift/api/user/v1"
 	corev1 "k8s.io/api/core/v1"
+	// orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -94,6 +97,9 @@ func init() {
 	}
 
 	printVersion(logger)
+
+	// "Happy feature..."
+	// utilruntime.Must(orgv2alpha1.AddToScheme(scheme))
 
 	//+kubebuilder:scaffold:scheme
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))

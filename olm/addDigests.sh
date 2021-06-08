@@ -95,15 +95,16 @@ do
     ENV="{ name: \"${relatedImageEnvName}\", value: \"${dest}\"}"
     if [[ -z ${RELATED_IMAGES_ENV} ]]; then
       RELATED_IMAGES_ENV="${ENV}"
-    else
+    elif [[ ! ${RELATED_IMAGES_ENV} =~ ${relatedImageEnvName} ]]; then
       RELATED_IMAGES_ENV="${RELATED_IMAGES_ENV}, ${ENV}"
     fi
   fi
 
-  RELATED_IMAGE="{ name: \"${name}-${tagOrDigest}\", image: \"${dest}\", tag: \"${source}\"}"
+  relatedImageName=${name}-${tagOrDigest}
+  RELATED_IMAGE="{ name: \"${relatedImageName}\", image: \"${dest}\", tag: \"${source}\"}"
   if [[ -z ${RELATED_IMAGES} ]]; then
     RELATED_IMAGES="${RELATED_IMAGE}"
-  else
+  elif [[ ! ${RELATED_IMAGES} =~ ${relatedImageName} ]]; then
     RELATED_IMAGES="${RELATED_IMAGES}, ${RELATED_IMAGE}"
   fi
 

@@ -21,6 +21,7 @@ package v1
 
 import (
 	chev1alpha1 "github.com/che-incubator/kubernetes-image-puller-operator/pkg/apis/che/v1alpha1"
+	// v2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -165,9 +166,13 @@ type CheClusterSpecServer struct {
 	// In cores. (500m = .5 cores). Default to 100m.
 	// +optional
 	DashboardCpuRequest string `json:"dashboardCpuRequest,omitempty"`
-	// Public URL of the devfile registry, that serves sample, ready-to-use devfiles.
-	// This will be automatically calculated by the Operator.
-	// See the `externalDevfileRegistry` and `externalDevfileRegistries` fields.
+	// Dashboard ingress custom settings.
+	// +optional
+	DashboardIngress IngressCustomSettings `json:"dashboardIngress,omitempty"`
+	// Dashboard route custom settings.
+	// +optional
+	DashboardRoute RouteCustomSettings `json:"dashboardRoute,omitempty"`
+	// Deprecated in favor of `externalDevfileRegistries` fields.
 	// +optional
 	DevfileRegistryUrl string `json:"devfileRegistryUrl,omitempty"`
 	// Overrides the container image used in the devfile registry deployment.
@@ -199,12 +204,14 @@ type CheClusterSpecServer struct {
 	// +optional
 	DevfileRegistryRoute RouteCustomSettings `json:"devfileRegistryRoute,omitempty"`
 	// Instructs the Operator on whether to deploy a dedicated devfile registry server.
-	// By default, a dedicated devfile registry server is started. When `externalDevfileRegistry` is `true`, no such dedicated server
-	// will be started by the Operator and you will have to manually set the `externalDevfileRegistries` field
+	// By default, a dedicated devfile registry server is started. When `externalDevfileRegistry` is `true`,
+	// no such dedicated server will be started by the Operator and configure at least one
+	// devfile registry with `externalDevfileRegistries` field.
 	// +optional
 	ExternalDevfileRegistry bool `json:"externalDevfileRegistry"`
 	// External devfile registries, that serves sample, ready-to-use devfiles.
-	// See the `externalDevfileRegistry` field.
+	// Configure this in addition to a dedicated devfile registry (when `externalDevfileRegistry` is `false`)
+	// or instead of it (when `externalDevfileRegistry` is `true`)
 	// +optional
 	ExternalDevfileRegistries []ExternalDevfileRegistries `json:"externalDevfileRegistries,omitempty"`
 	// Public URL of the plugin registry that serves sample ready-to-use devfiles.
@@ -460,6 +467,9 @@ type IngressCustomSettings struct {
 	// Comma separated list of labels that can be used to organize and categorize objects by scoping and selecting.
 	// +optional
 	Labels string `json:"labels,omitempty"`
+	// Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+	// +optional
+	Annotations map[string]string `json:"annotations,omitempty"`
 }
 
 // Route custom settings, can be extended in the future
@@ -472,6 +482,9 @@ type RouteCustomSettings struct {
 	// The generated host name will follow this pattern: `<route-name>-<route-namespace>.<domain>`.
 	// +optional
 	Domain string `json:"domain,omitempty"`
+	// Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+	// +optional
+	Annotations map[string]string `json:"annotations,omitempty"`
 }
 
 // ResourceRequirements describes the compute resource requirements.
@@ -593,7 +606,7 @@ type CheClusterSpecDevWorkspace struct {
 }
 
 // +k8s:openapi-gen=true
-// Settings forconfiguration of the external devfile registries.
+// Settings for a configuration of the external devfile registries.
 type ExternalDevfileRegistries struct {
 	// Public URL of the devfile registry.
 	// +optional
@@ -673,10 +686,13 @@ type CheClusterStatus struct {
 	// +operator-sdk:csv:customresourcedefinitions:type=status,displayName="Help link"
 	// +operator-sdk:csv:customresourcedefinitions:type=status,xDescriptors="urn:alm:descriptor:org.w3:link"
 	HelpLink string `json:"helpLink,omitempty"`
+
+	// The status of the Devworkspace subsystem
+	// +optional
+	// DevworkspaceStatus v2alpha1.CheClusterStatus `json:"devworkspaceStatus,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 // +k8s:openapi-gen=true

@@ -9,16 +9,10 @@
 #   Red Hat, Inc. - initial API and implementation
 #
 
-# NOTE: using registry.access.redhat.com/rhel8/go-toolset does not work (user is requested to use registry.redhat.io)
-# NOTE: using registry.redhat.io/rhel8/go-toolset requires login, which complicates automation
-# NOTE: since updateBaseImages.sh does not support other registries than RHCC, update to RHEL8
-# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/devtools/go-toolset-rhel7
-
-
-# Build the manager binary
-FROM registry.access.redhat.com/devtools/go-toolset-rhel7:1.14.12 as builder
-ENV PATH=/opt/rh/go-toolset-1.14/root/usr/bin:${PATH} \
-    GOPATH=/go/
+# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8-minimal
+FROM registry.access.redhat.com/ubi8-minimal:8.4-200.1622548483 as builder
+RUN microdnf install -y golang unzip && \
+    go version
 
 ARG DEV_WORKSPACE_CONTROLLER_VERSION="main"
 ARG DEV_WORKSPACE_CHE_OPERATOR_VERSION="main"
@@ -29,9 +23,6 @@ WORKDIR /che-operator
 # Copy the Go Modules manifests
 COPY go.mod go.mod
 COPY go.sum go.sum
-# cache deps before building and copying source so that we don't need to re-download as much
-# and so that source changes don't invalidate our downloaded layer
-RUN go mod download
 
 # Copy the go source
 COPY main.go main.go
@@ -39,6 +30,7 @@ COPY api/ api/
 COPY controllers/ controllers/
 COPY templates/ templates/
 COPY pkg/ pkg/
+COPY vendor/ vendor/
 
 # Build
 RUN export ARCH="$(uname -m)" && if [[ ${ARCH} == "x86_64" ]]; then export ARCH="amd64"; elif [[ ${ARCH} == "aarch64" ]]; then export ARCH="arm64"; fi && \
@@ -59,7 +51,7 @@ RUN curl -L https://api.github.com/repos/che-incubator/devworkspace-che-operator
     mv /tmp/che-incubator-devworkspace-che-operator-*/deploy /tmp/devworkspace-che-operator/templates/
 
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8-minimal
-FROM registry.access.redhat.com/ubi8-minimal:8.4-200
+FROM registry.access.redhat.com/ubi8-minimal:8.4-200.1622548483
 
 COPY --from=builder /che-operator/che-operator /manager
 COPY --from=builder /che-operator/templates/keycloak-provision.sh /tmp/keycloak-provision.sh
@@ -70,7 +62,12 @@ COPY --from=builder /che-operator/templates/create-github-identity-provider.sh /
 COPY --from=builder /tmp/devworkspace-operator/templates/deploy /tmp/devworkspace-operator/templates
 COPY --from=builder /tmp/devworkspace-che-operator/templates/deploy /tmp/devworkspace-che-operator/templates
 
+# install httpd-tools for /usr/bin/htpasswd
+RUN microdnf install -y httpd-tools && microdnf -y update && microdnf -y clean all && rm -rf /var/cache/yum && echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages"
+
 WORKDIR /
 USER 65532:65532
 
 ENTRYPOINT ["/manager"]
+
+# append Brew metadata here - see https://github.com/redhat-developer/codeready-workspaces-images/blob/crw-2-rhel-8/crw-jenkins/jobs/CRW_CI/crw-operator_2.x.jenkinsfile
