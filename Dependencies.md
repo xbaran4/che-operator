@@ -1,0 +1,1792 @@
+=== Dependencies info
+
+cloud.google.com/go/storage
+v1.5.0
+https://github.com/googleapis/google-cloud-go/commit/b9ee5c702d0ffe94a091bf06a2267242aa0ecae6
+v1.5.0 RATE
+62
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/b9ee5c702d0ffe94a091bf06a2267242aa0ecae6
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=
+
+cloud.google.com/go/pubsub
+https://github.com/googleapis/google-cloud-go/commit/bd0b380acd8968ceb01c20edf7c86433da8bfd1c
+v1.2.0
+RATE 57
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/bd0b380acd8968ceb01c20edf7c86433da8bfd1c
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23333
+
+cloud.google.com/go/datastore
+https://github.com/googleapis/google-cloud-go/commit/fd7a73a9ad5b5ce9194a755e1805d4c5ac2d3cfa
+v1.2.0
+RATE 60
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/fd7a73a9ad5b5ce9194a755e1805d4c5ac2d3cfa
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23331
+
+cloud.google.com/go/bigquery
+https://github.com/googleapis/google-cloud-go/commit/3b768578738982b1bd8612d6747ffaf103fc77fe
+v1.4.0
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23330
+
+cloud.google.com/go
+https://github.com/googleapis/google-cloud-go/tree/a6b88cf34a491498e4c7d15c107a31058693e2cb
+v0.54.0
+RATE 57
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/a6b88cf34a491498e4c7d15c107a31058693e2cb 
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23329
+
+Azure ====> https://clearlydefined.io/definitions/git/github/azure/go-autorest/fafe600ec8bd2d9aab6c6486172ccc87df6a5302
+RATE 92
+https://clearlydefined.io/definitions/git/github/azure/go-autorest/fafe600ec8bd2d9aab6c6486172ccc87df6a5302
+github.com/Azure/go-autorest
+github.com/Azure/go-autorest/autorest
+github.com/Azure/go-autorest/autorest/adal
+github.com/Azure/go-autorest/autorest/date
+github.com/Azure/go-autorest/autorest/mocks
+github.com/Azure/go-autorest/logger
+github.com/Azure/go-autorest/tracing
+
+github.com/NYTimes/gziphandler
+https://github.com/nytimes/gziphandler/tree/2600fb119af974220d3916a5916d6e31176aac1b
+v1.0.1
+RATE 77
+https://clearlydefined.io/definitions/git/github/nytimes/gziphandler/2600fb119af974220d3916a5916d6e31176aac1b
+
+github.com/BurntSushi/toml
+https://github.com/BurntSushi/toml/commit/3012a1dbe2e4bd1391d42b32f0577cb7bbc7f005
+v0.3.1
+RATE 78
+https://clearlydefined.io/definitions/git/github/burntsushi/toml/3012a1dbe2e4bd1391d42b32f0577cb7bbc7f005
+
+github.com/BurntSushi/xgb
+https://github.com/BurntSushi/xgb/commit/27f122750802c950b2c869a5b63dafcf590ced95
+RATE 60
+https://clearlydefined.io/definitions/git/github/burntsushi/xgb/27f122750802c950b2c869a5b63dafcf590ced95
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23291
+
+sigs.k8s.io/structured-merge-diff/v4
+https://github.com/kubernetes-sigs/structured-merge-diff/tree/c6e603f78e91dbe936d8217a72a1955c99046f61
+https://github.com/kubernetes-sigs/structured-merge-diff/releases/tag/v4.1.0
+v4.1.0
+RATE 60
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/structured-merge-diff/c6e603f78e91dbe936d8217a72a1955c99046f61
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23293
+
+sigs.k8s.io/yaml
+https://github.com/kubernetes-sigs/yaml/tree/9fc95527decd95bb9d28cc2eab08179b2d0f6971
+https://github.com/kubernetes-sigs/yaml/tree/v1.2.0
+v1.2.0
+RATE 67
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/yaml/9fc95527decd95bb9d28cc2eab08179b2d0f6971
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23295
+
+k8s.io/utils
+https://github.com/kubernetes/utils/tree/67b214c5f920060488eda08cd2b5c30597f2f1d7
+RATE 77
+https://clearlydefined.io/definitions/git/github/kubernetes/utils/67b214c5f920060488eda08cd2b5c30597f2f1d7
+
+k8s.io/klog/v2
+https://github.com/kubernetes/klog/tree/407242c0258f5d907891f8797887b71a1c87e7b4
+v2.8.0
+RATE 60
+https://clearlydefined.io/definitions/git/github/kubernetes/klog/407242c0258f5d907891f8797887b71a1c87e7b4
+CQ https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23266
+
+k8s.io/gengo
+https://github.com/kubernetes/gengo/tree/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+RATE 91
+https://clearlydefined.io/definitions/git/github/kubernetes/gengo/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+
+github.com/PuerkitoBio/urlesc
+https://github.com/puerkitobio/urlesc/tree/5bd2802263f21d8788851d5305584c82a5c75d7e
+RATE 90
+https://clearlydefined.io/definitions/git/github/puerkitobio/urlesc/5bd2802263f21d8788851d5305584c82a5c75d7e
+
+github.com/asaskevich/govalidator/tree/f61b66f89f4a311bef65f13e575bcf1a2ffadda6
+asaskevich/govalidator
+RATE 76
+https://clearlydefined.io/definitions/git/github/asaskevich/govalidator/f61b66f89f4a311bef65f13e575bcf1a2ffadda6
+
+github.com/census-instrumentation/opencensus-proto
+https://github.com/census-instrumentation/opencensus-proto/commit/d89fa54de508111353cb0b06403c00569be780d8
+v0.2.1
+RATE 86
+https://clearlydefined.io/definitions/git/github/census-instrumentation/opencensus-proto/d89fa54de508111353cb0b06403c00569be780d8
+
+github.com/cncf/udpa/go
+https://github.com/cncf/udpa/tree/e8cd3a4bb307e2c810cffff99f93e96e6d7fee85
+RATE 75
+https://clearlydefined.io/definitions/git/github/cncf/udpa/e8cd3a4bb307e2c810cffff99f93e96e6d7fee85
+
+github.com/creack/pty
+https://github.com/creack/pty/commit/3a6a957789163cacdfe0e291617a1c8e80612c11
+v1.1.9
+RATE 76
+https://clearlydefined.io/definitions/git/github/creack/pty/3a6a957789163cacdfe0e291617a1c8e80612c11
+
+github.com/davecgh/go-spew
+https://github.com/davecgh/go-spew/commit/8991bc29aa16c548c550c7ff78260e27b9ab7c73
+RATE 95
+https://clearlydefined.io/definitions/git/github/davecgh/go-spew/8991bc29aa16c548c550c7ff78260e27b9ab7c73
+
+github.com/dgrijalva/jwt-go
+https://github.com/dgrijalva/jwt-go/tree/06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
+v3.2.0
+RATE 76
+https://clearlydefined.io/definitions/git/github/dgrijalva/jwt-go/06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
+
+github.com/docopt/docopt-go
+https://github.com/clearlydefined/curated-data/pull/11118
+RATE 60
+https://clearlydefined.io/definitions/git/github/docopt/docopt.go/ee0de3bc6815ee19d4a46c7eb90f829db0e014b1
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23292
+
+github.com/emicklei/go-restful
+https://github.com/emicklei/go-restful/tree/a2fa14558f9a828f859fcad1d5c824437d7d4388
+RATE 52
+https://clearlydefined.io/definitions/git/github/emicklei/go-restful/a2fa14558f9a828f859fcad1d5c824437d7d4388
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23312
+
+github.com/envoyproxy/go-control-plane
+https://github.com/envoyproxy/go-control-plane/tree/ba8e577f987f6676343cac84525b92ed1b2d86fe
+https://github.com/envoyproxy/go-control-plane/releases/tag/v0.9.4
+RATE 76
+https://clearlydefined.io/definitions/git/github/envoyproxy/go-control-plane/ba8e577f987f6676343cac84525b92ed1b2d86fe
+
+github.com/envoyproxy/protoc-gen-validate
+https://github.com/envoyproxy/protoc-gen-validate/tree/9eff07ddfcb4001aa1aab280648153f46e1a8ddc
+0.1.0
+RATE 57
+https://clearlydefined.io/definitions/git/github/envoyproxy/protoc-gen-validate/9eff07ddfcb4001aa1aab280648153f46e1a8ddc
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23307
+
+github.com/evanphx/json-patch
+https://github.com/evanphx/json-patch/tree/bf22ed9311622d93e213ba31e4ae7a5771e5d379
+RATE 77
+https://clearlydefined.io/definitions/git/github/evanphx/json-patch/bf22ed9311622d93e213ba31e4ae7a5771e5d379
+
+github.com/fsnotify/fsnotify
+https://github.com/fsnotify/fsnotify/commit/c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+v1.4.7
+RATE 76
+https://clearlydefined.io/definitions/git/github/fsnotify/fsnotify/c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+
+github.com/go-logr/logr
+https://github.com/go-logr/logr/tree/8fc6c73f3911f11de3d0c18ade9880f1114ae72f
+v0.4.0
+RATE 71
+https://clearlydefined.io/definitions/git/github/go-logr/logr/8fc6c73f3911f11de3d0c18ade9880f1114ae72f
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23305
+
+github.com/go-openapi/jsonpointer
+https://github.com/go-openapi/jsonpointer/tree/ed123515f087412cd7ef02e49b0b0a5e6a79a360
+v0.19.3
+RATE 67
+https://clearlydefined.io/definitions/git/github/go-openapi/jsonpointer/ed123515f087412cd7ef02e49b0b0a5e6a79a360
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23304
+
+github.com/go-openapi/jsonreference
+https://github.com/go-openapi/jsonreference/tree/82f31475a8f7a12bc26962f6e26ceade8ea6f66a
+v0.19.3
+RATE 68
+https://clearlydefined.io/definitions/git/github/go-openapi/jsonreference/82f31475a8f7a12bc26962f6e26ceade8ea6f66a
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23303
+
+github.com/go-openapi/spec
+https://github.com/go-openapi/spec/tree/2223ab324566e4ace63ab69b9c8fff1b81a40eeb
+v0.19.3
+RATE 71
+https://clearlydefined.io/definitions/git/github/go-openapi/spec/2223ab324566e4ace63ab69b9c8fff1b81a40eeb
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23302
+
+github.com/go-openapi/swag
+https://github.com/go-openapi/swag/tree/c3d0f7896d589f3babb99eea24bbc7de98108e72
+v0.19.5
+RATE 77
+https://clearlydefined.io/definitions/git/github/go-openapi/swag/c3d0f7896d589f3babb99eea24bbc7de98108e72
+
+github.com/gogo/protobuf
+https://github.com/gogo/protobuf/tree/b03c65ea87cdc3521ede29f62fe3ce239267c1bc
+v1.3.2
+RATE 14
+https://clearlydefined.io/definitions/git/github/gogo/protobuf/b03c65ea87cdc3521ede29f62fe3ce239267c1bc
+CQ https://dev.eclipse.org/ipzilla/show_bug.cgi?id=20958
+
+github.com/golang/glog
+https://github.com/golang/glog/commit/23def4e6c14b4da8ac2ed8007337bc5eb5007998
+RATE 90
+https://clearlydefined.io/definitions/git/github/golang/glog/23def4e6c14b4da8ac2ed8007337bc5eb5007998
+
+github.com/golang/groupcache
+https://github.com/golang/groupcache/tree/8c9f03a8e57eb486e42badaed3fb287da51807ba
+RATE 93
+https://clearlydefined.io/definitions/git/github/golang/groupcache/8c9f03a8e57eb486e42badaed3fb287da51807ba
+
+github.com/google/go-cmp
+https://github.com/google/go-cmp/commit/d2fcc899bdc2d134b7c00e36137260db963e193c
+v0.5.2
+RATE 95
+https://clearlydefined.io/definitions/git/github/google/go-cmp/d2fcc899bdc2d134b7c00e36137260db963e193c
+
+github.com/google/gofuzz
+https://github.com/google/gofuzz/tree/44d81051d367757e1c7c6a5a86423ece9afcf63c
+RATE 73
+https://clearlydefined.io/definitions/git/github/google/gofuzz/44d81051d367757e1c7c6a5a86423ece9afcf63c
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=17584
+
+github.com/google/martian
+https://github.com/google/martian/tree/c223d6f7955e7c1a66526de1d602257e2e8b9254
+RATE 75
+https://clearlydefined.io/definitions/git/github/google/martian/c223d6f7955e7c1a66526de1d602257e2e8b9254
+
+github.com/google/pprof
+https://github.com/google/pprof/tree/7dadf64105bba38bab598048e7721cc9d34f7e75
+RATE 75
+https://clearlydefined.io/definitions/git/github/google/pprof/7dadf64105bba38bab598048e7721cc9d34f7e75
+
+github.com/google/renameio
+https://github.com/google/renameio/tree/f0e32980c006571efd537032e5f9cd8c1a92819e
+v0.1.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/google/renameio/f0e32980c006571efd537032e5f9cd8c1a92819e
+
+github.com/google/uuid
+https://github.com/google/uuid/tree/0e4e31197428a347842d152773b4cace4645ca25
+v1.1.2
+RATE 95
+https://clearlydefined.io/definitions/git/github/google/uuid/0e4e31197428a347842d152773b4cace4645ca25
+
+github.com/googleapis/gax-go/v2
+https://github.com/googleapis/gax-go/tree/bd5b16380fd03dc758d11cef74ba2e3bc8b0e8c2
+v2.0.5
+RATE 59
+https://clearlydefined.io/definitions/git/github/googleapis/gax-go/bd5b16380fd03dc758d11cef74ba2e3bc8b0e8c2
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23301
+
+github.com/googleapis/gnostic
+https://github.com/google/gnostic/commit/d95c059ece6028472f0478cca1133d182ae0a150
+v0.4.2
+RATE 54
+https://clearlydefined.io/definitions/git/github/googleapis/gnostic/d95c059ece6028472f0478cca1133d182ae0a150
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23309
+
+github.com/gorilla/websocket
+https://github.com/gorilla/websocket/commit/b65e62901fc1c0d968042419e74789f6af455eb9
+v1.4.2
+RATE 61
+https://clearlydefined.io/definitions/git/github/gorilla/websocket/b65e62901fc1c0d968042419e74789f6af455eb9
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23308
+
+== 50
+
+k8s.io/kube-openapi
+https://github.com/kubernetes/kube-openapi/tree/7eba4cbaebdf47b0542b619cdd2f0195279d38cd
+RATE 89
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-openapi/7eba4cbaebdf47b0542b619cdd2f0195279d38cd
+
+github.com/gregjones/httpcache
+https://github.com/gregjones/httpcache/tree/9cad4c3443a7200dd6400aef47183728de563a38
+RATE 77
+https://clearlydefined.io/definitions/git/github/gregjones/httpcache/9cad4c3443a7200dd6400aef47183728de563a38
+
+github.com/hashicorp/golang-lru
+https://github.com/hashicorp/golang-lru/tree/7087cb70de9f7a8bc0a10c375cb0d2280a8edf9c
+v0.5.1
+RATE 75
+https://clearlydefined.io/definitions/git/github/hashicorp/golang-lru/7087cb70de9f7a8bc0a10c375cb0d2280a8edf9c
+
+github.com/hpcloud/tail
+https://github.com/hpcloud/tail/tree/a30252cb686a21eb2d0b98132633053ec2f7f1e5
+v1.0.0
+RATE 67
+https://clearlydefined.io/definitions/git/github/hpcloud/tail/a30252cb686a21eb2d0b98132633053ec2f7f1e5
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23300
+
+github.com/imdario/mergo
+https://github.com/imdario/mergo/tree/9316a62528ac99aaecb4e47eadd6dc8aa6533d58
+v0.3.5
+RATE 81
+https://clearlydefined.io/definitions/git/github/imdario/mergo/9316a62528ac99aaecb4e47eadd6dc8aa6533d58  
+
+github.com/json-iterator/go
+https://github.com/json-iterator/go/tree/a1ca0830781e007c66b225121d2cdb3a649421f6
+RATE 75
+https://clearlydefined.io/definitions/git/github/json-iterator/go/a1ca0830781e007c66b225121d2cdb3a649421f6
+
+github.com/jstemmer/go-junit-report
+https://github.com/jstemmer/go-junit-report/tree/cc1f095d5cc5eca2844f5c5ea7bb37f6b9bf6cac
+v0.9.1
+RATE 75
+https://clearlydefined.io/definitions/git/github/jstemmer/go-junit-report/cc1f095d5cc5eca2844f5c5ea7bb37f6b9bf6cac
+
+github.com/kisielk/errcheck
+https://github.com/kisielk/errcheck/tree/e14f8d59a22d460d56c5ee92507cd94c78fbf274
+v1.2.0
+RATE 77
+https://clearlydefined.io/definitions/git/github/kisielk/errcheck/e14f8d59a22d460d56c5ee92507cd94c78fbf274
+
+prometheus/client_model
+https://github.com/prometheus/client_model/tree/14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016
+RATE 75
+https://clearlydefined.io/definitions/git/github/prometheus/client_model/14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016
+
+github.com/rogpeppe/go-internal
+https://github.com/rogpeppe/go-internal/tree/438578804ca6f31be148c27683afc419ce47c06e
+https://github.com/rogpeppe/go-internal/releases/tag/v1.3.0
+v1.3.0
+RATE 88
+https://clearlydefined.io/definitions/git/github/rogpeppe/go-internal/438578804ca6f31be148c27683afc419ce47c06e
+
+github.com/sirupsen/logrus
+https://github.com/sirupsen/logrus/tree/839c75faf7f98a33d445d181f3018b5c3409a45e
+https://github.com/sirupsen/logrus/releases/tag/v1.4.2
+v1.4.2
+RATE 76
+https://clearlydefined.io/definitions/git/github/sirupsen/logrus/839c75faf7f98a33d445d181f3018b5c3409a45e
+
+github.com/spf13/afero
+https://github.com/spf13/afero/tree/588a75ec4f32903aa5e39a2619ba6a4631e28424
+https://github.com/spf13/afero/releases/tag/v1.2.2
+v1.2.2
+RATE 89
+https://clearlydefined.io/definitions/git/github/spf13/afero/588a75ec4f32903aa5e39a2619ba6a4631e28424
+
+github.com/spf13/pflag
+https://github.com/spf13/pflag/tree/2e9d26c8c37aae03e3f9d4e90b7116f5accb7cab
+https://github.com/spf13/pflag/releases/tag/v1.0.5
+v1.0.5
+RATE 80
+https://clearlydefined.io/definitions/git/github/spf13/pflag/2e9d26c8c37aae03e3f9d4e90b7116f5accb7cab
+
+github.com/spf13/afero
+https://github.com/spf13/afero/tree/588a75ec4f32903aa5e39a2619ba6a4631e28424
+https://github.com/spf13/afero/releases/tag/v1.2.2
+v1.2.2
+RATE 89
+https://clearlydefined.io/definitions/git/github/spf13/afero/588a75ec4f32903aa5e39a2619ba6a4631e28424
+
+github.com/spf13/pflag
+https://github.com/spf13/pflag/tree/2e9d26c8c37aae03e3f9d4e90b7116f5accb7cab
+https://github.com/spf13/pflag/releases/tag/v1.0.5
+v1.0.5
+RATE 80
+https://clearlydefined.io/definitions/git/github/spf13/pflag/2e9d26c8c37aae03e3f9d4e90b7116f5accb7cab
+
+github.com/stretchr/objx
+https://github.com/stretchr/objx/tree/35313a95ee26395aa17d366c71a2ccf788fa69b6
+https://github.com/stretchr/objx/releases/tag/v0.3.0
+v0.3.0
+RATE 65
+https://clearlydefined.io/definitions/git/github/stretchr/objx/35313a95ee26395aa17d366c71a2ccf788fa69b6
+
+github.com/stretchr/testify
+https://github.com/stretchr/testify/tree/34c6fa2dc70986bccbbffcc6130f6920a924b075
+https://github.com/stretchr/testify/releases/tag/v1.4.0
+RATE 60
+https://clearlydefined.io/definitions/git/github/stretchr/testify/34c6fa2dc70986bccbbffcc6130f6920a924b075
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23297
+
+github.com/ugorji/go
+https://github.com/ugorji/go/tree/f3cacc17c85ecb7f1b6a9e373ee85d1480919868
+RATE 95
+https://clearlydefined.io/definitions/git/github/ugorji/go/f3cacc17c85ecb7f1b6a9e373ee85d1480919868
+
+go.opencensus.io
+https://github.com/census-instrumentation/opencensus-go/tree/d835ff86be02193d324330acdb7d65546b05f814
+https://github.com/census-instrumentation/opencensus-go/tree/v0.22.3
+v0.22.3
+RATE 95
+https://clearlydefined.io/definitions/git/github/census-instrumentation/opencensus-go/d835ff86be02193d324330acdb7d65546b05f814
+
+google.golang.org/api
+https://github.com/googleapis/google-api-go-client/commit/c24765c18bb761c90df819dcdfdd62f9a7f6fa22
+https://github.com/googleapis/google-api-go-client/tree/v0.20.0
+v0.20.0
+RATE 79
+https://clearlydefined.io/definitions/git/github/googleapis/google-api-go-client/c24765c18bb761c90df819dcdfdd62f9a7f6fa22
+
+google.golang.org/appengine => https://github.com/golang/appengine/tree/971852bfffca25b069c31162ae8f247a3dba083b
+v1.6.5
+RATE 61
+https://clearlydefined.io/definitions/git/github/golang/appengine/971852bfffca25b069c31162ae8f247a3dba083b
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23310
+
+google.golang.org/genproto
+https://github.com/googleapis/go-genproto/tree/0ff5f38871d5307ac12d54bcbb8e2e7d6d4a8bb9
+RATE 77
+https://clearlydefined.io/definitions/git/github/googleapis/go-genproto/0ff5f38871d5307ac12d54bcbb8e2e7d6d4a8bb9
+
+google.golang.org/grpc
+https://github.com/grpc/grpc-go/tree/a89bee78ddf0f67f27c06b1b2b1b071c18408724
+https://github.com/grpc/grpc-go/releases/tag/v1.27.0
+1.27
+RATE 94
+https://clearlydefined.io/definitions/git/github/grpc/grpc-go/a89bee78ddf0f67f27c06b1b2b1b071c18408724
+
+google.golang.org/protobuf
+https://github.com/protocolbuffers/protobuf-go/tree/3f7a61f89bb6813f89d981d1870ed68da0b3c3f1
+https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.25.0
+v1.25.0
+RATE 67
+https://clearlydefined.io/definitions/git/github/protocolbuffers/protobuf-go/3f7a61f89bb6813f89d981d1870ed68da0b3c3f1
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23296
+
+gopkg.in/errgo.v2
+https://github.com/go-errgo/errgo/commit/f768c5ab0476c50e978b039312180859c10fe8c0
+https://github.com/go-errgo/errgo/releases/tag/v2.1.0
+RATE 77
+https://clearlydefined.io/definitions/git/github/go-errgo/errgo/f768c5ab0476c50e978b039312180859c10fe8c0
+
+gopkg.in/fsnotify.v1
+https://github.com/fsnotify/fsnotify/commit/c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+https://github.com/fsnotify/fsnotify/releases/tag/v1.4.7
+v1.4.7
+RATE 76
+https://clearlydefined.io/definitions/git/github/fsnotify/fsnotify/c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+
+gopkg.in/go-playground/assert.v1
+https://github.com/go-playground/assert/tree/4f4dfbc7d1c48336cf93399deae81aa9067e88af
+https://github.com/go-playground/assert/tree/v1.2.1
+RATE 79
+https://clearlydefined.io/definitions/git/github/go-playground/assert/4f4dfbc7d1c48336cf93399deae81aa9067e88af
+
+gopkg.in/inf.v0
+https://github.com/go-inf/inf/tree/d2d2541c53f18d2a059457998ce2876cc8e67cbf
+https://github.com/go-inf/inf/tree/v0.9.1
+v0.9.1
+RATE 78
+https://clearlydefined.io/definitions/git/github/go-inf/inf/d2d2541c53f18d2a059457998ce2876cc8e67cbf
+
+gopkg.in/tomb.v1
+https://github.com/go-tomb/tomb/tree/d5d1b5820637886def9eef33e03a27a9f166942c
+RATE 81
+https://clearlydefined.io/definitions/git/github/go-tomb/tomb/d5d1b5820637886def9eef33e03a27a9f166942c
+
+gopkg.in/yaml.v2
+https://github.com/go-yaml/yaml/commit/7649d4548cb53a614db133b2a8ac1f31859dda8c
+https://github.com/go-yaml/yaml/releases/tag/v2.4.0
+v2.4.0
+RATE 73
+CQ https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23268
+
+honnef.co/go/tools
+https://github.com/dominikh/go-tools/tree/81508471876c7902b8ca236ae35f897b1777c65a
+RATE 75
+https://clearlydefined.io/definitions/git/github/dominikh/go-tools/81508471876c7902b8ca236ae35f897b1777c65a
+
+k8s.io/gengo
+https://github.com/kubernetes/gengo/tree/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+RATE 91
+https://clearlydefined.io/definitions/git/github/kubernetes/gengo/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+
+k8s.io/klog/v2
+https://github.com/kubernetes/klog/tree/407242c0258f5d907891f8797887b71a1c87e7b4
+v2.8.0
+RATE 60
+https://clearlydefined.io/definitions/git/github/kubernetes/klog/407242c0258f5d907891f8797887b71a1c87e7b4
+CQ https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23266
+
+k8s.io/utils
+https://github.com/kubernetes/utils/tree/67b214c5f920060488eda08cd2b5c30597f2f1d7
+RATE 77
+https://clearlydefined.io/definitions/git/github/kubernetes/utils/67b214c5f920060488eda08cd2b5c30597f2f1d7
+
+github.com/golang/mock
+https://github.com/golang/mock/commit/a23c5e7c8f7bb73c8ae5d8711815bbd30f3cfac8
+v1.5.0
+RATE 78
+https://clearlydefined.io/definitions/git/github/golang/mock/a23c5e7c8f7bb73c8ae5d8711815bbd30f3cfac8
+
+github.com/konsorten/go-windows-terminal-sequences
+https://github.com/konsorten/go-windows-terminal-sequences/commit/5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
+v1.0.1
+RATE 85
+https://clearlydefined.io/definitions/git/github/konsorten/go-windows-terminal-sequences/5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
+
+github.com/kr/pretty
+https://github.com/kr/pretty/tree/ead452280cd055b2ae8a7f0db5eb37a878d902f7
+RATE 77
+https://clearlydefined.io/definitions/git/github/kr/pretty/ead452280cd055b2ae8a7f0db5eb37a878d902f7
+
+github.com/kr/pty
+https://github.com/kr/pty/tree/282ce0e5322c82529687d609ee670fac7c7d917c
+RATE 76
+https://clearlydefined.io/definitions/git/github/kr/pty/282ce0e5322c82529687d609ee670fac7c7d917c
+
+github.com/kr/text
+https://github.com/kr/text/commit/702c74938df48b97370179f33ce2107bd7ff3b3e
+https://github.com/kr/text/releases/tag/v0.2.0
+RATE 76
+https://clearlydefined.io/definitions/git/github/kr/text/702c74938df48b97370179f33ce2107bd7ff3b3e
+
+github.com/mailru/easyjson
+https://github.com/mailru/easyjson/tree/8edcc4e51f39ddbd3505a3386aff3f435a7fd028
+RATE 75
+https://clearlydefined.io/definitions/git/github/mailru/easyjson/8edcc4e51f39ddbd3505a3386aff3f435a7fd028
+
+github.com/mattn/go-isatty
+https://github.com/mattn/go-isatty/tree/0360b2af4f38e8d38c7fce2a9f4e702702d73a39
+v0.0.3
+RATE 77
+https://clearlydefined.io/definitions/git/github/mattn/go-isatty/0360b2af4f38e8d38c7fce2a9f4e702702d73a39
+
+github.com/munnerz/goautoneg
+https://github.com/munnerz/goautoneg/commits/a547fc61f48d567d5b4ec6f8aee5573d8efce11d
+RATE 0
+https://clearlydefined.io/definitions/git/github/munnerz/goautoneg/a547fc61f48d567d5b4ec6f8aee5573d8efce11d
+CQ https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23267
+
+github.com/onsi/ginkgo
+https://github.com/onsi/ginkgo/tree/388ac7e50a3abf0798010091d5094171f4aefc0b
+v1.11.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/onsi/ginkgo/388ac7e50a3abf0798010091d5094171f4aefc0b
+
+github.com/onsi/gomega
+https://github.com/onsi/gomega/tree/bdebf9e0ece900259084cfa4121b97ce1a540939
+https://github.com/onsi/gomega/releases/tag/v1.7.0
+v1.7.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/onsi/gomega/bdebf9e0ece900259084cfa4121b97ce1a540939
+
+github.com/peterbourgon/diskv
+https://github.com/peterbourgon/diskv/tree/0646ccaebea1ed1539efcab30cae44019090093f
+RATE 76
+https://clearlydefined.io/definitions/git/github/peterbourgon/diskv/0646ccaebea1ed1539efcab30cae44019090093f
+
+github.com/pkg/errors
+https://github.com/pkg/errors/tree/614d223910a179a466c1767a985424175c39b465
+RATE 77
+https://clearlydefined.io/definitions/git/github/pkg/errors/614d223910a179a466c1767a985424175c39b465
+
+github.com/prometheus/client_model
+https://github.com/prometheus/client_model/tree/14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016
+RATE 75
+https://clearlydefined.io/definitions/git/github/prometheus/client_model/14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016
+
+github.com/rogpeppe/go-internal
+https://github.com/rogpeppe/go-internal/tree/438578804ca6f31be148c27683afc419ce47c06e
+https://github.com/rogpeppe/go-internal/releases/tag/v1.3.0
+v1.3.0
+RATE 88
+https://clearlydefined.io/definitions/git/github/rogpeppe/go-internal/438578804ca6f31be148c27683afc419ce47c06e
+
+sigs.k8s.io/kustomize/v2
+https://github.com/kubernetes-sigs/kustomize/tree/95f3303493fdea243ae83b767978092396169baf
+RATE 76
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/kustomize/95f3303493fdea243ae83b767978092396169baf
+
+sigs.k8s.io/controller-tools
+https://github.com/kubernetes-sigs/controller-tools/tree/2bc3f5eb99cc72cc15775c1f3314cba8c1093627
+RATE 89
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/controller-tools/2bc3f5eb99cc72cc15775c1f3314cba8c1093627
+
+== 100
+
+sigs.k8s.io/controller-runtime
+https://github.com/kubernetes-sigs/controller-runtime/tree/v0.6.3
+v0.6.3
+RATE 77
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/controller-runtime/ac380d61764a160b32946e606b0c9ecd2834e3e8
+
+sigs.k8s.io/apiserver-network-proxy/konnectivity-client
+https://github.com/kubernetes-sigs/apiserver-network-proxy/tree/v0.0.15
+v0.0.15
+RATE 81
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/apiserver-network-proxy/7665074252b5d181c85c76b2209bab6063d3b500
+
+k8s.io/sample-apiserver
+https://github.com/kubernetes/sample-apiserver/tree/1110eaa81bb381332df7842b5e6fc21c3bc174e5
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/sample-apiserver/1110eaa81bb381332df7842b5e6fc21c3bc174e5
+
+k8s.io/repo-infra
+https://github.com/kubernetes/repo-infra/tree/069c38ebb042b2a4e3310a9f8c14c5d6972e7401
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/repo-infra/069c38ebb042b2a4e3310a9f8c14c5d6972e7401
+
+k8s.io/metrics
+https://github.com/kubernetes/metrics/releases/tag/v0.20.2
+v0.20.2
+RATE 83
+https://clearlydefined.io/definitions/git/github/kubernetes/metrics/b55f19c89378bd9539068e205f0ca9d1a323404f
+
+k8s.io/kubelet
+https://github.com/kubernetes/kubelet/tree/cf37f0b201335035dc1dddaca3925617a9942162
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/kubelet/cf37f0b201335035dc1dddaca3925617a9942162
+
+k8s.io/kubectl
+https://github.com/kubernetes/kubectl/tree/10b66c3fd14bc8d2bb27582d03d75bde30a3c8a3
+RATE 88
+https://clearlydefined.io/definitions/git/github/kubernetes/kubectl/10b66c3fd14bc8d2bb27582d03d75bde30a3c8a3
+
+k8s.io/kube-state-metrics
+https://github.com/kubernetes/kube-state-metrics/tree/cb9f20b575749f66a7ac2e6d947fb5ee4af58bba
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-state-metrics/cb9f20b575749f66a7ac2e6d947fb5ee4af58bba
+
+k8s.io/kube-scheduler
+https://github.com/kubernetes/kube-scheduler/tree/d05eb4d901ffd0213f4ef82de7e4dea0092f9921
+RATE 80
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-scheduler/d05eb4d901ffd0213f4ef82de7e4dea0092f9921
+
+k8s.io/kube-proxy
+https://github.com/kubernetes/kube-proxy/tree/f96f9c23df02c4946cdd4cedeb7bfe1169935a7e
+RATE 81
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-proxy/f96f9c23df02c4946cdd4cedeb7bfe1169935a7e
+
+k8s.io/kube-controller-manager
+http://github.com/kubernetes/kube-controller-manager/tree/d72e7d98723194b89c30eab04ce96f83bc1afdd1
+https://github.com/kubernetes/kube-controller-manager/releases/tag/v0.21.0
+RATE 79
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-controller-manager/d72e7d98723194b89c30eab04ce96f83bc1afdd1
+
+k8s.io/kube-aggregator
+https://github.com/kubernetes/kube-aggregator/tree/14b8d2d93fcb8a90c47fcd2ceea0035dfd6d381a
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/kube-aggregator/14b8d2d93fcb8a90c47fcd2ceea0035dfd6d381a
+
+k8s.io/klog
+https://github.com/kubernetes/klog/tree/2ca9ad30301bf30a8a6e0fa2110db6b8df699a91
+https://github.com/kubernetes/klog/releases/tag/v1.0.0
+v1.0.0
+RATE 78
+https://clearlydefined.io/definitions/git/github/kubernetes/klog/2ca9ad30301bf30a8a6e0fa2110db6b8df699a91
+
+k8s.io/helm
+https://github.com/kubernetes/helm/tree/8478fb4fc723885b155c924d1c8c410b7a9444e6
+https://github.com/helm/helm/tree/v2.7.2
+RATE 84
+https://clearlydefined.io/definitions/git/github/kubernetes/helm/8478fb4fc723885b155c924d1c8c410b7a9444e6
+
+k8s.io/heapster
+https://github.com/kubernetes/heapster/tree/c78cc312ab3901acfe5c2f95f7a621909c8455ad
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/heapster/c78cc312ab3901acfe5c2f95f7a621909c8455ad
+
+k8s.io/gengo
+https://github.com/kubernetes/gengo/tree/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+RATE 91
+https://clearlydefined.io/definitions/git/github/kubernetes/gengo/0689ccc1d7d65d9dd1bedcc3b0b1ed7df91ba266
+
+k8s.io/component-base
+https://github.com/kubernetes/component-base/tree/v0.20.2
+https://github.com/kubernetes/component-base/tree/ac23c21e8fc178583dd3a1b8a5c5018d8acd4bdc
+v0.20.2
+RATE 92
+https://clearlydefined.io/definitions/git/github/kubernetes/component-base/ac23c21e8fc178583dd3a1b8a5c5018d8acd4bdc
+
+k8s.io/code-generator
+https://github.com/kubernetes/code-generator/tree/f186a36abf5c353b917e3c3189f1c06a38866b84
+RATE 83
+k8s.io/code-generator
+https://clearlydefined.io/definitions/git/github/kubernetes/code-generator/f186a36abf5c353b917e3c3189f1c06a38866b84
+
+k8s.io/cloud-provider
+https://github.com/kubernetes/cloud-provider/tree/8301c0bda1f0c3cd83a81a74eb697006a01c3f76
+RATE 90
+https://clearlydefined.io/definitions/git/github/kubernetes/cloud-provider/8301c0bda1f0c3cd83a81a74eb697006a01c3f76 
+
+k8s.io/autoscaler
+https://github.com/kubernetes/autoscaler/tree/97acd14b9686d10c92c5e4e0e69c0c076f705861
+RATE 75
+https://clearlydefined.io/definitions/git/github/kubernetes/autoscaler/97acd14b9686d10c92c5e4e0e69c0c076f705861
+
+k8s.io/apiserver
+https://github.com/kubernetes/apiserver/tree/8f370310920e28ce9a73b31d928aa286685e2e85
+https://github.com/kubernetes/apiserver/tree/v0.20.6
+v0.20.6
+RATE 94
+k8s.io/apiserver
+https://clearlydefined.io/definitions/git/github/kubernetes/apiserver/8f370310920e28ce9a73b31d928aa286685e2e85
+
+helm.sh/helm/v3
+https://github.com/helm/helm/tree/0a9a9a88e8afd6e77337a3e2ad744756e191429a
+RATE 75
+https://clearlydefined.io/definitions/git/github/helm/helm/0a9a9a88e8afd6e77337a3e2ad744756e191429a
+
+gomodules.xyz/jsonpatch/v2
+https://github.com/gomodules/jsonpatch/tree/e8422f09d27ee2c8cfb2c7f8089eb9eeb0764849
+https://github.com/gomodules/jsonpatch/tree/v2.0.1
+v2.0.1
+RATE 75
+https://clearlydefined.io/definitions/git/github/gomodules/jsonpatch/e8422f09d27ee2c8cfb2c7f8089eb9eeb0764849
+
+go.uber.org/zap
+https://github.com/uber-go/zap/tree/33e58d4d0120aa28d4df84cd244838c490846c9d
+https://github.com/uber-go/zap/tree/v1.13.0
+RATE 97
+https://clearlydefined.io/definitions/git/github/uber-go/zap/33e58d4d0120aa28d4df84cd244838c490846c9d
+
+uber-go/tools
+https://github.com/uber-go/tools/tree/2cfd321de3ee5d5f8a5fda2521d1703478334d98
+RATE 75
+git/github/uber-go/tools/2cfd321de3ee5d5f8a5fda2521d1703478334d98
+
+go.uber.org/multierr
+https://github.com/uber-go/multierr/tree/c3fc3d02ec864719d8e25be2d7dde1e35a36aa27
+https://github.com/uber-go/multierr/tree/v1.3.0
+RATE 87
+https://clearlydefined.io/definitions/git/github/uber-go/multierr/c3fc3d02ec864719d8e25be2d7dde1e35a36aa27
+
+go.uber.org/atomic
+https://github.com/uber-go/atomic/tree/9dc4df04d0d1c39369750a9f6c32c39560672089
+https://github.com/uber-go/atomic/tree/v1.5.0
+RATE 88
+https://clearlydefined.io/definitions/git/github/uber-go/atomic/9dc4df04d0d1c39369750a9f6c32c39560672089
+
+go.etcd.io/bbolt
+https://github.com/etcd-io/bbolt/tree/a0458a2b35708eef59eb5f620ceb3cd1c01a824d
+RATE 76
+https://clearlydefined.io/definitions/git/github/etcd-io/bbolt/a0458a2b35708eef59eb5f620ceb3cd1c01a824d
+
+github.com/yuin/goldmark
+https://github.com/yuin/goldmark/tree/7b90f04af43131db79ec320be0bd4744079b346f
+RATE 75
+https://clearlydefined.io/definitions/git/github/yuin/goldmark/7b90f04af43131db79ec320be0bd4744079b346f
+
+github.com/xordataexchange/crypt
+https://github.com/xordataexchange/crypt/tree/b2862e3d0a775f18c7cfe02273500ae307b61218
+RATE 77
+https://clearlydefined.io/definitions/git/github/xordataexchange/crypt/b2862e3d0a775f18c7cfe02273500ae307b61218
+
+=================130
+
+github.com/xeipuuv/gojsonschema
+https://github.com/xeipuuv/gojsonschema/tree/82fcdeb203eb6ab2a67d0a623d9c19e5e5a64927
+https://github.com/xeipuuv/gojsonschema/tree/v1.2.0
+RATE 78
+https://clearlydefined.io/definitions/git/github/xeipuuv/gojsonschema/82fcdeb203eb6ab2a67d0a623d9c19e5e5a64927
+
+github.com/xeipuuv/gojsonreference
+https://github.com/xeipuuv/gojsonreference/tree/bd5ef7bd5415a7ac448318e64f11a24cd21e594b
+RATE 94
+https://clearlydefined.io/definitions/git/github/xeipuuv/gojsonreference/bd5ef7bd5415a7ac448318e64f11a24cd21e594b
+
+github.com/xeipuuv/gojsonpointer
+git/github/xeipuuv/gojsonpointer/4e3ac2762d5f479393488629ee9370b50873b3a6
+RATE 94
+https://github.com/xeipuuv/gojsonpointer/tree/4e3ac2762d5f479393488629ee9370b50873b3a6
+
+github.com/xdg/stringprep
+git/github/xdg/stringprep/bd625b8dc1e3b0f57412280ccbcc317f0c69d8db
+https://github.com/xdg/stringprep/tree/v1.0.0
+RATE 82
+https://clearlydefined.io/definitions/git/github/xdg/stringprep/bd625b8dc1e3b0f57412280ccbcc317f0c69d8db
+
+github.com/xdg/scram
+https://github.com/xdg/scram/tree/7eeb5667e42c09cb51bf7b7c28aea8c56767da90
+RATE 83
+https://clearlydefined.io/definitions/git/github/xdg/scram/7eeb5667e42c09cb51bf7b7c28aea8c56767da90
+
+github.com/xanzy/go-gitlab
+https://github.com/xanzy/go-gitlab/tree/8e525d783950ddfc35d109e48af26f4cb70dde4a
+https://github.com/xanzy/go-gitlab/tree/v0.15.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/xanzy/go-gitlab/8e525d783950ddfc35d109e48af26f4cb70dde4a
+
+github.com/vmware/govmomi
+https://github.com/vmware/govmomi/tree/1ec59a7c0002598c594fb58e03907d7ff0ca84b4
+RATE 80
+https://clearlydefined.io/definitions/git/github/vmware/govmomi/1ec59a7c0002598c594fb58e03907d7ff0ca84b4
+
+github.com/vmware/govmomi
+https://github.com/vmware/govmomi/tree/1ec59a7c0002598c594fb58e03907d7ff0ca84b4
+RATE 80
+https://clearlydefined.io/definitions/git/github/vmware/govmomi/1ec59a7c0002598c594fb58e03907d7ff0ca84b4
+
+github.com/vishvananda/netns
+https://github.com/vishvananda/netns/tree/7109fa855b0ff1ebef7fbd2f6aa613e8db7cfbc0
+RATE 79
+https://clearlydefined.io/definitions/git/github/vishvananda/netns/7109fa855b0ff1ebef7fbd2f6aa613e8db7cfbc0
+
+github.com/vishvananda/netlink
+https://github.com/vishvananda/netlink/tree/41009d533ba0788a139b0b6ef38923a23b3766d3
+RATE 75
+https://clearlydefined.io/definitions/git/github/vishvananda/netlink/41009d533ba0788a139b0b6ef38923a23b3766d3
+
+github.com/urfave/negroni
+https://github.com/urfave/negroni/tree/5dbbc83f748fc3ad38585842b0aedab546d0ea1e
+RATE 76
+https://clearlydefined.io/definitions/git/github/urfave/negroni/5dbbc83f748fc3ad38585842b0aedab546d0ea1e
+
+github.com/urfave/cli
+https://github.com/urfave/cli/tree/cfb38830724cc34fedffe9a2a29fb54fa9169cd1
+https://github.com/urfave/cli/tree/v1.20.0
+RATE 76
+https://clearlydefined.io/definitions/git/github/urfave/cli/cfb38830724cc34fedffe9a2a29fb54fa9169cd1
+
+github.com/tmc/grpc-websocket-proxy
+https://github.com/tmc/grpc-websocket-proxy/tree/0ad062ec5ee553a48f6dbd280b7a1b5638e8a113
+RATE 77
+https://clearlydefined.io/definitions/git/github/tmc/grpc-websocket-proxy/0ad062ec5ee553a48f6dbd280b7a1b5638e8a113
+
+github.com/tidwall/pretty
+https://github.com/tidwall/pretty/tree/ef453c788d6a371829f4f9967b014b2b81856df5
+RATE 80
+https://clearlydefined.io/definitions/git/github/tidwall/pretty/ef453c788d6a371829f4f9967b014b2b81856df5
+
+github.com/syndtr/gocapability
+https://github.com/syndtr/gocapability/tree/42c35b4376354fd554efc7ad35e0b7f94e3a0ffb
+RATE 75
+https://clearlydefined.io/definitions/git/github/syndtr/gocapability/42c35b4376354fd554efc7ad35e0b7f94e3a0ffb
+
+github.com/subosito/gotenv
+https://github.com/subosito/gotenv/tree/2ef7124db659d49edac6aa459693a15ae36c671a
+https://github.com/subosito/gotenv/tree/v1.2.0
+RATE 77
+https://clearlydefined.io/definitions/git/github/subosito/gotenv/2ef7124db659d49edac6aa459693a15ae36c671a
+
+github.com/spf13/viper
+https://github.com/spf13/viper/tree/13df72109047b6ae9c907bce81e327265d6d8a9c
+https://github.com/spf13/viper/tree/v1.7.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/spf13/viper/13df72109047b6ae9c907bce81e327265d6d8a9c
+
+github.com/spf13/jwalterweatherman
+https://github.com/spf13/jwalterweatherman/tree/94f6ae3ed3bceceafa716478c5fbf8d29ca601a1
+https://github.com/spf13/jwalterweatherman/tree/v1.1.0
+RATE 92
+https://clearlydefined.io/definitions/git/github/spf13/jwalterweatherman/94f6ae3ed3bceceafa716478c5fbf8d29ca601a1
+
+github.com/spf13/cobra
+https://github.com/spf13/cobra/tree/67fc4837d267bc9bfd6e47f77783fcc3dffc68de
+RATE 75
+https://clearlydefined.io/definitions/git/github/spf13/cobra/67fc4837d267bc9bfd6e47f77783fcc3dffc68de
+
+github.com/spf13/cast
+https://github.com/spf13/cast/tree/8c9545af88b134710ab1cd196795e7f2388358d7
+https://github.com/spf13/cast/tree/v1.3.0
+RATE 85
+https://clearlydefined.io/definitions/git/github/spf13/cast/8c9545af88b134710ab1cd196795e7f2388358d7
+
+github.com/spaolacci/murmur3
+https://github.com/spaolacci/murmur3/tree/f09979ecbc725b9e6d41a297405f65e7e8804acc
+RATE 81
+https://clearlydefined.io/definitions/git/github/spaolacci/murmur3/f09979ecbc725b9e6d41a297405f65e7e8804acc
+
+github.com/soheilhy/cmux
+https://github.com/soheilhy/cmux/tree/e09e9389d85d8492d313d73d1469c029e710623f
+https://github.com/soheilhy/cmux/tree/v0.1.4
+RATE 93
+https://clearlydefined.io/definitions/git/github/soheilhy/cmux/e09e9389d85d8492d313d73d1469c029e710623f
+
+github.com/shurcooL/sanitized_anchor_name
+https://github.com/shurcool/sanitized_anchor_name/tree/7bfe4c7ecddb3666a94b053b422cdd8f5aaa3615
+RATE 79
+https://github.com/shurcooL/sanitized_anchor_name/tree/v1.0.0
+https://clearlydefined.io/definitions/git/github/shurcool/sanitized_anchor_name/7bfe4c7ecddb3666a94b053b422cdd8f5aaa3615
+
+github.com/sergi/go-diff
+https://github.com/sergi/go-diff/tree/v1.0.0
+https://github.com/sergi/go-diff/tree/1744e2970ca51c86172c8190fadad617561ed6e7
+RATE 77
+https://clearlydefined.io/definitions/git/github/sergi/go-diff/1744e2970ca51c86172c8190fadad617561ed6e7
+
+github.com/seccomp/libseccomp-golang
+https://github.com/seccomp/libseccomp-golang/tree/1b506fc7c24eec5a3693cdcbed40d9c226cfc6a1
+RATE 75
+https://clearlydefined.io/definitions/git/github/seccomp/libseccomp-golang/1b506fc7c24eec5a3693cdcbed40d9c226cfc6a1
+
+github.com/sean-/seed
+https://github.com/seccomp/libseccomp-golang/tree/1b506fc7c24eec5a3693cdcbed40d9c226cfc6a1
+RATE 75
+https://clearlydefined.io/definitions/git/github/seccomp/libseccomp-golang/1b506fc7c24eec5a3693cdcbed40d9c226cfc6a1
+
+github.com/satori/go.uuid
+https://github.com/satori/go.uuid/tree/f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
+https://github.com/satori/go.uuid/tree/v1.2.0
+RATE 98
+https://clearlydefined.io/definitions/git/github/satori/go.uuid/f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
+
+github.com/ryanuber/columnize
+https://github.com/ryanuber/columnize/tree/9b3edd62028f107d7cabb19353292afd29311a4e
+RATE 75
+https://clearlydefined.io/definitions/git/github/ryanuber/columnize/9b3edd62028f107d7cabb19353292afd29311a4e
+
+github.com/russross/blackfriday/v2
+https://github.com/russross/blackfriday/tree/e96880f42b9343aea6cbfd99693adae0e5fe2b2a
+RATE 75
+https://clearlydefined.io/definitions/git/github/russross/blackfriday/e96880f42b9343aea6cbfd99693adae0e5fe2b2a
+
+github.com/russross/blackfriday
+https://github.com/russross/blackfriday/tree/05f3235734ad95d0016f6a23902f06461fcf567a
+https://github.com/russross/blackfriday/tree/v1.5.2
+RATE 75
+https://clearlydefined.io/definitions/git/github/russross/blackfriday/05f3235734ad95d0016f6a23902f06461fcf567a
+
+github.com/rubenv/sql-migrate
+https://github.com/rubenv/sql-migrate/tree/8d140a17f3511200a446d4d970322ad057c5c322
+RATE 76
+https://clearlydefined.io/definitions/git/github/rubenv/sql-migrate/8d140a17f3511200a446d4d970322ad057c5c322
+
+github.com/rogpeppe/fastuuid
+http://github.com/rogpeppe/fastuuid/tree/6724a57986aff9bff1a1770e9347036def7c89f6
+RATE 81
+https://clearlydefined.io/definitions/git/github/rogpeppe/fastuuid/6724a57986aff9bff1a1770e9347036def7c89f6
+
+github.com/robfig/cron
+https://github.com/robfig/cron/tree/v1.1.0
+https://github.com/robfig/cron/commit/b41be1df696709bb6395fe435af20370037c0b4c
+RATE 77
+https://clearlydefined.io/definitions/git/github/robfig/cron/b41be1df696709bb6395fe435af20370037c0b4c
+
+github.com/prometheus/prometheus
+https://github.com/prometheus/prometheus/tree/58e2a31db8de12da60783d91d748008daed95159
+RATE 75
+https://clearlydefined.io/definitions/git/github/prometheus/prometheus/58e2a31db8de12da60783d91d748008daed95159
+
+github.com/prometheus/procfs
+https://github.com/prometheus/procfs/tree/v0.2.0
+https://github.com/prometheus/procfs/commit/9dece15c53cd5e9fbfbd72d5108adcf526a3f486
+RATE 95
+https://clearlydefined.io/definitions/git/github/prometheus/procfs/9dece15c53cd5e9fbfbd72d5108adcf526a3f486
+
+github.com/pquerna/ffjson
+https://github.com/pquerna/ffjson/tree/d49c2bc1aa135aad0c6f4fc2056623ec78f5d5ac
+RATE 75
+https://clearlydefined.io/definitions/git/github/pquerna/ffjson/d49c2bc1aa135aad0c6f4fc2056623ec78f5d5ac
+
+=== 166
+
+github.com/pquerna/cachecontrol
+https://github.com/pquerna/cachecontrol/tree/0dec1b30a0215bb68605dfc568e8855066c9202d
+RATE 75
+https://clearlydefined.io/definitions/git/github/pquerna/cachecontrol/0dec1b30a0215bb68605dfc568e8855066c9202d
+
+github.com/posener/complete 
+https://github.com/posener/complete/tree/v1.1.1
+https://github.com/posener/complete/commit/98eb9847f27ba2008d380a32c98be474dea55bdf
+RATE 76
+https://clearlydefined.io/definitions/git/github/posener/complete/98eb9847f27ba2008d380a32c98be474dea55bdf
+
+github.com/pmezard/go-difflib
+https://github.com/pmezard/go-difflib/tree/v1.0.0
+https://github.com/pmezard/go-difflib/commit/792786c7400a136282c1664665ae0a8db921c6c2
+RATE 80
+https://clearlydefined.io/definitions/git/github/pmezard/go-difflib/792786c7400a136282c1664665ae0a8db921c6c2
+
+github.com/pkg/profile
+https://github.com/pkg/profile/tree/057bc52a47ec3c79498dda63f4a6f8298725e976
+RATE 77
+https://clearlydefined.io/definitions/git/github/pkg/profile/057bc52a47ec3c79498dda63f4a6f8298725e976
+
+github.com/pierrec/lz4
+https://github.com/pierrec/lz4/tree/6b9367c9ff401dbc54fabce3fb8d972e799b702d
+RATE 75
+https://clearlydefined.io/definitions/git/github/pierrec/lz4/6b9367c9ff401dbc54fabce3fb8d972e799b702d
+
+github.com/pelletier/go-toml
+https://github.com/pelletier/go-toml/commit/728039f679cbcd4f6a54e080d2219a4c4928c546
+https://github.com/pelletier/go-toml/tree/v1.4.0
+RATE 75
+https://clearlydefined.io/definitions/git/github/pelletier/go-toml/728039f679cbcd4f6a54e080d2219a4c4928c546
+
+github.com/pborman/uuid
+https://github.com/pborman/uuid/tree/v1.2.0
+https://github.com/pborman/uuid/commit/8b1b92947f46224e3b97bb1a3a5b0382be00d31e
+RATE 93
+https://clearlydefined.io/definitions/git/github/pborman/uuid/8b1b92947f46224e3b97bb1a3a5b0382be00d31e
+
+===173
+
+github.com/openzipkin/zipkin-go
+https://github.com/openzipkin/zipkin-go/tree/v0.2.2
+https://github.com/openzipkin/zipkin-go/commit/c29478e51bfb2e9c93e0e9f5e015e5993a490399
+RATE 81
+https://clearlydefined.io/definitions/git/github/openzipkin/zipkin-go/c29478e51bfb2e9c93e0e9f5e015e5993a490399
+
+github.com/opentracing/opentracing-go
+https://github.com/opentracing/opentracing-go/tree/v1.1.0
+https://github.com/opentracing/opentracing-go/commit/659c90643e714681897ec2521c60567dd21da733
+RATE 76
+https://clearlydefined.io/definitions/git/github/opentracing/opentracing-go/659c90643e714681897ec2521c60567dd21da733
+
+github.com/opentracing/basictracer-go
+https://github.com/opentracing/basictracer-go/tree/v1.0.0
+https://github.com/opentracing/basictracer-go/commit/1b32af207119a14b1b231d451df3ed04a72efebf
+RATE 76
+https://clearlydefined.io/definitions/git/github/opentracing/basictracer-go/1b32af207119a14b1b231d451df3ed04a72efebf
+
+github.com/oklog/ulid
+https://github.com/oklog/ulid/tree/v1.3.1
+https://github.com/oklog/ulid/commit/02a8604050d8466dd915307496174adb9be4593a
+RATE 81
+https://clearlydefined.io/definitions/git/github/oklog/ulid/02a8604050d8466dd915307496174adb9be4593a
+
+github.com/oklog/run
+https://github.com/oklog/run/tree/v1.0.0
+https://github.com/oklog/run/commit/4dadeb3030eda0273a12382bb2348ffc7c9d1a39
+RATE 75
+https://clearlydefined.io/definitions/git/github/oklog/run/4dadeb3030eda0273a12382bb2348ffc7c9d1a39
+
+github.com/ncw/swift
+https://github.com/ncw/swift/tree/v1.0.47
+https://github.com/ncw/swift/commit/24e3012fc8a71f004a6455bce2088031d50bf2b6
+RATE 76
+https://clearlydefined.io/definitions/git/github/ncw/swift/24e3012fc8a71f004a6455bce2088031d50bf2b6
+
+github.com/nats-io/nuid
+https://github.com/nats-io/nuid/tree/v1.0.1
+https://github.com/nats-io/nuid/commit/4b96681fa6d28dd0ab5fe79bac63b3a493d9ee94
+RATE 83
+https://clearlydefined.io/definitions/git/github/nats-io/nuid/4b96681fa6d28dd0ab5fe79bac63b3a493d9ee94
+
+== 180
+
+github.com/nats-io/nkeys
+https://github.com/nats-io/nkeys/tree/v0.1.3
+https://github.com/nats-io/nkeys/commit/f1930e19b436412202ab130a733187cc6f40ba7e
+RATE 85
+https://clearlydefined.io/definitions/git/github/nats-io/nkeys/f1930e19b436412202ab130a733187cc6f40ba7e
+
+github.com/nats-io/nats.go
+https://github.com/nats-io/nats.go/tree/v1.9.1
+https://github.com/nats-io/nats.go/commit/6063d679d23ae5b3edb4030d5e89a6e30ea53bc6
+RATE 91
+https://clearlydefined.io/definitions/git/github/nats-io/nats.go/6063d679d23ae5b3edb4030d5e89a6e30ea53bc6
+
+github.com/nats-io/jwt
+https://github.com/nats-io/jwt/tree/v0.3.2
+https://github.com/nats-io/jwt/commit/0c3fc7aed8bb2534e7bfdf0968a75890402d48cd
+RATE 92
+https://clearlydefined.io/definitions/git/github/nats-io/jwt/0c3fc7aed8bb2534e7bfdf0968a75890402d48cd
+
+github.com/naoina/go-stringutil
+https://github.com/naoina/go-stringutil/tree/v0.1.0
+https://github.com/naoina/go-stringutil/commit/6b638e95a32d0c1131db0e7fe83775cbea4a0d0b
+RATE 79
+https://clearlydefined.io/definitions/git/github/naoina/go-stringutil/6b638e95a32d0c1131db0e7fe83775cbea4a0d0b
+
+github.com/mwitkow/go-conntrack
+https://github.com/mwitkow/go-conntrack/tree/cc309e4a22231782e8893f3c35ced0967807a33e
+RATE 75
+https://clearlydefined.io/definitions/git/github/mwitkow/go-conntrack/cc309e4a22231782e8893f3c35ced0967807a33e
+
+github.com/mvdan/xurls
+git/github/mvdan/xurls/cd316b55634f8458f4b47c2da964c309558e287b
+RATE 77
+https://clearlydefined.io/definitions/git/github/mvdan/xurls/cd316b55634f8458f4b47c2da964c309558e287b
+
+github.com/modern-go/reflect2
+https://github.com/modern-go/reflect2/tree/v1.0.1
+https://github.com/modern-go/reflect2/commit/94122c33edd36123c84d5368cfb2b69df93a0ec8
+RATE 75
+https://clearlydefined.io/definitions/git/github/modern-go/reflect2/94122c33edd36123c84d5368cfb2b69df93a0ec8 2018-07-18
+
+github.com/modern-go/concurrent
+https://github.com/modern-go/concurrent/tree/bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+1.0.3
+RATE 60
+https://clearlydefined.io/definitions/git/github/modern-go/concurrent/bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23299
+
+github.com/mitchellh/reflectwalk
+https://github.com/mitchellh/reflectwalk/tree/v1.0.1
+https://github.com/mitchellh/reflectwalk/commit/3e2c75dfad4fbf904b58782a80fd595c760ad185
+RATE 78
+https://clearlydefined.io/definitions/git/github/mitchellh/reflectwalk/eecee6c969c02c8cc2ae48e1e269843ae8590796
+
+github.com/mitchellh/mapstructure
+https://github.com/mitchellh/mapstructure/tree/v1.1.2
+https://github.com/mitchellh/mapstructure/commit/3536a929edddb9a5b34bd6861dc4a9647cb459fe
+RATE 77
+https://clearlydefined.io/definitions/git/github/mitchellh/mapstructure/3536a929edddb9a5b34bd6861dc4a9647cb459fe
+
+== 190
+
+github.com/mitchellh/hashstructure
+https://github.com/mitchellh/hashstructure/tree/v1.0.0
+https://github.com/mitchellh/hashstructure/commit/a38c50148365edc8df43c1580c48fb2b3a1e9cd7
+RATE 79 
+https://clearlydefined.io/definitions/git/github/mitchellh/hashstructure/a38c50148365edc8df43c1580c48fb2b3a1e9cd7
+
+github.com/mitchellh/gox
+https://github.com/mitchellh/gox/tree/v0.4.0
+https://github.com/mitchellh/gox/commit/c9740af9c6574448fd48eb30a71f964014c7a837
+RATE 75
+git/github/mitchellh/gox/c9740af9c6574448fd48eb30a71f964014c7a837
+
+github.com/mitchellh/go-wordwrap
+https://github.com/mitchellh/go-wordwrap/tree/v1.0.0
+https://github.com/mitchellh/go-wordwrap/commit/9e67c67572bc5dd02aef930e2b0ae3c02a4b5a5c
+RATE 80
+https://clearlydefined.io/definitions/git/github/mitchellh/go-wordwrap/9e67c67572bc5dd02aef930e2b0ae3c02a4b5a5c
+
+github.com/mitchellh/go-testing-interface
+https://github.com/mitchellh/go-testing-interface/tree/v1.0.0
+https://github.com/mitchellh/go-testing-interface/commit/6d0b8010fcc857872e42fc6c931227569016843c
+RATE 79
+https://clearlydefined.io/definitions/git/github/mitchellh/go-testing-interface/6d0b8010fcc857872e42fc6c931227569016843c
+
+github.com/mitchellh/go-homedir
+https://github.com/mitchellh/go-homedir/tree/v1.1.0
+https://github.com/mitchellh/go-homedir/commit/af06845cf3004701891bf4fdb884bfe4920b3727
+RATE 80
+https://clearlydefined.io/definitions/git/github/mitchellh/go-homedir/af06845cf3004701891bf4fdb884bfe4920b3727 2019-01-27
+
+github.com/mitchellh/copystructure
+https://github.com/mitchellh/copystructure/tree/v1.0.0
+https://github.com/mitchellh/copystructure/commit/9a1b6f44e8da0e0e374624fb0a825a231b00c537
+RATE 78
+https://clearlydefined.io/definitions/git/github/mitchellh/copystructure/9a1b6f44e8da0e0e374624fb0a825a231b00c537
+
+github.com/mitchellh/cli
+https://github.com/mitchellh/cli/tree/v1.0.0
+https://github.com/mitchellh/cli/commit/3d22a244be8aa6fb16ac24af0e195c08b7d973aa
+RATE 75
+https://clearlydefined.io/definitions/git/github/mitchellh/cli/3d22a244be8aa6fb16ac24af0e195c08b7d973aa
+
+github.com/mistifyio/go-zfs
+https://github.com/mistifyio/go-zfs/tree/v2.1.1
+https://github.com/mistifyio/go-zfs/commit/cdc0f941c4d0e0e94d85348285568d921891e138
+RATE 77
+https://clearlydefined.io/definitions/git/github/mistifyio/go-zfs/cdc0f941c4d0e0e94d85348285568d921891e138
+
+github.com/mindprince/gonvml
+https://github.com/mindprince/gonvml/tree/9ebdce4bb98934573700a3bfc2f8e791934a578d
+RATE 75
+https://clearlydefined.io/definitions/git/github/mindprince/gonvml/9ebdce4bb98934573700a3bfc2f8e791934a578d null
+
+github.com/matttproud/golang_protobuf_extensions
+https://github.com/matttproud/golang_protobuf_extensions/tree/c182affec369e30f25d3eb8cd8a478dee585ae7d
+RATE 75
+https://clearlydefined.io/definitions/git/github/matttproud/golang_protobuf_extensions/c182affec369e30f25d3eb8cd8a478dee585ae7d
+
+== 200
+
+github.com/mattn/go-sqlite3
+https://github.com/mattn/go-sqlite3/tree/b612a2feea6aa87c6d052d9086572551df06497e
+RATE 75
+https://clearlydefined.io/definitions/git/github/mattn/go-sqlite3/b612a2feea6aa87c6d052d9086572551df06497e
+
+github.com/mattn/go-shellwords
+https://github.com/mattn/go-shellwords/tree/39dbbfa24bbc39559b61cae9b20b0e8db0e55525
+RATE 75
+https://clearlydefined.io/definitions/git/github/mattn/go-shellwords/39dbbfa24bbc39559b61cae9b20b0e8db0e55525
+
+github.com/mattn/go-runewidth
+https://github.com/mattn/go-runewidth/tree/v0.0.9
+https://github.com/mattn/go-runewidth/commit/14e809f6d78fcf9f48ff9b70981472b64c05f754
+RATE 75
+https://clearlydefined.io/definitions/git/github/mattn/go-runewidth/14e809f6d78fcf9f48ff9b70981472b64c05f754
+
+github.com/mattn/go-colorable
+https://github.com/mattn/go-colorable/tree/v0.1.7
+https://github.com/mattn/go-colorable/commit/f6c00982823144337e56cdb71c712eaac151d29c
+RATE 77
+https://clearlydefined.io/definitions/git/github/mattn/go-colorable/f6c00982823144337e56cdb71c712eaac151d29c
+
+github.com/marstr/guid
+https://github.com/marstr/guid/tree/v1.1.0
+https://github.com/marstr/guid/commit/8bd9a64bf37eb297b492a4101fb28e80ac0b290f
+RATE 80
+https://clearlydefined.io/definitions/git/github/marstr/guid/8bd9a64bf37eb297b492a4101fb28e80ac0b290f
+
+github.com/markbates/inflect
+https://github.com/marstr/guid/tree/v1.1.0
+v1.1.0
+https://github.com/marstr/guid/commit/8bd9a64bf37eb297b492a4101fb28e80ac0b290f
+RATE 80
+https://clearlydefined.io/definitions/git/github/marstr/guid/8bd9a64bf37eb297b492a4101fb28e80ac0b290f
+
+github.com/lib/pq
+https://github.com/lib/pq/tree/51e2106eed1cea199c802d2a49e91e2491b02056
+RATE 75
+https://clearlydefined.io/definitions/git/github/lib/pq/51e2106eed1cea199c802d2a49e91e2491b02056
+
+github.com/leodido/go-urn
+https://github.com/leodido/go-urn/tree/6c96508144d00b380edbc8bda077e27b832d0c7b
+RATE 77
+https://clearlydefined.io/definitions/git/github/leodido/go-urn/6c96508144d00b380edbc8bda077e27b832d0c7b
+
+github.com/kylelemons/godebug
+https://github.com/kylelemons/godebug/tree/v1.1.0
+https://github.com/kylelemons/godebug/commit/9ff306d4fbead574800b66369df5b6144732d58e
+RATE 75
+https://clearlydefined.io/definitions/git/github/kylelemons/godebug/9ff306d4fbead574800b66369df5b6144732d58e
+
+github.com/klauspost/cpuid
+https://github.com/klauspost/cpuid/tree/ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da
+RATE 76
+https://clearlydefined.io/definitions/git/github/klauspost/cpuid/ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da
+
+github.com/karrick/godirwalk
+https://github.com/karrick/godirwalk/tree/v1.10.12
+https://github.com/karrick/godirwalk/commit/73c17a9b9528eb3ce857b782a2816c0cda581e62
+RATE 76
+https://clearlydefined.io/definitions/git/github/karrick/godirwalk/73c17a9b9528eb3ce857b782a2816c0cda581e62
+
+github.com/julienschmidt/httprouter
+https://github.com/julienschmidt/httprouter/tree/v1.2.0
+https://github.com/julienschmidt/httprouter/commit/348b672cd90d8190f8240323e372ecd1e66b59dc
+RATE 91
+https://clearlydefined.io/definitions/git/github/julienschmidt/httprouter/348b672cd90d8190f8240323e372ecd1e66b59dc
+
+github.com/jtolds/gls
+https://github.com/jtolio/gls/tree/9a4a02dbe491bef4bab3c24fd9f3087d6c4c6690
+RATE 79
+https://clearlydefined.io/definitions/git/github/jtolds/gls/9a4a02dbe491bef4bab3c24fd9f3087d6c4c6690
+
+github.com/jonboulle/clockwork
+https://github.com/jonboulle/clockwork/tree/v0.1.0
+https://github.com/jonboulle/clockwork/commit/2eee05ed794112d45db504eb05aa693efd2b8b09
+RATE 75
+https://clearlydefined.io/definitions/git/github/jonboulle/clockwork/2eee05ed794112d45db504eb05aa693efd2b8b09
+
+github.com/jmoiron/sqlx
+https://github.com/jmoiron/sqlx/tree/v1.2.0
+https://github.com/jmoiron/sqlx/commit/d161d7a76b5661016ad0b085869f77fd410f3e6a
+RATE 76
+https://clearlydefined.io/definitions/git/github/jmoiron/sqlx/d161d7a76b5661016ad0b085869f77fd410f3e6a
+
+== 215
+
+github.com/jmespath/go-jmespath
+https://github.com/jmespath/go-jmespath/tree/0.3.0
+https://github.com/jmespath/go-jmespath/tree/3f887ed31e21667600265f39fc0df20430b42d62
+RATE 75
+https://clearlydefined.io/definitions/git/github/jmespath/go-jmespath/3f887ed31e21667600265f39fc0df20430b42d62
+
+github.com/jessevdk/go-flags
+https://github.com/jessevdk/go-flags/tree/v1.4.0
+https://github.com/jessevdk/go-flags/commit/c6ca198ec95c841fdb89fc0de7496fed11ab854e
+RATE 78
+https://clearlydefined.io/definitions/git/github/jessevdk/go-flags/c6ca198ec95c841fdb89fc0de7496fed11ab854e
+
+github.com/influxdata/influxdb1-client
+https://github.com/influxdata/influxdb1-client/tree/8bf82d3c094dc06be9da8e5bf9d3589b6ea032ae
+RATE 76
+https://clearlydefined.io/definitions/git/github/influxdata/influxdb1-client/8bf82d3c094dc06be9da8e5bf9d3589b6ea032ae
+
+github.com/inconshreveable/mousetrap
+https://github.com/inconshreveable/mousetrap/tree/v1.0.0
+https://github.com/inconshreveable/mousetrap/commit/76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+RATE 80
+https://clearlydefined.io/definitions/git/github/inconshreveable/mousetrap/76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+
+github.com/huandu/xstrings
+https://github.com/huandu/xstrings/tree/v1.2.0
+https://github.com/huandu/xstrings/commit/f02667b379e2fb5916c3cda2cf31e0eb885d79f8
+RATE 76
+https://clearlydefined.io/definitions/git/github/huandu/xstrings/f02667b379e2fb5916c3cda2cf31e0eb885d79f8
+
+== 220
+
+github.com/hashicorp/memberlist
+https://github.com/hashicorp/memberlist/tree/v0.1.3
+https://github.com/hashicorp/memberlist/commit/a9da52f0668fc4321ec18e9e28dd8141621a808f
+RATE 75
+git/github/hashicorp/memberlist/a9da52f0668fc4321ec18e9e28dd8141621a808f
+
+github.com/hashicorp/mdns
+https://github.com/hashicorp/mdns/tree/v1.0.0
+https://github.com/hashicorp/mdns/commit/c31d3f8e4a0a5b46b118c2fd26d9da36467002c9
+RATE 78
+git/github/hashicorp/mdns/c31d3f8e4a0a5b46b118c2fd26d9da36467002c9
+
+github.com/hashicorp/hcl
+https://github.com/hashicorp/hcl/tree/v1.0.0
+https://github.com/hashicorp/hcl/commit/8cb6e5b959231cc1119e43259c4a608f9c51a241
+RATE 75
+git/github/hashicorp/hcl/8cb6e5b959231cc1119e43259c4a608f9c51a241
+
+github.com/hashicorp/go-version
+https://github.com/hashicorp/go-version/releases/tag/v1.1.0
+https://github.com/hashicorp/go-version/commit/d40cf49b3a77bba84a7afdbd7f1dc295d114efb1
+RATE 75
+git/github/hashicorp/go-version/d40cf49b3a77bba84a7afdbd7f1dc295d114efb1
+
+github.com/hashicorp/go-uuid
+https://github.com/hashicorp/go-uuid/tree/v1.0.1
+https://github.com/hashicorp/go-uuid/commit/4f571afc59f3043a65f8fe6bf46d887b10a01d43
+RATE 75
+git/github/hashicorp/go-uuid/4f571afc59f3043a65f8fe6bf46d887b10a01d43
+
+github.com/hashicorp/go-syslog
+https://github.com/hashicorp/go-syslog/tree/v1.0.0
+https://github.com/hashicorp/go-syslog/commit/8d1874e3e8d1862b74e0536851e218c4571066a5
+RATE 78
+git/github/hashicorp/go-syslog/8d1874e3e8d1862b74e0536851e218c4571066a5
+
+github.com/hashicorp/go-rootcerts
+https://github.com/hashicorp/go-rootcerts/releases/tag/v1.0.1
+https://github.com/hashicorp/go-rootcerts/commit/df8e78a645e18d56ed7bb9ae10ffb8174ab892e2
+RATE 75
+git/github/hashicorp/go-rootcerts/df8e78a645e18d56ed7bb9ae10ffb8174ab892e2
+
+github.com/hashicorp/go-multierror
+https://github.com/hashicorp/go-multierror/tree/v1.0.0
+https://github.com/hashicorp/go-multierror/commit/886a7fbe3eb1c874d46f623bfa70af45f425b3d1
+RATE 75
+git/github/hashicorp/go-multierror/886a7fbe3eb1c874d46f623bfa70af45f425b3d1
+
+github.com/hashicorp/go-msgpack
+https://github.com/hashicorp/go-msgpack/releases/tag/v0.5.5
+https://github.com/hashicorp/go-msgpack/commit/ad60660ecf9c5a1eae0ca32182ed72bab5807961
+RATE 93
+git/github/hashicorp/go-msgpack/ad60660ecf9c5a1eae0ca32182ed72bab5807961
+
+github.com/hashicorp/go-immutable-radix
+https://github.com/hashicorp/go-immutable-radix/tree/v1.0.0
+https://github.com/hashicorp/go-immutable-radix/commit/27df80928bb34bb1b0d6d0e01b9e679902e7a6b5
+RATE 75
+git/github/hashicorp/go-immutable-radix/27df80928bb34bb1b0d6d0e01b9e679902e7a6b5
+
+== 230
+
+github.com/hashicorp/go-cleanhttp
+github.com/hashicorp/go-cleanhttp/tree/v0.5.1
+https://github.com/hashicorp/go-cleanhttp/commit/eda1e5db218aad1db63ca4642c8906b26bcf2744
+RATE 75
+git/github/hashicorp/go-cleanhttp/eda1e5db218aad1db63ca4642c8906b26bcf2744
+
+github.com/hashicorp/errwrap
+https://github.com/hashicorp/errwrap/tree/v1.0.0
+https://github.com/hashicorp/errwrap/commit/8a6fb523712970c966eefc6b39ed2c5e74880354
+RATE 75
+git/github/hashicorp/errwrap/8a6fb523712970c966eefc6b39ed2c5e74880354
+
+github.com/hailocab/go-hostpool
+https://github.com/hailocab/go-hostpool/commit/e80d13ce29ede4452c43dea11e79b9bc8a15b478
+RATE 75
+git/github/hailocab/go-hostpool/e80d13ce29ede4452c43dea11e79b9bc8a15b478
+
+github.com/grpc-ecosystem/go-grpc-prometheus
+https://github.com/grpc-ecosystem/go-grpc-prometheus/tree/v1.2.0
+https://github.com/grpc-ecosystem/go-grpc-prometheus/commit/c225b8c3b01faf2899099b768856a9e916e5087b
+RATE 75
+git/github/grpc-ecosystem/go-grpc-prometheus/c225b8c3b01faf2899099b768856a9e916e5087b
+
+github.com/grpc-ecosystem/go-grpc-middleware
+https://github.com/grpc-ecosystem/go-grpc-middleware/tree/v1.1.0
+https://github.com/grpc-ecosystem/go-grpc-middleware/commit/dd15ed025b6054e5253963e355991f3070d4e593
+RATE 75
+git/github/grpc-ecosystem/go-grpc-middleware/dd15ed025b6054e5253963e355991f3070d4e593
+
+github.com/gosuri/uitable
+https://github.com/gosuri/uitable/tree/v0.0.4
+https://github.com/gosuri/uitable/commit/764536226c71f9c74a2445394091c2a9ac440a1b
+RATE 79
+git/github/gosuri/uitable/764536226c71f9c74a2445394091c2a9ac440a1b
+
+github.com/gorilla/mux
+https://github.com/gorilla/mux/releases/tag/v1.7.2
+https://github.com/gorilla/mux/commit/ed099d42384823742bba0bf9a72b53b55c9e2e38
+RATE 85
+git/github/gorilla/mux/ed099d42384823742bba0bf9a72b53b55c9e2e38
+
+github.com/gorilla/context
+https://github.com/gorilla/context/tree/v1.1.1
+https://github.com/gorilla/context/commit/08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+RATE 92
+git/github/gorilla/context/08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+
+github.com/gopherjs/gopherjs
+https://github.com/gopherjs/gopherjs/commit/fce0ec30dd00773d3fa974351d04ce2737b5c4d9
+RATE 75
+git/github/gopherjs/gopherjs/fce0ec30dd00773d3fa974351d04ce2737b5c4d9
+
+github.com/gophercloud/gophercloud
+https://github.com/gophercloud/gophercloud/tree/v0.1.0
+https://github.com/gophercloud/gophercloud/commit/c2d73b246b48e239d3f03c455905e06fe26e33c3
+RATE 75
+git/github/gophercloud/gophercloud/c2d73b246b48e239d3f03c455905e06fe26e33c3
+
+== 240
+
+github.com/google/go-querystring
+https://github.com/google/go-querystring/tree/v1.0.0
+https://github.com/google/go-querystring/commit/44c6ddd0a2342c386950e880b658017258da92fc
+RATE 100
+git/github/google/go-querystring/44c6ddd0a2342c386950e880b658017258da92fc
+
+github.com/google/go-github
+https://github.com/google/go-github/tree/07716bad7a0c6d4277a5abcab95588925656a762
+RATE 100
+git/github/google/go-github/07716bad7a0c6d4277a5abcab95588925656a762
+
+github.com/google/btree
+https://github.com/google/btree/tree/v1.0.0
+https://github.com/google/btree/commit/4030bb1f1f0c35b30ca7009e9ebd06849dd45306
+RATE 75
+git/github/google/btree/4030bb1f1f0c35b30ca7009e9ebd06849dd45306
+
+github.com/golang/snappy
+https://github.com/golang/snappy/tree/v0.0.1
+https://github.com/golang/snappy/commit/2a8bb927dd31d8daada140a5d09578521ce5c36a
+RATE 89
+git/github/golang/snappy/2a8bb927dd31d8daada140a5d09578521ce5c36a
+
+github.com/golang/protobuf
+https://github.com/golang/protobuf/tree/v1.4.3
+https://github.com/golang/protobuf/commit/4846b58453b3708320bdb524f25cc5a1d9cda4d4
+RATE 91
+git/github/golang/protobuf/4846b58453b3708320bdb524f25cc5a1d9cda4d4
+
+github.com/golang-sql/civil
+https://github.com/golang-sql/civil/commit/cb61b32ac6fe84d34b81730175f91965e43d0f90
+RATE 81
+git/github/golang-sql/civil/cb61b32ac6fe84d34b81730175f91965e43d0f90
+
+github.com/golang-migrate/migrate/v4
+https://github.com/golang-migrate/migrate/releases/tag/v4.10.0
+https://github.com/golang-migrate/migrate/commit/5cc28f061e9d4b893963b8524ada7a7ba3b4e79a
+RATE 75
+git/github/golang-migrate/migrate/5cc28f061e9d4b893963b8524ada7a7ba3b4e79a
+
+github.com/gofrs/uuid
+https://github.com/gofrs/uuid/releases/tag/v3.2.0
+https://github.com/gofrs/uuid/commit/6b08a5c5172ba18946672b49749cde22873dd7c2
+RATE 80
+git/github/gofrs/uuid/6b08a5c5172ba18946672b49749cde22873dd7c2
+
+github.com/gobwas/glob
+https://github.com/gobwas/glob/commit/5ccd90ef52e1e632236f7326478d4faa74f99438
+RATE 75
+git/github/gobwas/glob/5ccd90ef52e1e632236f7326478d4faa74f99438 2018-02-08
+
+github.com/gobuffalo/envy
+https://github.com/gobuffalo/envy/tree/v1.7.0
+https://github.com/gobuffalo/envy/commit/043cb4b8af871b49563291e32c66bb84378a60ac
+RATE 76
+git/github/gobuffalo/envy/043cb4b8af871b49563291e32c66bb84378a60ac
+
+== 250
+
+github.com/go-stack/stack
+https://github.com/go-stack/stack/tree/v1.8.0
+https://github.com/go-stack/stack/commit/2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
+RATE 78
+git/github/go-stack/stack/2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
+
+github.com/go-sql-driver/mysql
+https://github.com/go-sql-driver/mysql/tree/v1.4.1
+https://github.com/go-sql-driver/mysql/commit/72cd26f257d44c1114970e19afddcd812016007e
+RATE 93
+git/github/go-sql-driver/mysql/72cd26f257d44c1114970e19afddcd812016007e 2018-11-14
+
+github.com/go-playground/universal-translator
+https://github.com/go-playground/universal-translator/releases/tag/v0.16.0
+https://github.com/go-playground/universal-translator/commit/b32fa301c9fe55953584134cb6853a13c87ec0a1
+RATE 76
+git/github/go-playground/universal-translator/b32fa301c9fe55953584134cb6853a13c87ec0a1 2017-02-09
+
+github.com/go-openapi/strfmt
+https://github.com/go-openapi/strfmt/releases/tag/v0.19.5
+https://github.com/go-openapi/strfmt/commit/2887e74ed0fe2aea628affe322b19fc3112f98cd
+RATE 75
+git/github/go-openapi/strfmt/2887e74ed0fe2aea628affe322b19fc3112f98cd
+
+github.com/go-openapi/errors
+https://github.com/go-openapi/errors/tree/v0.19.2
+https://github.com/go-openapi/errors/commit/0b2a0a1f89aa2eec2d13e03cd80ab0fdaf01f8ce
+RATE 75
+git/github/go-openapi/errors/0b2a0a1f89aa2eec2d13e03cd80ab0fdaf01f8ce
+
+github.com/go-logr/zapr
+https://github.com/go-logr/zapr/releases/tag/v0.3.0
+https://github.com/go-logr/zapr/commit/146009e52d528183a25bf1a1e3cf56d1ff3919b5
+RATE 81
+git/github/go-logr/zapr/146009e52d528183a25bf1a1e3cf56d1ff3919b5
+
+github.com/go-logr/logr
+https://github.com/go-logr/logr/releases/tag/v0.3.0
+https://github.com/go-logr/logr/commit/4fa77cb7175ca349567983fd9cc9fd94462f41fa
+RATE 88
+git/github/go-logr/logr/4fa77cb7175ca349567983fd9cc9fd94462f41fa
+
+github.com/go-kit/kit
+https://github.com/go-kit/kit/releases/tag/v0.8.0
+https://github.com/go-kit/kit/commit/12210fb6ace19e0496167bb3e667dcd91fa9f69b
+RATE 75
+git/github/go-kit/kit/12210fb6ace19e0496167bb3e667dcd91fa9f69b
+
+https://github.com/go-ini/ini/tree/v1.25.4
+https://github.com/go-ini/ini/commit/300e940a926eb277d3901b20bdfcc54928ad3642
+RATE 88
+git/github/go-ini/ini/300e940a926eb277d3901b20bdfcc54928ad3642
+
+github.com/ghodss/yaml
+https://github.com/ghodss/yaml/commit/73d445a93680fa1a78ae23a5839bad48f32ba1ee
+RATE 82
+git/github/ghodss/yaml/73d445a93680fa1a78ae23a5839bad48f32ba1ee
+
+== 260
+
+github.com/fortytw2/leaktest
+https://github.com/fortytw2/leaktest/tree/v1.3.0
+https://github.com/fortytw2/leaktest/commit/9a23578d06a26ec1b47bfc8965bf5e7011df8bd6
+RATE 83
+git/github/fortytw2/leaktest/9a23578d06a26ec1b47bfc8965bf5e7011df8bd6
+
+github.com/exponent-io/jsonpath
+https://github.com/exponent-io/jsonpath/tree/d6023ce2651d
+RATE 77
+git/github/exponent-io/jsonpath/d6023ce2651d8eafb5c75bb0c7167536102ec9f5 2015-10-13
+
+github.com/elazarl/goproxy
+https://github.com/elazarl/goproxy/commit/947c36da3153ff334e74d9d980de341d25f358ba
+RATE 76
+git/github/elazarl/goproxy/947c36da3153ff334e74d9d980de341d25f358ba 2018-07-25
+
+github.com/edsrzf/mmap-go
+https://github.com/edsrzf/mmap-go/commit/188cc3b666ba704534fa4f96e9e61f21f1e1ba7c
+RATE 96
+git/github/edsrzf/mmap-go/188cc3b666ba704534fa4f96e9e61f21f1e1ba7c
+
+github.com/dustin/go-humanize
+https://github.com/dustin/go-humanize/tree/v1.0.0
+https://github.com/dustin/go-humanize/commit/9f541cc9db5d55bce703bd99987c9d5cb8eea45e
+RATE 76
+git/github/dustin/go-humanize/9f541cc9db5d55bce703bd99987c9d5cb8eea45e
+
+github.com/docker/docker-credential-helpers
+https://github.com/docker/docker-credential-helpers/tree/v0.6.3
+https://github.com/docker/docker-credential-helpers/commit/54f0238b6bf101fc3ad3b34114cb5520beb562f5
+RATE 76
+https://clearlydefined.io/definitions/git/github/docker/docker-credential-helpers/54f0238b6bf101fc3ad3b34114cb5520beb562f5
+
+github.com/denisenkom/go-mssqldb
+https://github.com/denisenkom/go-mssqldb/commit/df6d76eb92899e4dfe4db66d53b187c89d34be37
+RATE 77
+https://clearlydefined.io/definitions/git/github/denisenkom/go-mssqldb/df6d76eb92899e4dfe4db66d53b187c89d34be37
+
+github.com/deislabs/oras
+https://github.com/oras-project/oras/tree/v0.8.1
+https://github.com/oras-project/oras/commit/237ac925cb6a308a5523cc048292bb53037f6975
+RATE 75
+https://clearlydefined.io/definitions/git/github/deislabs/oras/237ac925cb6a308a5523cc048292bb53037f6975
+
+github.com/coreos/bbolt
+https://github.com/etcd-io/bbolt/tree/v1.3.3
+https://github.com/etcd-io/bbolt/commit/a0458a2b35708eef59eb5f620ceb3cd1c01a824d
+RATE 76
+git/github/coreos/bbolt/a0458a2b35708eef59eb5f620ceb3cd1c01a824d
+
+github.com/containerd/go-runc
+https://github.com/containerd/go-runc/tree/5a6d9f37cfa3
+RATE 75
+git/github/containerd/go-runc/5a6d9f37cfa36b15efba46dc7ea349fa9b7143c3
+
+== 270
+
+github.com/containerd/fifo
+https://github.com/containerd/fifo/commit/a9fb20d87448d386e6d50b1f2e1fa70dcf0de43c
+RATE 75
+git/github/containerd/fifo/a9fb20d87448d386e6d50b1f2e1fa70dcf0de43c
+
+github.com/containerd/console
+https://github.com/containerd/console/commit/c12b1e7919c14469339a5d38f2f8ed9b64a9de23
+RATE 75
+git/github/containerd/console/c12b1e7919c14469339a5d38f2f8ed9b64a9de23
+
+github.com/containerd/cgroups
+https://github.com/containerd/cgroups/commit/3de5a6bb4823a9b39ab1e1108e3bc58bf8fc76ad
+RATE 75
+git/github/containerd/cgroups/3de5a6bb4823a9b39ab1e1108e3bc58bf8fc76ad
+
+github.com/container-storage-interface/spec
+https://github.com/container-storage-interface/spec/tree/v1.1.0
+https://github.com/container-storage-interface/spec/commit/f750e6765f5f6b4ac0e13e95214d58901290fb4b
+RATE 75
+git/github/container-storage-interface/spec/f750e6765f5f6b4ac0e13e95214d58901290fb4b
+
+github.com/codegangsta/negroni
+https://github.com/urfave/negroni/tree/v1.0.0
+https://github.com/urfave/negroni/commit/c6a59be0ce122566695fbd5e48a77f8f10c8a63a
+RATE 76
+git/github/codegangsta/negroni/c6a59be0ce122566695fbd5e48a77f8f10c8a63a
+
+github.com/cockroachdb/datadriven
+https://github.com/cockroachdb/datadriven/commit/80d97fb3cbaa752564320702f409fdb2ef3da0ef
+RATE 75
+git/github/cockroachdb/datadriven/80d97fb3cbaa752564320702f409fdb2ef3da0ef
+
+github.com/cheekybits/genny
+https://github.com/cheekybits/genny/commit/9127e812e1e9e501ce899a18121d316ecb52e4ba
+RATE 75
+git/github/cheekybits/genny/d2cf3cdd35ce0d789056c4bc02a4d6349c947caf
+
+github.com/checkpoint-restore/go-criu
+https://github.com/checkpoint-restore/go-criu/commit/bdb7599cd87b22701b5c89b37940ea882a7d7dec
+RATE 75
+git/github/checkpoint-restore/go-criu/bdb7599cd87b22701b5c89b37940ea882a7d7dec
+
+github.com/cespare/xxhash/v2
+https://github.com/cespare/xxhash/tree/v2.1.0
+https://github.com/cespare/xxhash/commit/de209a9ffae3256185a6bb135d1a0ada7b2b5f09
+RATE 76
+git/github/cespare/xxhash/de209a9ffae3256185a6bb135d1a0ada7b2b5f09 2019-09-04
+
+github.com/cespare/xxhash
+https://github.com/cespare/xxhash/tree/v1.1.0
+https://github.com/cespare/xxhash/commit/569f7c8abf1f58d9043ab804d364483cb1c853b6
+RATE 77
+git/github/cespare/xxhash/569f7c8abf1f58d9043ab804d364483cb1c853b6
+
+github.com/cenkalti/backoff
+https://github.com/cenkalti/backoff/tree/v2.1.1
+https://github.com/cenkalti/backoff/commit/1e4cf3da559842a91afcb6ea6141451e6c30c618
+RATE 76
+git/github/cenkalti/backoff/1e4cf3da559842a91afcb6ea6141451e6c30c618
+
+github.com/blang/semver/v4
+https://github.com/blang/semver/tree/v4.0.0
+https://github.com/blang/semver/commit/af3461a9cbcf1f3f5889d21b83f5ef63880c33a8
+RATE 76
+git/github/blang/semver/af3461a9cbcf1f3f5889d21b83f5ef63880c33a8
+
+github.com/blang/semver
+https://github.com/blang/semver/tree/v3.5.1
+https://github.com/blang/semver/commit/2ee87856327ba09384cabd113bc6b5d174e9ec0f
+RATE 77
+git/github/blang/semver/2ee87856327ba09384cabd113bc6b5d174e9ec0f
+
+github.com/bitly/go-simplejson
+https://github.com/bitly/go-simplejson/commit/0c965951289cce37dec52ad1f34200fefc816777
+RATE 75
+git/github/bitly/go-simplejson/0c965951289cce37dec52ad1f34200fefc816777
+
+github.com/bitly/go-hostpool
+https://github.com/bitly/go-hostpool/tree/a3a6125de9329587178a9792dc8f4bc98e620d2d
+RATE 77
+git/github/bitly/go-hostpool/5d3b4dc6ed4701a761ee884fd803b0a0879744f1
+
+== 285
+
+github.com/bgentry/speakeasy
+https://github.com/bgentry/speakeasy/tree/v0.1.0
+https://github.com/bgentry/speakeasy/commit/4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
+RATE 81
+git/github/bgentry/speakeasy/4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
+
+github.com/beorn7/perks
+https://github.com/beorn7/perks/tree/v1.0.1
+https://github.com/beorn7/perks/commit/37c8de3658fcb183f997c4e13e8337516ab753e6
+RATE 78
+git/github/beorn7/perks/37c8de3658fcb183f997c4e13e8337516ab753e6
+
+github.com/bazelbuild/buildtools
+https://github.com/bazelbuild/buildtools/releases/tag/0.19.2
+https://github.com/bazelbuild/buildtools/commit/0b76442a60b61abbff02239620b493f25d6d9867
+RATE 79
+git/github/bazelbuild/buildtools/0b76442a60b61abbff02239620b493f25d6d9867
+
+github.com/aws/aws-sdk-go
+https://github.com/aws/aws-sdk-go/commit/2c7b39c8f2e2430d5e27482b7421dac5884613c2
+https://github.com/aws/aws-sdk-go/releases/tag/v1.36.31
+RATE 75
+git/github/aws/aws-sdk-go/2c7b39c8f2e2430d5e27482b7421dac5884613c2
+
+github.com/auth0/go-jwt-middleware
+https://github.com/auth0/go-jwt-middleware/commit/5493cabe49f7bfa6e2ec444a09d334d90cd4e2bd
+RATE 78
+git/github/auth0/go-jwt-middleware/5493cabe49f7bfa6e2ec444a09d334d90cd4e2bd
+
+github.com/armon/go-radix
+https://github.com/armon/go-radix/commit/7fddfc383310abc091d79a27f116d30cf0424032
+RATE 75
+git/github/armon/go-radix/7fddfc383310abc091d79a27f116d30cf0424032
+
+github.com/armon/go-metrics
+https://github.com/armon/go-metrics/commit/f0300d1749da6fa982027e449ec0c7a145510c3c
+RATE 76
+git/github/armon/go-metrics/f0300d1749da6fa982027e449ec0c7a145510c3c
+
+github.com/armon/circbuf
+https://github.com/armon/circbuf/commit/bbbad097214e2918d8543d5201d12bfd7bca254d
+RATE 80
+git/github/armon/circbuf/bbbad097214e2918d8543d5201d12bfd7bca254d
+
+github.com/antihax/optional
+https://github.com/antihax/optional/commit/ca021399b1a6796ecb758292c6311ce0b28857fc
+RATE 76
+git/github/antihax/optional/ca021399b1a6796ecb758292c6311ce0b28857fc
+
+github.com/alecthomas/units
+https://github.com/alecthomas/units/commit/c3de453c63f4bdb4dadffab9805ec00426c505f7
+RATE 78
+git/github/alecthomas/units/c3de453c63f4bdb4dadffab9805ec00426c505f7
+
+github.com/alecthomas/template
+https://github.com/alecthomas/template/commit/fb15b899a75114aa79cc930e33c46b577cc664b1
+RATE 93
+git/github/alecthomas/template/fb15b899a75114aa79cc930e33c46b577cc664b1
+
+github.com/PuerkitoBio/purell
+https://github.com/PuerkitoBio/purell/tree/v1.1.1
+https://github.com/PuerkitoBio/purell/commit/44968752391892e1b0d0b821ee79e9a85fa13049
+RATE 78
+git/github/puerkitobio/purell/44968752391892e1b0d0b821ee79e9a85fa13049
+
+github.com/OneOfOne/xxhash
+https://github.com/OneOfOne/xxhash/tree/v1.2.2
+https://github.com/OneOfOne/xxhash/commit/6def279d2ce6c81a79dd1c1be580f03bb216fb8a
+RATE 75
+git/github/oneofone/xxhash/6def279d2ce6c81a79dd1c1be580f03bb216fb8a
+
+github.com/Masterminds/sprig/v3
+https://github.com/Masterminds/sprig/releases/tag/v3.0.2
+https://github.com/Masterminds/sprig/commit/25dce230792b748f794ea878db61fc5419410c9f
+RATE 75
+git/github/masterminds/sprig/25dce230792b748f794ea878db61fc5419410c9f
+
+github.com/Masterminds/semver/v3
+https://github.com/Masterminds/semver/tree/v3.0.3
+https://github.com/Masterminds/semver/commit/910aa146bd66780c2815d652b92a7fc5331e533c
+RATE 75
+git/github/masterminds/semver/910aa146bd66780c2815d652b92a7fc5331e533c
+
+== 300
+
+github.com/Masterminds/semver
+https://github.com/Masterminds/semver/tree/v1.5.0
+https://github.com/Masterminds/semver/commit/805c489aa98f412e79eb308a37996bf9d8b1c91e
+RATE 75
+git/github/masterminds/semver/805c489aa98f412e79eb308a37996bf9d8b1c91e
+
+github.com/MakeNowJust/heredoc
+https://github.com/MakeNowJust/heredoc/commit/e9091a26100e9cfb2b6a8f470085bfa541931a91
+RATE 93
+git/github/makenowjust/heredoc/e9091a26100e9cfb2b6a8f470085bfa541931a91
+
+github.com/Azure/go-ansiterm
+https://github.com/Azure/go-ansiterm/commit/d6e3b3328b783f23731bc4d058875b0371ff8109
+RATE 100
+https://clearlydefined.io/definitions/github/azure/go-ansiterm/d6e3b3328b783f23731bc4d058875b0371ff8109
+
+== 303
+
+=== Golang dependencies(We can skip their license rate)
+
+golang.org/x/crypto
+https://github.com/golang/crypto/tree/5ea612d1eb830b38bc4e914e37f55311eb58adce
+RATE 68
+https://clearlydefined.io/definitions/git/github/golang/crypto/5ea612d1eb830b38bc4e914e37f55311eb58adce
+
+== 304
+
+=== Golang dependencies
+
+golang.org/x/exp
+golang.org/x/image
+golang.org/x/lint
+golang.org/x/mobile
+golang.org/x/mod
+golang.org/x/net
+golang.org/x/oauth2
+golang.org/x/sync
+golang.org/x/sys
+golang.org/x/term
+golang.org/x/text
+golang.org/x/time
+golang.org/x/tools
+golang.org/x/xerrors
+
+== 318
+
+Work with dependencies:
+
+go list -mod=mod -m all
+go mod graph
