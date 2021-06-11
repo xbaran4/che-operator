@@ -16,17 +16,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NOTE THAT THIS IS CURRENTLY INTENTIONALLY NOT PART OF THE GENERATED API
-//
-// (the generator comments are switched off by using a '\' instead of a '+')
-//
-// This is so that we can start using this spec in the code before we are
-// actually ready to start deploying it in the cluster.
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 // CheClusterSpec holds the configuration of the Che controller.
-// \k8s:openapi-gen=true
+// +k8s:openapi-gen=true
 type CheClusterSpec struct {
 	// If false, Che is disabled and does not resolve the devworkspaces with the che routingClass.
 	Enabled *bool `json:"enabled,omitempty"`
@@ -141,7 +132,7 @@ const (
 )
 
 // CheClusterStatus contains the status of the CheCluster object
-// \k8s:openapi-gen=true
+// +k8s:openapi-gen=true
 type CheClusterStatus struct {
 	// GatewayPhase specifies the phase in which the gateway deployment currently is.
 	// If the gateway is disabled, the phase is "Inactive".
@@ -167,9 +158,9 @@ type CheClusterStatus struct {
 }
 
 // CheCluster is the configuration of the CheCluster layer of Devworkspace.
-// \k8s:openapi-gen=true
-// \kubebuilder:subresource:status
-// \kubebuilder:resource:path=checlusters,scope=Namespaced
+// +k8s:openapi-gen=true
+// +kubebuilder:subresource:status
+// +kubebuilder:resource:path=checlusters,scope=Namespaced
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type CheCluster struct {
 	metav1.TypeMeta   `json:",inline"`
