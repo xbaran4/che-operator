@@ -58,7 +58,9 @@ import (
 	routev1 "github.com/openshift/api/route/v1"
 	userv1 "github.com/openshift/api/user/v1"
 	corev1 "k8s.io/api/core/v1"
+
 	// orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
+	orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -101,6 +103,7 @@ func init() {
 	// "Happy feature..."
 	// utilruntime.Must(orgv2alpha1.AddToScheme(scheme))
 
+	utilruntime.Must(orgv2alpha1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 	utilruntime.Must(cachev1.AddToScheme(scheme))

@@ -21,7 +21,7 @@ package v1
 
 import (
 	chev1alpha1 "github.com/che-incubator/kubernetes-image-puller-operator/pkg/apis/che/v1alpha1"
-	// v2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
+	v2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -689,14 +689,15 @@ type CheClusterStatus struct {
 
 	// The status of the Devworkspace subsystem
 	// +optional
-	// DevworkspaceStatus v2alpha1.CheClusterStatus `json:"devworkspaceStatus,omitempty"`
+	DevworkspaceStatus v2alpha1.CheClusterStatus `json:"devworkspaceStatus,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 // +k8s:openapi-gen=true
 // +operator-sdk:csv:customresourcedefinitions:displayName="Eclipse Che Cluster"
+// +kubebuilder:storageversion
 
 // The `CheCluster` custom resource allows defining and managing a Che server installation
 type CheCluster struct {

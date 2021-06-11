@@ -180,10 +180,16 @@ manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and Cust
 
 	cd ../../..
 
-	$(MAKE) add-license-header FILE="config/crd/bases/org_v1_che_crd-v1beta1.yaml"
-	$(MAKE) add-license-header FILE="config/crd/bases/org_v1_che_crd.yaml"
+	crd_v1="config/crd/bases/org_v1_che_crd.yaml"
+	crd_v1beta1="config/crd/bases/org_v1_che_crd-v1beta1.yaml"
 
-	$(MAKE) removeRequiredAttribute "filePath=config/crd/bases/org_v1_che_crd-v1beta1.yaml"
+	$(MAKE) add-license-header FILE="$${crd_v1}"
+	$(MAKE) add-license-header FILE="$${crd_v1beta1}"
+
+	$(MAKE) removeRequiredAttribute "filePath=$${crd_v1beta1}"
+
+	yq -rYi "del(.spec.versions[1])" "$${crd_v1}"
+	yq -rYi "del(.spec.versions[1])" "$${crd_v1beta1}"
 
 generate: controller-gen ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
 	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./..."
