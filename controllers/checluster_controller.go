@@ -549,18 +549,6 @@ func (r *CheClusterReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) 
 			}
 			return ctrl.Result{}, err
 		}
-	} else {
-		done, err := deploy.DeleteNamespacedObject(deployContext, deploy.DevfileRegistryName, &corev1.ConfigMap{})
-		if !done {
-			return ctrl.Result{}, err
-		}
-
-		if instance.Spec.Server.DevfileRegistryUrl != instance.Status.DevfileRegistryURL {
-			instance.Status.DevfileRegistryURL = instance.Spec.Server.DevfileRegistryUrl
-			if err := deploy.UpdateCheCRStatus(deployContext, "status: Devfile Registry URL", instance.Spec.Server.DevfileRegistryUrl); err != nil {
-				return ctrl.Result{}, err
-			}
-		}
 	}
 
 	d := dashboard.NewDashboard(deployContext)

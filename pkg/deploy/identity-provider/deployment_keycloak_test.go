@@ -282,13 +282,22 @@ func TestSyncKeycloakDeploymentToCluster(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create secret: %v", err)
 	}
-	err = cli.Update(context.TODO(), &corev1.Secret{
-		ObjectMeta: metav1.ObjectMeta{
-			Name:            "self-signed-certificate",
-			Namespace:       "eclipse-che",
-			ResourceVersion: "2",
-		},
-	})
+
+	caSecret := &corev1.Secret{}
+	err = cli.Get(context.TODO(), types.NamespacedName{
+		Name:            "self-signed-certificate",
+		Namespace:       "eclipse-che",
+	}, caSecret)
+	if err != nil {
+		t.Fatalf("Failed to get secret: %v", err)
+	}
+	// Let's really change something. Go client will increment secret resource version itself(from '1' to '2').
+	caSecret.GenerateName = "test"
+
+	err = cli.Update(context.TODO(), caSecret)
+	if err != nil {
+		t.Fatalf("Failed to update secret: %s", err.Error())
+	}
 
 	// sync a new deployment
 	_, err = SyncKeycloakDeploymentToCluster(deployContext)
@@ -312,5 +321,10 @@ func TestSyncKeycloakDeploymentToCluster(t *testing.T) {
 	cmRevision := util.FindEnv(actual.Spec.Template.Spec.Containers[0].Env, "CM_REVISION")
 	if cmRevision == nil || cmRevision.Value != "1" {
 		t.Fatalf("Failed to sync deployment")
+	}
+
+	// check self-signed-certificate secret revision
+	if actual.ObjectMeta.Annotations["che.self-signed-certificate.version"] != "2" {
+		 	t.Fatalf("Failed to sync deployment")
 	}
 }
