@@ -84,7 +84,7 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/eclipse-che/che-operator
     support: Eclipse Foundation
-  name: eclipse-che-preview-kubernetes.v7.32.0-197.nightly
+  name: eclipse-che-preview-kubernetes.v7.32.0-199.nightly
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -922,12 +922,12 @@ spec:
                       - name: CHE_SERVER_TRUST_STORE_CONFIGMAP_NAME
                         value: ca-certs
                     image: quay.io/aandriienko/che-operator:nightly
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     livenessProbe:
                       failureThreshold: 10
                       httpGet:
                         path: /healthz
-                        port: 8081
+                        port: 6789
                       initialDelaySeconds: 15
                       periodSeconds: 10
                       successThreshold: 1
@@ -937,7 +937,7 @@ spec:
                       failureThreshold: 10
                       httpGet:
                         path: /readyz
-                        port: 8081
+                        port: 6789
                       initialDelaySeconds: 5
                       periodSeconds: 10
                       successThreshold: 1
@@ -1123,4 +1123,4 @@ spec:
   maturity: stable
   provider:
     name: Eclipse Foundation
-  version: 7.32.0-197.nightly
+  version: 7.32.0-199.nightly

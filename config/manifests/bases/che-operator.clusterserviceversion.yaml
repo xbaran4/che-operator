@@ -80,6 +80,11 @@ spec:
         x-descriptors:
         - urn:alm:descriptor:text
       version: v1
+    - description: CheCluster is the configuration of the CheCluster layer of Devworkspace.
+      displayName: Che Cluster
+      kind: CheCluster
+      name: checlusters.org.eclipse.che
+      version: v2alpha1
   description: |
     A collaborative Kubernetes-native development solution that delivers Kubernetes workspaces and in-browser IDE for rapid cloud application development.
     This operator installs PostgreSQL, Keycloak, Registries and the Eclipse Che server, as well as configures all these services.

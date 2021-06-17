@@ -75,8 +75,8 @@ var (
 
 func init() {
 	flag.StringVar(&defaultsPath, "defaults-path", "", "Path to file with operator deployment defaults. This option is useful for local development.")
-	flag.StringVar(&metricsAddr, "metrics-bind-address", ":8080", "The address the metric endpoint binds to.")
-	flag.StringVar(&probeAddr, "health-probe-bind-address", ":8081", "The address the probe endpoint binds to.")
+	flag.StringVar(&metricsAddr, "metrics-bind-address", ":60000", "The address the metric endpoint binds to.")
+	flag.StringVar(&probeAddr, "health-probe-bind-address", ":6789", "The address the probe endpoint binds to.")
 	flag.BoolVar(&enableLeaderElection, "leader-elect", false,
 		"Enable leader election for controller manager. "+
 			"Enabling this will ensure there is only one active controller manager.")
@@ -149,6 +149,8 @@ func getLogLevel() zapcore.Level {
 func printVersion(logger logr.Logger) {
 	logger.Info("Binary info ", "Go version", osruntime.Version())
 	logger.Info("Binary info ", "OS", osruntime.GOOS, "Arch", osruntime.GOARCH)
+	logger.Info("Address ", "Metrics", metricsAddr)
+	logger.Info("Address ", "Probe", probeAddr)
 
 	infra := "Kubernetes"
 	if util.IsOpenShift {
