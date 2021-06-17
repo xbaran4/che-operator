@@ -91,7 +91,7 @@ initStableTemplates() {
   mkdir -p "${PREVIOUS_OPERATOR_TEMPLATE}/che-operator"
 
   # todo: set up final version before merge pr...
-  compareResult=$(pysemver compare "${LAST_PACKAGE_VERSION}" "7.30.2")
+  compareResult=$(pysemver compare "${LAST_PACKAGE_VERSION}" "7.33.0")
   if [ "${compareResult}" == "1" ]; then
       prepareTemplates "${lastOperatorPath}" "${LAST_OPERATOR_TEMPLATE}/che-operator"
     else

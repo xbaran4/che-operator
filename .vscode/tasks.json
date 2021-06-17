@@ -123,9 +123,8 @@
             },
             "group": "build"
         },
-
         {
-            "label": "Build test bundle Kubernetes platform",
+            "label": "Build and push test bundle Kubernetes platform",
             "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"kubernetes\"; make bundle-build bundle-push BUNDLE_IMG=${BUNDLE_IMG} platform=\"kubernetes\"",
             "type": "shell",
             "args": [],
@@ -138,7 +137,7 @@
             "group": "build"
         },
         {
-            "label": "Build test bundle Openshift platform",
+            "label": "Build and push test bundle Openshift platform",
             "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator-bundle:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"openshift\"; make bundle-build bundle-push BUNDLE_IMG=${BUNDLE_IMG} platform=\"openshift\"",
             "type": "shell",
             "args": [],
