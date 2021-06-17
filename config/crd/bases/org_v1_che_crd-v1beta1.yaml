@@ -22,7 +22,6 @@ spec:
     listKind: CheClusterList
     plural: checlusters
     singular: checluster
-  preserveUnknownFields: false
   scope: Namespaced
   validation:
     openAPIV3Schema:

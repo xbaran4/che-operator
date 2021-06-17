@@ -27,8 +27,6 @@ spec:
       labels:
         app: che-operator
         app.kubernetes.io/component: che-operator
-        app.kubernetes.io/instance: che
-        app.kubernetes.io/managed-by: olm
         app.kubernetes.io/name: che
     spec:
       containers:

@@ -13,9 +13,10 @@
 package v1
 
 // Important: You must regenerate some generated code after modifying this file. At the root of the project:
-// - Run `operator-sdk generate k8s`: this will perform required changes in the `api/v1/zz_generatedxxx` files
-// - Run `operator-sdk generate openapi`: this will generate the `config/crd/bases/org_v1_checluster_crd.yaml` file
-// - In the updated `config/crd/bases/org_v1_checluster_crd.yaml`: Delete all the `required:` openAPI rules in the CRD OpenApi schema.
+// Run `make generate`. It will perform required changes:
+// - update `api/v1/zz_generatedxxx` files;
+// - update `config/crd/bases/org_v1_checluster_crd.yaml` and `config/crd/bases/org_v1_che_crd-v1beta1.yaml` files;
+// - In the updated `config/crd/bases/org_v1_checluster_crd.yaml`: Delete all the `required:` openAPI rules in the CRD OpenApi schema;
 // - Rename the new `config/crd/bases/org_v1_checluster_crd.yaml` to `config/crd/bases/org_v1_che_crd.yaml` to override it.
 // IMPORTANT These 2 last steps are important to ensure backward compatibility with already existing `CheCluster` CRs that were created when no schema was provided.
 
