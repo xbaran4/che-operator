@@ -285,8 +285,8 @@ func TestSyncKeycloakDeploymentToCluster(t *testing.T) {
 
 	caSecret := &corev1.Secret{}
 	err = cli.Get(context.TODO(), types.NamespacedName{
-		Name:            "self-signed-certificate",
-		Namespace:       "eclipse-che",
+		Name:      "self-signed-certificate",
+		Namespace: "eclipse-che",
 	}, caSecret)
 	if err != nil {
 		t.Fatalf("Failed to get secret: %v", err)
@@ -325,6 +325,6 @@ func TestSyncKeycloakDeploymentToCluster(t *testing.T) {
 
 	// check self-signed-certificate secret revision
 	if actual.ObjectMeta.Annotations["che.self-signed-certificate.version"] != "2" {
-		 	t.Fatalf("Failed to sync deployment")
+		t.Fatalf("Failed to sync deployment")
 	}
 }
