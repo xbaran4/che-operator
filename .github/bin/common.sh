@@ -186,6 +186,7 @@ prepareTemplates() {
   cp -f "${SRC_TEMPLATES}/config/rbac/service_account.yaml" "${TARGET_TEMPLATES}/"
 
   cp -f "${SRC_TEMPLATES}/config/samples/org.eclipse.che_v1_checluster.yaml" "${TARGET_TEMPLATES}/crds/org_v1_che_cr.yaml"
+  cp -f "${SRC_TEMPLATES}/config/crd/bases/org_v1_che_crd-v1beta1.yaml" "${TARGET_TEMPLATES}/crds/org_v1_che_crd-v1beta1.yaml"
 }
 
 deployEclipseCheStable(){
