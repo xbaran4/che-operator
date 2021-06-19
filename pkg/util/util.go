@@ -219,7 +219,7 @@ func GetOpenShiftAPIUrls() (string, string, error) {
 	// for debug purpose
 	apiUrl := os.Getenv("CLUSTER_API_URL")
 	apiInternalUrl := os.Getenv("CLUSTER_API_INTERNAL_URL")
-	if apiUrl != "" && apiInternalUrl != "" {
+	if apiUrl != "" || apiInternalUrl != "" {
 		return apiUrl, apiInternalUrl, nil
 	}
 

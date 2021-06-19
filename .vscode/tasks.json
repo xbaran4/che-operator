@@ -249,7 +249,20 @@
         },
         {
             "label": "Await debugger attach for che-operator",
-            "command": "make debug",
+            "command": "make debug -s",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": [
+                "$go"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
+            "label": "[CRD beta(Minishift)] Await debugger attach for che-operator",
+            "command": "make debug -s ECLIPSE_CHE_CRD='config/crd/bases/org_v1_che_crd-v1beta1.yaml'",
             "type": "shell",
             "args": [],
             "problemMatcher": [
