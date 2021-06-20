@@ -1,4 +1,4 @@
-=== Dependencies info
+=== List approved dependencies
 
 cloud.google.com/go/storage
 v1.5.0
@@ -2250,6 +2250,57 @@ gotestyourself/gotest.tools
 https://github.com/gotestyourself/gotest.tools/commit/7c797b5133e5460410dbb22ba779bf35e6975dea
 RATE 61
 https://clearlydefined.io/definitions/git/github/gotestyourself/gotest.tools/7c797b5133e5460410dbb22ba779bf35e6975dea
+
+github.com/hashicorp/consul/api
+https://github.com/hashicorp/consul/tree/v1.1.0
+https://github.com/hashicorp/consul/commit/5174058f0d2bda63fa5198ab96c33d9a909c58ed
+RATE 52
+https://clearlydefined.io/definitions/git/github/hashicorp/consul/5174058f0d2bda63fa5198ab96c33d9a909c58ed
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23427
+
+gitlab.com/nyarla/go-crypt
+https://gitlab.com/nyarla/go-crypt/commit/d9a5dc2b789bc330075d4b805d9b7c971f2865a1
+http://dev.eclipse.org/ipzilla/show_bug.cgi?id=23408
+
+github.com/clusterhq/flocker-go
+https://github.com/clusterhq/flocker-go/tree/2b8b7259d3139c96c4a6871031355808ab3fd3b3
+RATE 79
+https://clearlydefined.io/definitions/git/github/clusterhq/flocker-go/2b8b7259d3139c96c4a6871031355808ab3fd3b3
+
+github.com/campoy/embedmd v1.0.0
+https://github.com/campoy/embedmd/tree/54781ea47c31d8d2e4e351c1e05ce3ebf95f1446
+RATE 75
+https://clearlydefined.io/definitions/git/github/campoy/embedmd/54781ea47c31d8d2e4e351c1e05ce3ebf95f1446
+
+github.com/otiai10/mint
+https://github.com/otiai10/mint/tree/v1.3.1
+https://github.com/otiai10/mint/tree/bef812dd30a0e7e65435fde5ef6a81277d78ca05
+RATE 77
+https://clearlydefined.io/definitions/git/github/otiai10/mint/bef812dd30a0e7e65435fde5ef6a81277d78ca05
+
+gopkg.in/square/go-jose.v2
+https://github.com/square/go-jose/tree/v2.2.2
+https://github.com/square/go-jose/tree/e94fb177d3668d35ab39c61cbb2f311550557e83
+RATE 79
+https://clearlydefined.io/definitions/git/github/square/go-jose/e94fb177d3668d35ab39c61cbb2f311550557e83
+
+rsc.io/letsencryptv0.0.3
+https://github.com/rsc/letsencrypt/tree/v0.0.3
+https://github.com/rsc/letsencrypt/commit/2cfe43d8f3ba33d75c390b0e1e62e0a5f403605e
+But source code is removed, project archived...
+RATE 92
+https://clearlydefined.io/definitions/git/github/rsc/letsencrypt/2cfe43d8f3ba33d75c390b0e1e62e0a5f403605e
+
+github.com/rubiojr/go-vhd
+https://github.com/rubiojr/go-vhd/tree/02e2102990218160c1cb608a3e9679312a3b8425
+RATE 76
+https://clearlydefined.io/definitions/git/github/rubiojr/go-vhd/02e2102990218160c1cb608a3e9679312a3b8425
+
+github.com/sclevine/spec
+https://github.com/sclevine/spec/tree/v1.2.0
+https://github.com/sclevine/spec/tree/b518b20aa1af75d314a31c9b3acfeeab7c4cbfb4
+RATE 77
+https://clearlydefined.io/definitions/git/github/sclevine/spec/b518b20aa1af75d314a31c9b3acfeeab7c4cbfb4
 
 === Golang dependencies(We can skip their license rate)
 
