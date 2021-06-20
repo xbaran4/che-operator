@@ -103,7 +103,8 @@ initStableTemplates() {
 # Utility to wait for a workspace to be started after workspace:create.
 waitWorkspaceStart() {
   export x=0
-  while [ $x -le 180 ]
+  timeout=240
+  while [ $x -le $timeout ]
   do
     login
 
@@ -121,9 +122,9 @@ waitWorkspaceStart() {
     x=$(( x+1 ))
   done
 
-  if [ $x -gt 180 ]
+  if [ $x -gt $timeout ]
   then
-    echo "[ERROR] Workspace didn't start after 3 minutes."
+    echo "[ERROR] Workspace didn't start after 4 minutes."
     exit 1
   fi
 }
