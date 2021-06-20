@@ -185,7 +185,7 @@ manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and Cust
 
 	yq -rYi "del(.spec.versions[1])" "$${crd_v1}"
 	yq -rYi "del(.spec.versions[1])" "$${crd_v1beta1}"
-	yq -rYi ".spec.subresources = {}" "$${crd_v1beta1}"
+	yq -rYi ".spec.subresources.status = {}" "$${crd_v1beta1}"
 
 	$(MAKE) add-license-header FILE="$${crd_v1}"
 	$(MAKE) add-license-header FILE="$${crd_v1beta1}"
