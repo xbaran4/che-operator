@@ -125,7 +125,7 @@
         },
         {
             "label": "Build and push test bundle Kubernetes platform",
-            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"kubernetes\"; make bundle-build bundle-push BUNDLE_IMG=${BUNDLE_IMG} platform=\"kubernetes\"",
+            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"kubernetes\" -s; make bundle-build bundle-push -s BUNDLE_IMG=${BUNDLE_IMG} platform=\"kubernetes\"",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -138,7 +138,7 @@
         },
         {
             "label": "Build and push test bundle Openshift platform",
-            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator-bundle:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"openshift\"; make bundle-build bundle-push BUNDLE_IMG=${BUNDLE_IMG} platform=\"openshift\"",
+            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator-bundle:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"openshift\" -s; make bundle-build bundle-push -s BUNDLE_IMG=${BUNDLE_IMG} platform=\"openshift\"",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -196,8 +196,21 @@
 
         {
             "label": "Install che-operator outside cluster",
-            "command": "make install run",
+            "command": "make create-full-env-file -s; set -a; . /tmp/che-operator-debug.env; set +a; kubectl apply -f config/samples/org.eclipse.che_v1_checluster.yaml -n ${WATCH_NAMESPACE}; make install run",
             "type": "shell",
+            "options": {
+                "env": {
+                    "CHE_FLAVOR": "che",
+                    "CONSOLE_LINK_NAME": "che",
+                    "CONSOLE_LINK_DISPLAY_NAME": "Eclipse Che",
+                    "CONSOLE_LINK_SECTION": "Red Hat Applications",
+                    "CONSOLE_LINK_IMAGE": "/dashboard/assets/branding/loader.svg",
+                    "CHE_IDENTITY_SECRET": "che-identity-secret",
+                    "CHE_IDENTITY_POSTGRES_SECRET": "che-identity-postgres-secret",
+                    "CHE_POSTGRES_SECRET": "che-postgres-secret",
+                    "CHE_SERVER_TRUST_STORE_CONFIGMAP_NAME": "ca-certs"
+                }
+            },
             "args": [],
             "problemMatcher": [
                 "$go"

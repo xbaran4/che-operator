@@ -298,8 +298,8 @@ create-env-file: prepare-templates
 	echo "WATCH_NAMESPACE='${ECLIPSE_CHE_NAMESPACE}'" >> "${ENV_FILE}"
 
 create-full-env-file: create-env-file
-	cat ./config/default/manager_auth_proxy_patch.yaml | \
-	yq -r '.spec.template.spec.containers[1].env[] | "export \(.name)=\"$${\(.name):-\(.value)}\""' \ # Todo "metrics proxy" 0 => 1
+	cat ./config/manager/manager.yaml | \
+	yq -r '.spec.template.spec.containers[0].env[] | select(.name == "WATCH_NAMESPACE" | not) | "export \(.name)=\"\(.value)\""' \
 	>> ${ENV_FILE}
 	echo "[INFO] Env file: ${ENV_FILE}"
 	source ${ENV_FILE} ; env | grep CHE_VERSION
@@ -338,11 +338,25 @@ endef
 NIGHTLY_CHANNEL="nightly"
 
 .PHONY: bundle
-bundle: manifests kustomize ## Generate bundle manifests and metadata, then validate generated files.
+bundle: generate manifests kustomize ## Generate bundle manifests and metadata, then validate generated files.
 	if [ -z "$(platform)" ]; then
 		echo "[INFO] You must specify 'platform' macros. For example: `make bundle platform=kubernetes`"
 		exit 1
 	fi
+
+	if [ -z "$(NO_INCREMENT)" ]; then
+		$(MAKE) increment-nightly-version platform="$${platform}"
+	fi
+
+	echo "[INFO] Updating OperatorHub bundle for platform '$${platform}'"
+
+	NIGHTLY_BUNDLE_PATH=$$($(MAKE) getBundlePath platform="$${platform}" channel="nightly" -s)
+	bundleCSVName="che-operator.clusterserviceversion.yaml"
+	NEW_CSV=$${NIGHTLY_BUNDLE_PATH}/manifests/$${bundleCSVName}
+	newNightlyBundleVersion=$$(yq -r ".spec.version" "$${NEW_CSV}")
+	echo "[INFO] Creation new nightly bundle version: $${newNightlyBundleVersion}"
+
+	createdAtOld=$$(yq -r ".metadata.annotations.createdAt" "$${NEW_CSV}")
 
 	BUNDLE_PACKAGE="eclipse-che-preview-$(platform)"
 	BUNDLE_DIR="bundle/$(DEFAULT_CHANNEL)/$${BUNDLE_PACKAGE}"
@@ -355,7 +369,8 @@ bundle: manifests kustomize ## Generate bundle manifests and metadata, then vali
 	cd config/manager && $(KUSTOMIZE) edit set image controller=$(IMG) && cd ../..
 	$(KUSTOMIZE) build config/platforms/$(platform) | \
 	$(OPERATOR_SDK_BINARY) generate bundle \
-	-q --overwrite --version $(VERSION) \
+	-q --overwrite \
+	--version $${newNightlyBundleVersion} \
 	--package $${BUNDLE_PACKAGE} \
 	--output-dir $${BUNDLE_DIR} \
 	$(BUNDLE_METADATA_OPTS)
@@ -368,6 +383,122 @@ bundle: manifests kustomize ## Generate bundle manifests and metadata, then vali
 	cd $(mkfile_dir)
 
 	$(OPERATOR_SDK_BINARY) bundle validate ./$${BUNDLE_DIR}
+
+	containerImage=$$(sed -n 's|^ *image: *\([^ ]*/che-operator:[^ ]*\) *|\1|p' $${NEW_CSV})
+	echo "[INFO] Updating new package version fields:"
+	echo "[INFO]        - containerImage => $${containerImage}"
+	sed -e "s|containerImage:.*$$|containerImage: $${containerImage}|" "$${NEW_CSV}" > "$${NEW_CSV}.new"
+	mv "$${NEW_CSV}.new" "$${NEW_CSV}"
+
+	if [ "$(NO_DATE_UPDATE)" = true ]; then
+		echo "[INFO]        - createdAt => $${createdAtOld}"
+		sed -e "s/createdAt:.*$$/createdAt: \"$${createdAtOld}\"/" "$${NEW_CSV}" > "$${NEW_CSV}.new"
+		mv "$${NEW_CSV}.new" "$${NEW_CSV}"
+	fi
+
+	platformCRD="$${NIGHTLY_BUNDLE_PATH}/manifests/org_v1_che_crd.yaml"
+	if [ "$${platform}" = "openshift" ]; then
+		yq -riY  '.spec.preserveUnknownFields = false' $${platformCRD}
+	fi
+	$(MAKE) add-license-header FILE="$${platformCRD}"
+
+	if [ -n "$(TAG)" ]; then
+		echo "[INFO] Set tags in nightly OLM files"
+		sed -ri "s/(.*:\s?)$(RELEASE)([^-])?$$/\1$(TAG)\2/" "$${NEW_CSV}"
+	fi
+
+	YAML_CONTENT=$$(cat "$${NEW_CSV}")
+	if [ $${platform} = "kubernetes" ]; then
+		clusterPermLength=$$(echo "$${YAML_CONTENT}" | yq -r ".spec.install.spec.clusterPermissions[0].rules | length")
+		i=0
+		while [ "$${i}" -lt "$${clusterPermLength}" ]; do
+			apiGroupLength=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.clusterPermissions[0].rules['$${i}'].apiGroups | length')
+			if [ "$${apiGroupLength}" -gt 0 ]; then
+				j=0
+				while [ "$${j}" -lt "$${apiGroupLength}" ]; do
+					apiGroup=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.clusterPermissions[0].rules['$${i}'].apiGroups['$${j}']')
+					case $${apiGroup} in *openshift.io)
+						YAML_CONTENT=$$(echo "$${YAML_CONTENT}" | yq -rY 'del(.spec.install.spec.clusterPermissions[0].rules['$${i}'])' )
+						j=$$((j-1))
+						i=$$((i-1))
+						break
+						;;
+					esac;
+					j=$$((i+1))
+				done
+			fi
+			i=$$((i+1))
+		done
+
+		permLength=$$(echo "$${YAML_CONTENT}" | yq -r ".spec.install.spec.permissions[0].rules | length")
+		i=0
+		while [ "$${i}" -lt "$${permLength}" ]; do
+			apiGroupLength=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.permissions[0].rules['$${i}'].apiGroups | length')
+			if [ "$${apiGroupLength}" -gt 0 ]; then
+				j=0
+				while [ "$${j}" -lt "$${apiGroupLength}" ]; do
+					apiGroup=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.permissions[0].rules['$${i}'].apiGroups['$${j}']')
+					case $${apiGroup} in *openshift.io)
+						YAML_CONTENT=$$(echo "$${YAML_CONTENT}" | yq -rY 'del(.spec.install.spec.permissions[0].rules['$${i}'])' )
+						j=$$((j-1))
+						i=$$((i-1))
+						break
+						;;
+					esac;
+					j=$$((i+1))
+				done
+			fi
+			i=$$((i+1))
+		done
+	fi
+	echo "$${YAML_CONTENT}" > "$${NEW_CSV}"
+
+	if [ $${platform} = "openshift" ]; then
+		# Removes che-tls-secret-creator
+		index=0
+		while [ $${index} -le 30 ]
+		do
+			if [ $$(cat $${NEW_CSV} | yq -r '.spec.install.spec.deployments[0].spec.template.spec.containers[0].env['$${index}'].name') = "RELATED_IMAGE_che_tls_secrets_creation_job" ]; then
+				yq -rYSi 'del(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env['$${index}'])' $${NEW_CSV}
+				break
+			fi
+			index=$$((index+1))
+		done
+	fi
+
+	# Fix sample
+	if [ "$${platform}" = "openshift" ]; then
+		echo "[INFO] Fix openshift sample"
+		sample=$$(yq -r ".metadata.annotations.\"alm-examples\"" "$${NEW_CSV}")
+		fixedSample=$$(echo "$${sample}" | yq -r ".[0] | del(.spec.k8s) | [.]" | sed -r 's/"/\\"/g')
+		# Update sample in the CSV
+		yq -rY " (.metadata.annotations.\"alm-examples\") = \"$${fixedSample}\"" "$${NEW_CSV}" > "$${NEW_CSV}.old"
+		mv "$${NEW_CSV}.old" "$${NEW_CSV}"
+	fi
+	if [ "$${platform}" = "kubernetes" ]; then
+		echo "[INFO] Fix kubernetes sample"
+		sample=$$(yq -r ".metadata.annotations.\"alm-examples\"" "$${NEW_CSV}")
+		fixedSample=$$(echo "$${sample}" | yq -r ".[0] | (.spec.k8s.ingressDomain) = \"\" | del(.spec.auth.openShiftoAuth) | [.]" | sed -r 's/"/\\"/g')
+		# Update sample in the CSV
+		yq -rY " (.metadata.annotations.\"alm-examples\") = \"$${fixedSample}\"" "$${NEW_CSV}" > "$${NEW_CSV}.old"
+		mv "$${NEW_CSV}.old" "$${NEW_CSV}"
+	fi
+
+	# set `app.kubernetes.io/managed-by` label
+	yq -riSY  '(.spec.install.spec.deployments[0].spec.template.metadata.labels."app.kubernetes.io/managed-by") = "olm"' "$${NEW_CSV}"
+
+	# set Pod Security Context Posture
+	yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostIPC") = false' "$${NEW_CSV}"
+	yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostNetwork") = false' "$${NEW_CSV}"
+	yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostPID") = false' "$${NEW_CSV}"
+	if [ "$${platform}" = "openshift" ]; then
+		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."allowPrivilegeEscalation") = false' "$${NEW_CSV}"
+		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."runAsNonRoot") = true' "$${NEW_CSV}"
+	fi
+
+	# Format code.
+	yq -rY "." "$${NEW_CSV}" > "$${NEW_CSV}.old"
+	mv "$${NEW_CSV}.old" "$${NEW_CSV}"
 
 getPackageName:
 	if [ -z "$(platform)" ]; then
@@ -450,140 +581,10 @@ get-nightly-version-increment:
 
 	echo "$${incrementPart}"
 
-update-resources: check-requirements generate manifests kustomize update-resource-images
+update-resources: check-requirements update-resource-images
 	for platform in 'kubernetes' 'openshift'
 	do
-		if [ -z "$(NO_INCREMENT)" ]; then
-			$(MAKE) increment-nightly-version platform="$${platform}"
-		fi
-
-		echo "[INFO] Updating OperatorHub bundle for platform '$${platform}'"
-
-		NIGHTLY_BUNDLE_PATH=$$($(MAKE) getBundlePath platform="$${platform}" channel="nightly" -s)
-		bundleCSVName="che-operator.clusterserviceversion.yaml"
-		NEW_CSV=$${NIGHTLY_BUNDLE_PATH}/manifests/$${bundleCSVName}
-		newNightlyBundleVersion=$$(yq -r ".spec.version" "$${NEW_CSV}")
-		echo "[INFO] Creation new nightly bundle version: $${newNightlyBundleVersion}"
-
-		createdAtOld=$$(yq -r ".metadata.annotations.createdAt" "$${NEW_CSV}")
-
-		$(MAKE) bundle "platform=$${platform}" "VERSION=$${newNightlyBundleVersion}"
-
-		containerImage=$$(sed -n 's|^ *image: *\([^ ]*/che-operator:[^ ]*\) *|\1|p' $${NEW_CSV})
-		echo "[INFO] Updating new package version fields:"
-		echo "[INFO]        - containerImage => $${containerImage}"
-		sed -e "s|containerImage:.*$$|containerImage: $${containerImage}|" "$${NEW_CSV}" > "$${NEW_CSV}.new"
-		mv "$${NEW_CSV}.new" "$${NEW_CSV}"
-
-		if [ "$(NO_DATE_UPDATE)" = true ]; then
-			echo "[INFO]        - createdAt => $${createdAtOld}"
-			sed -e "s/createdAt:.*$$/createdAt: \"$${createdAtOld}\"/" "$${NEW_CSV}" > "$${NEW_CSV}.new"
-			mv "$${NEW_CSV}.new" "$${NEW_CSV}"
-		fi
-
-		platformCRD="$${NIGHTLY_BUNDLE_PATH}/manifests/org_v1_che_crd.yaml"
-		if [ "$${platform}" = "openshift" ]; then
-			yq -riY  '.spec.preserveUnknownFields = false' $${platformCRD}
-		fi
-		$(MAKE) add-license-header FILE="$${platformCRD}"
-
-		if [ -n "$(TAG)" ]; then
-			echo "[INFO] Set tags in nightly OLM files"
-			sed -ri "s/(.*:\s?)$(RELEASE)([^-])?$$/\1$(TAG)\2/" "$${NEW_CSV}"
-		fi
-
-		YAML_CONTENT=$$(cat "$${NEW_CSV}")
-		if [ $${platform} = "kubernetes" ]; then
-			clusterPermLength=$$(echo "$${YAML_CONTENT}" | yq -r ".spec.install.spec.clusterPermissions[0].rules | length")
-			i=0
-			while [ "$${i}" -lt "$${clusterPermLength}" ]; do
-				apiGroupLength=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.clusterPermissions[0].rules['$${i}'].apiGroups | length')
-				if [ "$${apiGroupLength}" -gt 0 ]; then
-					j=0
-					while [ "$${j}" -lt "$${apiGroupLength}" ]; do
-						apiGroup=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.clusterPermissions[0].rules['$${i}'].apiGroups['$${j}']')
-						case $${apiGroup} in *openshift.io)
-							YAML_CONTENT=$$(echo "$${YAML_CONTENT}" | yq -rY 'del(.spec.install.spec.clusterPermissions[0].rules['$${i}'])' )
-							j=$$((j-1))
-							i=$$((i-1))
-							break
-							;;
-						esac;
-						j=$$((i+1))
-					done
-				fi
-				i=$$((i+1))
-			done
-
-			permLength=$$(echo "$${YAML_CONTENT}" | yq -r ".spec.install.spec.permissions[0].rules | length")
-			i=0
-			while [ "$${i}" -lt "$${permLength}" ]; do
-				apiGroupLength=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.permissions[0].rules['$${i}'].apiGroups | length')
-				if [ "$${apiGroupLength}" -gt 0 ]; then
-					j=0
-					while [ "$${j}" -lt "$${apiGroupLength}" ]; do
-						apiGroup=$$(echo "$${YAML_CONTENT}" | yq -r '.spec.install.spec.permissions[0].rules['$${i}'].apiGroups['$${j}']')
-						case $${apiGroup} in *openshift.io)
-							YAML_CONTENT=$$(echo "$${YAML_CONTENT}" | yq -rY 'del(.spec.install.spec.permissions[0].rules['$${i}'])' )
-							j=$$((j-1))
-							i=$$((i-1))
-							break
-							;;
-						esac;
-						j=$$((i+1))
-					done
-				fi
-				i=$$((i+1))
-			done
-		fi
-		echo "$${YAML_CONTENT}" > "$${NEW_CSV}"
-
-		if [ $${platform} = "openshift" ]; then
-			# Removes che-tls-secret-creator
-			index=0
-			while [ $${index} -le 30 ]
-			do
-				if [ $$(cat $${NEW_CSV} | yq -r '.spec.install.spec.deployments[0].spec.template.spec.containers[0].env['$${index}'].name') = "RELATED_IMAGE_che_tls_secrets_creation_job" ]; then
-					yq -rYSi 'del(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env['$${index}'])' $${NEW_CSV}
-					break
-				fi
-				index=$$((index+1))
-			done
-		fi
-
-		# Fix sample
-		if [ "$${platform}" = "openshift" ]; then
-			echo "[INFO] Fix openshift sample"
-			sample=$$(yq -r ".metadata.annotations.\"alm-examples\"" "$${NEW_CSV}")
-			fixedSample=$$(echo "$${sample}" | yq -r ".[0] | del(.spec.k8s) | [.]" | sed -r 's/"/\\"/g')
-			# Update sample in the CSV
-			yq -rY " (.metadata.annotations.\"alm-examples\") = \"$${fixedSample}\"" "$${NEW_CSV}" > "$${NEW_CSV}.old"
-			mv "$${NEW_CSV}.old" "$${NEW_CSV}"
-		fi
-		if [ "$${platform}" = "kubernetes" ]; then
-			echo "[INFO] Fix kubernetes sample"
-			sample=$$(yq -r ".metadata.annotations.\"alm-examples\"" "$${NEW_CSV}")
-			fixedSample=$$(echo "$${sample}" | yq -r ".[0] | (.spec.k8s.ingressDomain) = \"\" | del(.spec.auth.openShiftoAuth) | [.]" | sed -r 's/"/\\"/g')
-			# Update sample in the CSV
-			yq -rY " (.metadata.annotations.\"alm-examples\") = \"$${fixedSample}\"" "$${NEW_CSV}" > "$${NEW_CSV}.old"
-			mv "$${NEW_CSV}.old" "$${NEW_CSV}"
-		fi
-
-		# set `app.kubernetes.io/managed-by` label
-		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.metadata.labels."app.kubernetes.io/managed-by") = "olm"' "$${NEW_CSV}"
-
-		# set Pod Security Context Posture
-		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostIPC") = false' "$${NEW_CSV}"
-		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostNetwork") = false' "$${NEW_CSV}"
-		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec."hostPID") = false' "$${NEW_CSV}"
-		if [ "$${platform}" = "openshift" ]; then
-			yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."allowPrivilegeEscalation") = false' "$${NEW_CSV}"
-			yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."runAsNonRoot") = true' "$${NEW_CSV}"
-		fi
-
-		# Format code.
-		yq -rY "." "$${NEW_CSV}" > "$${NEW_CSV}.old"
-		mv "$${NEW_CSV}.old" "$${NEW_CSV}"
+		$(MAKE) bundle "platform=$${platform}"
 	done
 
 check-requirements:

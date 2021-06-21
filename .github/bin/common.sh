@@ -383,7 +383,7 @@ login() {
     # log in using OpenShift token
     chectl auth:login --chenamespace=${NAMESPACE}
   else
-    chectl auth:login -u admin -p admin --chenamespace=${NAMESPACE}
+    chectl auth:login -u admin -p admin --chenamespace=${NAMESPACE} || chectl auth:login -u admin -p admin --chenamespace=${NAMESPACE}
   fi
 }
 
