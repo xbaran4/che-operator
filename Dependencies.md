@@ -2302,6 +2302,58 @@ https://github.com/sclevine/spec/tree/b518b20aa1af75d314a31c9b3acfeeab7c4cbfb4
 RATE 77
 https://clearlydefined.io/definitions/git/github/sclevine/spec/b518b20aa1af75d314a31c9b3acfeeab7c4cbfb4
 
+github.com/ClickHouse/clickhouse-go
+https://github.com/clickhouse/clickhouse-go/tree/v1.3.12
+https://github.com/clickhouse/clickhouse-go/tree/6b1ba590788873fd6993f50f823bb90274a23ba5
+RATE 46
+https://clearlydefined.io/definitions/git/github/clickhouse/clickhouse-go/6b1ba590788873fd6993f50f823bb90274a23ba5
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23516
+
+github.com/prometheus/tsdb
+https://github.com/prometheus-junkyard/tsdb/tree/v0.8.0
+https://github.com/prometheus-junkyard/tsdb/tree/d48a5e2d5c34116dfcbc7b935c66157847b2d8b5
+RATE 0
+https://clearlydefined.io/definitions/git/github/prometheus-junkyard/tsdb/d48a5e2d5c34116dfcbc7b935c66157847b2d8b5
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23523
+
+github.com/pbnjay/strptime v0.0.0-20140226051138-5c05b0d668c9
+https://github.com/pbnjay/strptime/tree/5c05b0d668c919165e2c16298c96a3f2ab4564b3
+RATE 68
+https://clearlydefined.io/definitions/git/github/pbnjay/strptime/5c05b0d668c919165e2c16298c96a3f2ab4564b3
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23522
+
+github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d
+https://github.com/smartystreets/assertions/tree/b2de0cb4f26d0705483a2f495d89896d0b808573
+RATE 68
+https://clearlydefined.io/definitions/git/github/smartystreets/assertions/b2de0cb4f26d0705483a2f495d89896d0b808573
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23521
+
+github.com/xiang90/probing
+https://github.com/xiang90/probing/tree/43a291ad63a214a207fefbf03c7d9d78b703162b
+RATE 60
+https://clearlydefined.io/definitions/git/github/xiang90/probing/43a291ad63a214a207fefbf03c7d9d78b703162b
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23518
+
+github.com/thecodeteam/goscaleio
+https://github.com/thecodeteam/goscaleio/tree/v0.1.0
+https://github.com/thecodeteam/goscaleio/tree/19b7692523ba7a945b47672a2b976fd0f42449b3
+RATE 60
+https://clearlydefined.io/definitions/git/github/thecodeteam/goscaleio/19b7692523ba7a945b47672a2b976fd0f42449b3
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23517
+
+github.com/quobyte/api
+https://github.com/quobyte/api/tree/v0.1.2
+https://github.com/quobyte/api/tree/9cfd29338dd9fdaaf956b7082e5550aab5fe3841
+RATE 60
+https://clearlydefined.io/definitions/git/github/quobyte/api/9cfd29338dd9fdaaf956b7082e5550aab5fe3841
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23515
+
+github.com/xlab/handysort v0.0.0-20150421192137-fb3537ed64a1
+https://github.com/xlab/handysort/tree/fb3537ed64a14615a020f0fe8dc08424233d491f
+RATE 58
+https://clearlydefined.io/definitions/git/github/xlab/handysort/fb3537ed64a14615a020f0fe8dc08424233d491f
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23514
+
 === Golang dependencies(We can skip their license rate)
 
 golang.org/x/crypto
