@@ -2646,6 +2646,20 @@ https://github.com/kubernetes/component-helpers/tree/fb2b7e6065f426f2dac708ad935
 RATE 85
 https://clearlydefined.io/definitions/git/github/kubernetes/component-helpers/fb2b7e6065f426f2dac708ad93518177c879a9ab
 
+github.com/yvasiyarov/go-metrics
+https://github.com/yvasiyarov/go-metrics/tree/c25f46c4b94079672242ec48a545e7ca9ebe3aec
+RATE 46
+https://clearlydefined.io/definitions/git/github/yvasiyarov/go-metrics/c25f46c4b94079672242ec48a545e7ca9ebe3aec
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23519
+
+github.com/heketi/heketi
+https://github.com/heketi/heketi/tree/v9.0.0
+https://github.com/heketi/heketi/tree/891a99667d82b04208dfe7d55567f17b05f0cc18
+RATE 60
+https://clearlydefined.io/definitions/git/github/heketi/heketi/891a99667d82b04208dfe7d55567f17b05f0cc18
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23520
+
+
 === Golang dependencies(We can skip their license rate)
 
 golang.org/x/crypto
