@@ -444,6 +444,7 @@ replace (
 	google.golang.org/protobuf => google.golang.org/protobuf v1.25.0
 	gopkg.in/airbrake/gobrake.v2 => gopkg.in/airbrake/gobrake.v2 v2.0.9
 	gopkg.in/alecthomas/kingpin.v2 => gopkg.in/alecthomas/kingpin.v2 v2.2.6
+	gopkg.in/check.v1 => gopkg.in/check.v1 v1.0.0-20141024133853-64131543e789
 	gopkg.in/cheggaaa/pb.v1 => gopkg.in/cheggaaa/pb.v1 v1.0.25
 	gopkg.in/errgo.v2 => gopkg.in/errgo.v2 v2.1.0
 	gopkg.in/fsnotify.v1 => gopkg.in/fsnotify.v1 v1.4.7

@@ -2189,7 +2189,7 @@ RATE 47
 https://clearlydefined.io/definitions/git/github/hashicorp/go.net/afc3cb3a421746fc66dd55b09a270c750cf536ce
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23429
 
-git.github/Microsoft/go-winio
+github.com/Microsoft/go-winio
 https://github.com/microsoft/go-winio/commit/fc70bd9a86b5562b3b5eb1040e803febee1e90a1
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23371
 
@@ -2972,6 +2972,11 @@ RATE 65
 https://clearlydefined.io/definitions/git/github/kubernetes/apimachinery/640a6275d2b09fd3140342e66d53da96a15b0653
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23595
 
+gopkg.in/check.v1
+https://github.com/go-check/check/tree/64131543e7896d5bcc6bd5a76287eb75ea96c673
+RATE 70
+https://clearlydefined.io/definitions/git/github/go-check/check/64131543e7896d5bcc6bd5a76287eb75ea96c673
+http://dev.eclipse.org/ipzilla/show_bug.cgi?id=23345
 
 ==================== In progress
 
