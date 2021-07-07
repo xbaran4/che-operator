@@ -2233,24 +2233,6 @@ https://github.com/rs/zerolog/tree/v1.15.0
 RATE 75
 https://clearlydefined.io/definitions/git/github/rs/zerolog/b806a5ecbe5347ad9ef05121fea8f4acc65fa5fc
 
-Test tools, skip it...======
-
-github.com/bmizerany/assert
-https://github.com/bmizerany/assert/commit/b7ed37b82869576c289d7d97fb2bbd8b64a0cb28
-RATE 0
-https://clearlydefined.io/definitions/git/github/bmizerany/assert/b7ed37b82869576c289d7d97fb2bbd8b64a0cb28
-https://github.com/bmizerany/assert
-
-gotest.tools/v3
-https://github.com/gotestyourself/gotest.tools/commit/bb0d8a963040ea5048dcef1a14d8f8b58a33d4b3
-RATE 0
-https://clearlydefined.io/definitions/git/github/gotestyourself/gotest.tools/bb0d8a963040ea5048dcef1a14d8f8b58a33d4b3
-
-gotestyourself/gotest.tools
-https://github.com/gotestyourself/gotest.tools/commit/7c797b5133e5460410dbb22ba779bf35e6975dea
-RATE 61
-https://clearlydefined.io/definitions/git/github/gotestyourself/gotest.tools/7c797b5133e5460410dbb22ba779bf35e6975dea
-
 github.com/hashicorp/consul/api
 https://github.com/hashicorp/consul/tree/v1.1.0
 https://github.com/hashicorp/consul/commit/5174058f0d2bda63fa5198ab96c33d9a909c58ed
@@ -2658,6 +2640,397 @@ https://github.com/heketi/heketi/tree/891a99667d82b04208dfe7d55567f17b05f0cc18
 RATE 60
 https://clearlydefined.io/definitions/git/github/heketi/heketi/891a99667d82b04208dfe7d55567f17b05f0cc18
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23520
+
+github.com/go-bindata/go-bindata/v3
+https://github.com/go-bindata/go-bindata/tree/v3.1.3
+https://github.com/go-bindata/go-bindata/tree/23ef162b685b439bad2750a8d72846a7fb1893be
+RATE 61
+https://clearlydefined.io/definitions/git/github/go-bindata/go-bindata/23ef162b685b439bad2750a8d72846a7fb1893be
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23561
+
+bazil.org/fuse
+https://github.com/bazil/fuse/tree/371fbbdaa8987b715bdd21d6adc4c9b20155f748
+RATE 16
+https://clearlydefined.io/definitions/git/github/bazil/fuse/371fbbdaa8987b715bdd21d6adc4c9b20155f748
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23543
+
+github.com/jackc/pgtype
+https://github.com/jackc/pgtype/tree/a8802b16cc593842f5c69b0f7cfb0de11d5cd3a8
+RATE 0
+https://clearlydefined.io/definitions/git/github/jackc/pgtype/a8802b16cc593842f5c69b0f7cfb0de11d5cd3a8
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23576
+
+github.com/docker/go-metrics
+https://github.com/docker/go-metrics/tree/v0.0.1
+https://github.com/docker/go-metrics/tree/b619b3592b65de4f087d9f16863a7e6ff905973c
+RATE 48
+https://clearlydefined.io/definitions/git/github/docker/go-metrics/b619b3592b65de4f087d9f16863a7e6ff905973c
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23558
+
+sigs.k8s.io/kind
+https://github.com/kubernetes-sigs/kind/tree/v0.10.0
+https://github.com/kubernetes-sigs/kind/tree/dfa6e881fe189577194b867bdffbfdc3d17ea05a
+RATE 60
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/kind/dfa6e881fe189577194b867bdffbfdc3d17ea05a
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23596
+
+gopkg.in/inconshreveable/log15.v2
+https://github.com/inconshreveable/log15/tree/67afb5ed74ec82fd7ac8f49d27c509ac6f991970
+RATE 51
+https://clearlydefined.io/definitions/git/github/inconshreveable/log15/67afb5ed74ec82fd7ac8f49d27c509ac6f991970
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23594
+
+gopkg.in/airbrake/gobrake.v2
+https://github.com/airbrake/gobrake/tree/v2.0.9
+https://github.com/airbrake/gobrake/tree/668876711219e8b0206e2994bf0a59d889c775aa
+RATE 0
+https://clearlydefined.io/definitions/git/github/airbrake/gobrake/668876711219e8b0206e2994bf0a59d889c775aa
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23593
+
+go.etcd.io/etcd
+https://github.com/etcd-io/etcd/tree/dd1b699fc4895de8cc23c3cac5a428c37eee384a
+RATE 45
+https://clearlydefined.io/definitions/git/github/etcd-io/etcd/dd1b699fc4895de8cc23c3cac5a428c37eee384a
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23592
+
+github.com/remyoudompheng/bigfft
+https://github.com/remyoudompheng/bigfft/tree/6a916e37a237384e18eefa3270c09247db1ecf50
+RATE 62
+https://clearlydefined.io/definitions/git/github/remyoudompheng/bigfft/6a916e37a237384e18eefa3270c09247db1ecf50
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23591
+
+github.com/operator-framework/operator-registry
+https://github.com/operator-framework/operator-registry/tree/v1.13.6
+https://github.com/operator-framework/operator-registry/tree/19378f26062a39c92e7ab118a530fd80f45229aa
+RATE 0
+https://clearlydefined.io/definitions/git/github/operator-framework/operator-registry/19378f26062a39c92e7ab118a530fd80f45229aa
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23590
+
+github.com/operator-framework/api
+https://github.com/operator-framework/api/tree/v0.8.0
+https://github.com/operator-framework/api/tree/01e8bf8bd934a18aef1d22e9e4c523f293b2a633
+RATE 72
+https://clearlydefined.io/definitions/git/github/operator-framework/api/01e8bf8bd934a18aef1d22e9e4c523f293b2a633
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23588
+
+github.com/openshift/client-go
+https://github.com/openshift/client-go/tree/2a6cd50aedd02a8b1573c0de49169a43061cf587
+RATE 54
+https://clearlydefined.io/definitions/git/github/openshift/client-go/2a6cd50aedd02a8b1573c0de49169a43061cf587
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23587
+
+github.com/openshift/api
+https://github.com/openshift/api/commit/32369d4db2ada1c1cdb95b99b568a9925e2a4480
+RATE 57
+https://clearlydefined.io/definitions/git/github/openshift/api/32369d4db2ada1c1cdb95b99b568a9925e2a4480
+http://dev.eclipse.org/ipzilla/show_bug.cgi?id=23586
+
+github.com/bugsnag/osext
+https://github.com/bugsnag/osext/tree/0dd3f918b21bec95ace9dc86c7e70266cfc5c702
+RATE 70
+https://clearlydefined.io/definitions/git/github/bugsnag/osext/0dd3f918b21bec95ace9dc86c7e70266cfc5c702
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23550
+
+github.com/chai2010/gettext-go
+https://github.com/chai2010/gettext-go/tree/c6fed771bfd517099caf0f7a961671fa8ed08723
+RATE 0
+https://clearlydefined.io/definitions/git/github/chai2010/gettext-go/c6fed771bfd517099caf0f7a961671fa8ed08723
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23551
+
+github.com/cloudflare/golz4
+https://github.com/cloudflare/golz4/tree/ef862a3cdc58a6f1fee4e3af3d44fbe279194cde
+RATE 0
+https://clearlydefined.io/definitions/git/github/cloudflare/golz4/ef862a3cdc58a6f1fee4e3af3d44fbe279194cde
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23552
+
+github.com/coreos/go-systemd
+https://github.com/coreos/go-systemd/tree/fd7a80b32e1fc73e890fde45604ed5009dc817a3
+RATE 62
+https://clearlydefined.io/definitions/git/github/coreos/go-systemd/fd7a80b32e1fc73e890fde45604ed5009dc817a3
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23553
+
+github.com/daviddengcn/go-colortext
+https://github.com/daviddengcn/go-colortext/tree/511bcaf42ccd42c38aba7427b6673277bf19e2a1
+RATE 64
+https://clearlydefined.io/definitions/git/github/daviddengcn/go-colortext/511bcaf42ccd42c38aba7427b6673277bf19e2a1
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23554
+
+github.com/denverdino/aliyungo
+https://github.com/denverdino/aliyungo/tree/a747050bb1baf06cdd65de7cddc281a2b1c2fde5
+RATE 0
+https://clearlydefined.io/definitions/git/github/denverdino/aliyungo/a747050bb1baf06cdd65de7cddc281a2b1c2fde5
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23555
+
+github.com/docker/cli
+https://github.com/docker/cli/tree/5d0cf8839492eb1af7c611a58d09034d29aa9631
+RATE 51
+https://clearlydefined.io/definitions/git/github/docker/cli/5d0cf8839492eb1af7c611a58d09034d29aa9631
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23556
+
+github.com/docker/distribution
+https://github.com/distribution/distribution/tree/v2.7.1
+https://github.com/distribution/distribution/tree/2461543d988979529609e8cb6fca9ca190dc48da
+RATE 0
+https://clearlydefined.io/definitions/git/github/distribution/distribution/2461543d988979529609e8cb6fca9ca190dc48da
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23557
+
+github.com/fsouza/fake-gcs-server
+https://github.com/fsouza/fake-gcs-server/tree/v1.17.0
+https://github.com/fsouza/fake-gcs-server/tree/e7301000a5ffd02a6dac05f97342f668f6e574b9
+RATE 57
+https://clearlydefined.io/definitions/git/github/fsouza/fake-gcs-server/e7301000a5ffd02a6dac05f97342f668f6e574b9
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23559
+
+github.com/bshuster-repo/logrus-logstash-hook
+https://github.com/bshuster-repo/logrus-logstash-hook/tree/v1.0.0
+https://github.com/bshuster-repo/logrus-logstash-hook/tree/b3d898b5138adbc4c4da62fa6d889f18a587566b
+RATE 0
+https://clearlydefined.io/definitions/git/github/bshuster-repo/logrus-logstash-hook/b3d898b5138adbc4c4da62fa6d889f18a587566b
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23549
+
+github.com/garyburd/redigo
+https://github.com/garyburd/redigo/tree/v1.6.0
+https://github.com/garyburd/redigo/tree/a69d19351219b6dd56f274f96d85a7014a2ec34e
+RATE 0
+https://clearlydefined.io/definitions/git/github/garyburd/redigo/a69d19351219b6dd56f274f96d85a7014a2ec34e
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23560
+
+github.com/opencontainers/runc
+https://github.com/opencontainers/runc/tree/6cc515888830787a93d82138821f0309ad970640
+RATE 67
+https://clearlydefined.io/definitions/git/github/opencontainers/runc/6cc515888830787a93d82138821f0309ad970640
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23584
+
+github.com/lestrrat-go/envload
+https://github.com/lestrrat-go/envload/tree/a3eb8ddeffccdbca0eb6dd6cc7c7950c040a6546
+RATE 0
+https://clearlydefined.io/definitions/git/github/lestrrat-go/envload/a3eb8ddeffccdbca0eb6dd6cc7c7950c040a6546
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23580
+
+github.com/jackc/puddle
+https://github.com/jackc/puddle/tree/11cab39313c9677f9807fef985e6f44e44ddb2ce
+RATE 63
+https://clearlydefined.io/definitions/git/github/jackc/puddle/11cab39313c9677f9807fef985e6f44e44ddb2ce
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23579
+
+github.com/golangplus/fmt
+https://github.com/golangplus/fmt/tree/2a5d6d7d2995baf7d847b7f16ac0179c6888d37b
+RATE 66
+https://clearlydefined.io/definitions/git/github/golangplus/fmt/2a5d6d7d2995baf7d847b7f16ac0179c6888d37b
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23565
+
+github.com/jackc/pgx/v4
+https://github.com/jackc/pgx/tree/6972a57421861e041adb04dc7294c0ef40e5b3a6
+RATE 46
+https://clearlydefined.io/definitions/git/github/jackc/pgx/6972a57421861e041adb04dc7294c0ef40e5b3a6
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23578
+
+github.com/itchyny/go-flags
+https://github.com/itchyny/go-flags/tree/v1.5.0
+https://github.com/itchyny/go-flags/tree/765e423eeffbc58f082a396986fd06d7e6e4a435
+RATE 63
+https://clearlydefined.io/definitions/git/github/itchyny/go-flags/765e423eeffbc58f082a396986fd06d7e6e4a435
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23567
+
+github.com/jackc/chunkreader
+https://github.com/jackc/chunkreader/tree/v1.0.0
+https://github.com/jackc/chunkreader/tree/517cfde605cd1f91edc0a62affca418114388fc3
+RATE 64
+https://clearlydefined.io/definitions/git/github/jackc/chunkreader/517cfde605cd1f91edc0a62affca418114388fc3
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23568
+
+github.com/jackc/pgconn
+https://github.com/jackc/pgconn/tree/v1.3.2
+https://github.com/jackc/pgconn/tree/6db848c6fca46bd3c67b1a66b5f764fbb16807ba
+RATE 0
+https://clearlydefined.io/definitions/git/github/jackc/pgconn/6db848c6fca46bd3c67b1a66b5f764fbb16807ba
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23570
+
+github.com/jackc/pgproto3/v2
+https://github.com/jackc/pgproto3/tree/v2.0.1
+https://github.com/jackc/pgproto3/tree/595780be0f9f581451a23a5151b77f782202ad72
+RATE 0
+https://clearlydefined.io/definitions/git/github/jackc/pgproto3/595780be0f9f581451a23a5151b77f782202ad72
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23574
+
+github.com/jackc/pgio
+https://github.com/jackc/pgio/tree/v1.0.0
+https://github.com/jackc/pgio/tree/8d9c2a3dafd92d070bd758a165022fd1059e3195
+RATE 0
+https://clearlydefined.io/definitions/git/github/jackc/pgio/8d9c2a3dafd92d070bd758a165022fd1059e3195
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23571
+
+github.com/jackc/pgpassfile
+https://github.com/jackc/pgpassfile/tree/v1.0.0
+https://github.com/jackc/pgpassfile/tree/99d8e8e28945ffceaf75b0299fcb2bb656b8a683
+RATE 64
+https://clearlydefined.io/definitions/git/github/jackc/pgpassfile/99d8e8e28945ffceaf75b0299fcb2bb656b8a683
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23572
+
+github.com/bketelsen/crypt
+https://github.com/bketelsen/crypt/tree/5cbc8cc4026c0c1d3bf9c5d4e5a30398f99c99a9
+RATE 58
+https://clearlydefined.io/definitions/git/github/bketelsen/crypt/5cbc8cc4026c0c1d3bf9c5d4e5a30398f99c99a9
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23548
+
+github.com/bkaradzic/go-lz4
+https://github.com/bkaradzic/go-lz4/tree/v1.0.0
+https://github.com/bkaradzic/go-lz4/tree/74ddf82598bc4745b965729e9c6a463bedd33049
+RATE 13
+https://clearlydefined.io/definitions/git/github/bkaradzic/go-lz4/74ddf82598bc4745b965729e9c6a463bedd33049
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23547
+
+cloud.google.com/go/spanner
+https://github.com/googleapis/google-cloud-go/tree/spanner/v1.2.0
+https://github.com/googleapis/google-cloud-go/tree/ad7cd32b39df6e142b24ab86b2cda03f21e1d708
+RATE 57
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/ad7cd32b39df6e142b24ab86b2cda03f21e1d708
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23545
+
+github.com/goccy/go-yaml
+https://github.com/goccy/go-yaml/tree/v1.8.1
+https://github.com/goccy/go-yaml/tree/cd8ac389c6a53046e2b9129eb8cffd9f9cc23fc1
+RATE 61
+https://clearlydefined.io/definitions/git/github/goccy/go-yaml/cd8ac389c6a53046e2b9129eb8cffd9f9cc23fc1
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23562
+
+github.com/gocql/gocql
+https://github.com/gocql/gocql/tree/f6df8288f9b44e66f50c9a59aee53a705c788dbe
+RATE 51
+https://clearlydefined.io/definitions/git/github/gocql/gocql/f6df8288f9b44e66f50c9a59aee53a705c788dbe
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23564
+
+github.com/hashicorp/logutils
+https://github.com/hashicorp/logutils/tree/v1.0.0
+https://github.com/hashicorp/logutils/tree/a335183dfd075f638afcc820c90591ca3c97eba6
+RATE 0
+https://clearlydefined.io/definitions/git/github/hashicorp/logutils/a335183dfd075f638afcc820c90591ca3c97eba6
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23430
+
+github.com/hashicorp/serf
+https://github.com/hashicorp/serf/tree/v0.8.2
+https://github.com/hashicorp/serf/tree/b89a09ebd4b1b570e0076d5097272e67c10ac4f6
+RATE 69
+https://clearlydefined.io/definitions/git/github/hashicorp/serf/b89a09ebd4b1b570e0076d5097272e67c10ac4f6
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23431
+
+github.com/mikefarah/yq/v3
+https://github.com/mikefarah/yq/tree/8846255d1c37457b729108cfa4160b4b678b8003
+RATE 46
+https://clearlydefined.io/definitions/git/github/mikefarah/yq/8846255d1c37457b729108cfa4160b4b678b8003
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23583
+
+github.com/miekg/dns
+https://github.com/miekg/dns/tree/v1.0.14
+https://github.com/miekg/dns/tree/915ca3d5ffd945235828a097c917311a9d86ebb4
+RATE 0
+https://clearlydefined.io/definitions/git/github/miekg/dns/915ca3d5ffd945235828a097c917311a9d86ebb4
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23581
+
+github.com/opencontainers/go-digest
+https://github.com/opencontainers/go-digest/tree/v1.0.0
+https://github.com/opencontainers/go-digest/tree/ea51bea511f75cfa3ef6098cc253c5c3609b037a
+RATE 59
+https://clearlydefined.io/definitions/git/github/opencontainers/go-digest/ea51bea511f75cfa3ef6098cc253c5c3609b037a
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23442
+
+github.com/opencontainers/image-spec
+https://github.com/opencontainers/image-spec/tree/775207bd45b6cb8153ce218cc59351799217451f
+RATE 72
+https://clearlydefined.io/definitions/git/github/opencontainers/image-spec/775207bd45b6cb8153ce218cc59351799217451f
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23443
+
+github.com/openshift/api
+https://github.com/openshift/api/tree/32369d4db2ada1c1cdb95b99b568a9925e2a4480
+RATE 57
+https://clearlydefined.io/definitions/git/github/openshift/api/32369d4db2ada1c1cdb95b99b568a9925e2a4480
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23586
+
+github.com/operator-framework/operator-lifecycle-manager
+https://github.com/operator-framework/operator-lifecycle-manager/tree/v0.18.1
+https://github.com/operator-framework/operator-lifecycle-manager/tree/02d278ba2d9d884888eb6f8a5ce2f4abdc56e581
+RATE 54
+https://clearlydefined.io/definitions/git/github/operator-framework/operator-lifecycle-manager/02d278ba2d9d884888eb6f8a5ce2f4abdc56e581
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23589
+
+github.com/pascaldekloe/goe
+https://github.com/pascaldekloe/goe/tree/57f6aae5913c64c9bcae5dbdffd33365b5a7f138
+RATE 0
+https://clearlydefined.io/definitions/git/github/pascaldekloe/goe/57f6aae5913c64c9bcae5dbdffd33365b5a7f138
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23444
+
+sigs.k8s.io/structured-merge-diff/v3
+https://github.com/kubernetes-sigs/structured-merge-diff/tree/67a7b8c618745e7c2217ca9aebfff71216e9a6ce
+RATE 68
+https://clearlydefined.io/definitions/git/github/kubernetes-sigs/structured-merge-diff/67a7b8c618745e7c2217ca9aebfff71216e9a6ce
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23597
+
+k8s.io/apimachinery
+https://github.com/kubernetes/apimachinery/tree/v0.20.6
+https://github.com/kubernetes/apimachinery/tree/640a6275d2b09fd3140342e66d53da96a15b0653
+RATE 65
+https://clearlydefined.io/definitions/git/github/kubernetes/apimachinery/640a6275d2b09fd3140342e66d53da96a15b0653
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23595
+
+
+==================== In progress
+
+cloud.google.com/go/firestore
+https://github.com/googleapis/google-cloud-go/tree/firestore/v1.1.0
+https://github.com/googleapis/google-cloud-go/tree/20091f47d3c522ea545f358dd9ac1cdb326bba6f
+RATE 62
+https://clearlydefined.io/definitions/git/github/googleapis/google-cloud-go/20091f47d3c522ea545f358dd9ac1cdb326bba6f
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23544
+
+github.com/hashicorp/consul/sdk
+https://github.com/hashicorp/consul/tree/sdk/v0.1.1
+https://github.com/hashicorp/consul/tree/6abe00cb2c8a3298794a7a9a67815937bd56ed63
+RATE 15
+https://clearlydefined.io/definitions/git/github/hashicorp/consul/6abe00cb2c8a3298794a7a9a67815937bd56ed63
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23566
+
+github.com/jackc/chunkreader/v2
+https://github.com/jackc/chunkreader/tree/v2.0.1
+https://github.com/jackc/chunkreader/tree/3c4a99247c6656284dd2be8d74438ca9bbb4f342
+RATE 64
+https://clearlydefined.io/definitions/git/github/jackc/chunkreader/3c4a99247c6656284dd2be8d74438ca9bbb4f342
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23569
+
+github.com/opencontainers/runtime-spec
+https://github.com/opencontainers/runtime-spec/tree/v1.0.0
+https://github.com/opencontainers/runtime-spec/tree/02137cd4e50b37a01665e1731fcd4ac2d2178230
+RATE 61
+https://clearlydefined.io/definitions/git/github/opencontainers/runtime-spec/02137cd4e50b37a01665e1731fcd4ac2d2178230
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23585
+
+=== Test tools, we can skip them ======
+
+github.com/dhui/dktest
+https://github.com/dhui/dktest/tree/v0.3.2
+https://github.com/dhui/dktest/tree/dcda20d18d8d6b3cb5614ea2f6ad883e387efcf0
+RATE 60
+https://clearlydefined.io/definitions/git/github/dhui/dktest/dcda20d18d8d6b3cb5614ea2f6ad883e387efcf0
+
+github.com/golangplus/testing
+https://github.com/golangplus/testing/tree/af21d9c3145e9c670ea7eb7fc85456c1449edf1c
+RATE 0
+https://clearlydefined.io/definitions/git/github/golangplus/testing/af21d9c3145e9c670ea7eb7fc85456c1449edf1c
+
+github.com/bmizerany/assert
+https://github.com/bmizerany/assert/commit/b7ed37b82869576c289d7d97fb2bbd8b64a0cb28
+RATE 0
+https://clearlydefined.io/definitions/git/github/bmizerany/assert/b7ed37b82869576c289d7d97fb2bbd8b64a0cb28
+https://github.com/bmizerany/assert
+
+gotest.tools/v3
+https://github.com/gotestyourself/gotest.tools/commit/bb0d8a963040ea5048dcef1a14d8f8b58a33d4b3
+RATE 0
+https://clearlydefined.io/definitions/git/github/gotestyourself/gotest.tools/bb0d8a963040ea5048dcef1a14d8f8b58a33d4b3
+
+gotestyourself/gotest.tools
+https://github.com/gotestyourself/gotest.tools/commit/7c797b5133e5460410dbb22ba779bf35e6975dea
+RATE 61
+https://clearlydefined.io/definitions/git/github/gotestyourself/gotest.tools/7c797b5133e5460410dbb22ba779bf35e6975dea
 
 
 === Golang dependencies(We can skip their license rate)
