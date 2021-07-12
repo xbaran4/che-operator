@@ -14,4 +14,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: quay.io/aandriienko/che-operator
-  newTag: nightly
+  newTag: next

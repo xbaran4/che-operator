@@ -47,7 +47,7 @@ IMAGE_TAG_BASE ?= quay.io/aandriienko/che-operator
 BUNDLE_IMG ?= $(IMAGE_TAG_BASE)-bundle:v$(VERSION)
 
 # Image URL to use all building/pushing image targets
-IMG ?= quay.io/aandriienko/che-operator:nightly
+IMG ?= quay.io/aandriienko/che-operator:next
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true,preserveUnknownFields=false"
 CRD_BETA_OPTIONS ?= "crd:trivialVersions=true,crdVersions=v1beta1"
@@ -103,7 +103,7 @@ download-operator-sdk:
 	else
 		OP_SDK_PATH="$(OP_SDK_DIR)/operator-sdk"
 	fi
-	
+
 	echo "[INFO] Downloading operator-sdk..."
 
 	OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/download/$${OPERATOR_SDK_VERSION}
@@ -138,7 +138,7 @@ removeRequiredAttribute:
 
 	mv $${filePath}.tmp $${filePath}
 
-add-license-header:
+ensure-license-header:
 	if [ -z $(FILE) ]; then
 		echo "[ERROR] Provide argument `FILE` with file path value."
 		exit 1
@@ -161,36 +161,87 @@ add-license-header:
 		#
 		#  Contributors:
 		#    Red Hat, Inc. - initial API and implementation" > $(FILE).tmp
+
 	cat $(FILE) >> $(FILE).tmp
 	mv $(FILE).tmp $(FILE)
 
 manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
-	# Generate CRDs v1 and v2
+	crd_folder="config/crd/bases"
+
+	# default crd names used operator-sdk from the box
+	checluster_CRD_V1="$${crd_folder}/org.eclipse.che_checlusters.yaml"
+	chebackupserverconfiguration_CRD_V1="$${crd_folder}/org.eclipse.che_chebackupserverconfigurations.yaml"
+	checlusterbackup_CRD_V1="$${crd_folder}/org.eclipse.che_checlusterbackups.yaml"
+	checlusterrestore_CRD_V1="$${crd_folder}/org.eclipse.che_checlusterrestores.yaml"
+
+	# crd v1beta1 file names
+	checluster_CRD_V1BETA1="$${crd_folder}/org_v1_che_crd-v1beta1.yaml"
+	chebackupserverconfiguration_CRD_V1BETA1="$${crd_folder}/org.eclipse.che_chebackupserverconfigurations_crd-v1beta1.yaml"
+	checlusterbackup_CRD_V1BETA1="$${crd_folder}/org.eclipse.che_checlusterbackups_crd-v1beta1.yaml"
+	checlusterrestore_CRD_V1BETA1="$${crd_folder}/org.eclipse.che_checlusterrestores_crd-v1beta1.yaml"
+
+	# legacy crd file names
+	checluster_CRD_V1_LEGACY="$${crd_folder}/org_v1_che_crd.yaml"
+	chebackupserverconfiguration_CRD_V1_LEGACY="$${crd_folder}/org.eclipse.che_chebackupserverconfigurations_crd.yaml"
+	checlusterbackup_CRD_V1_LEGACY="$${crd_folder}/org.eclipse.che_checlusterbackups_crd.yaml"
+	checlusterrestore_CRD_V1_LEGACY="$${crd_folder}/org.eclipse.che_checlusterrestores_crd.yaml"
+
+	# Generate CRDs v1beta1
+	$(CONTROLLER_GEN) $(CRD_BETA_OPTIONS) rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
+	mv "$${checluster_CRD_V1}" "$${checluster_CRD_V1BETA1}"
+	mv "$${chebackupserverconfiguration_CRD_V1}" "$${chebackupserverconfiguration_CRD_V1BETA1}"
+	mv "$${checlusterbackup_CRD_V1}" "$${checlusterbackup_CRD_V1BETA1}"
+	mv "$${checlusterrestore_CRD_V1}" "$${checlusterrestore_CRD_V1BETA1}"
+
+	# Generate CRDs v1
 	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
-	$(CONTROLLER_GEN) $(CRD_BETA_OPTIONS) rbac:roleName=manager-role webhook paths="./..." output:crd:stdout > config/crd/bases/org_v1_che_crd-v1beta1.yaml
+	mv "$${checluster_CRD_V1}" "$${checluster_CRD_V1_LEGACY}"
+	mv "$${chebackupserverconfiguration_CRD_V1}" "$${chebackupserverconfiguration_CRD_V1_LEGACY}"
+	mv "$${checlusterbackup_CRD_V1}" "$${checlusterbackup_CRD_V1_LEGACY}"
+	mv "$${checlusterrestore_CRD_V1}" "$${checlusterrestore_CRD_V1_LEGACY}" 
 
-	# Rename and patch CRDs
-	cd config/crd/bases
-
-	mv org.eclipse.che_checlusters.yaml org_v1_che_crd.yaml
 	# remove yaml delimitier, which makes OLM catalog source image broken.
-	sed -i.bak '/---/d' org_v1_che_crd-v1beta1.yaml
-	sed -i.bak '/---/d' org_v1_che_crd.yaml
-	rm -rf org_v1_che_crd-v1beta1.yaml.bak org_v1_che_crd.yaml.bak
+	sed -i.bak '/---/d' "$${checluster_CRD_V1BETA1}"
+	sed -i.bak '/---/d' "$${chebackupserverconfiguration_CRD_V1BETA1}"
+	sed -i.bak '/---/d' "$${checlusterbackup_CRD_V1BETA1}"
+	sed -i.bak '/---/d' "$${checlusterrestore_CRD_V1BETA1}"
+	rm -rf "$${checluster_CRD_V1BETA1}.bak" "$${chebackupserverconfiguration_CRD_V1BETA1}.bak" "$${checlusterbackup_CRD_V1BETA1}.bak" "$${checlusterrestore_CRD_V1BETA1}.bak"
+	sed -i.bak '/---/d' "$${checluster_CRD_V1_LEGACY}"
+	sed -i.bak '/---/d' "$${chebackupserverconfiguration_CRD_V1_LEGACY}"
+	sed -i.bak '/---/d' "$${checlusterbackup_CRD_V1_LEGACY}"
+	sed -i.bak '/---/d' "$${checlusterrestore_CRD_V1_LEGACY}"
+	rm -rf "$${checluster_CRD_V1_LEGACY}.bak" "$${chebackupserverconfiguration_CRD_V1_LEGACY}.bak" "$${checlusterbackup_CRD_V1_LEGACY}.bak" "$${checlusterrestore_CRD_V1_LEGACY}.bak"
 
-	cd ../../..
+	# remove v1alphav2 version from crd files
+	yq -rYi "del(.spec.versions[1])" "$${checluster_CRD_V1BETA1}"
+	yq -rYi "del(.spec.versions[1])" "$${chebackupserverconfiguration_CRD_V1BETA1}"
+	yq -rYi "del(.spec.versions[1])" "$${checlusterbackup_CRD_V1BETA1}"
+	yq -rYi "del(.spec.versions[1])" "$${checlusterrestore_CRD_V1BETA1}"
+	yq -rYi "del(.spec.versions[1])" "$${checluster_CRD_V1_LEGACY}"
+	yq -rYi "del(.spec.versions[1])" "$${chebackupserverconfiguration_CRD_V1_LEGACY}"
+	yq -rYi "del(.spec.versions[1])" "$${checlusterbackup_CRD_V1_LEGACY}"
+	yq -rYi "del(.spec.versions[1])" "$${checlusterrestore_CRD_V1_LEGACY}"
 
-	crd_v1="config/crd/bases/org_v1_che_crd.yaml"
-	crd_v1beta1="config/crd/bases/org_v1_che_crd-v1beta1.yaml"
+	# remove .spec.subresources.status from crd v1beta1 files
+	yq -rYi ".spec.subresources.status = {}" "$${checluster_CRD_V1BETA1}"
+	yq -rYi ".spec.subresources.status = {}" "$${chebackupserverconfiguration_CRD_V1BETA1}"
+	yq -rYi ".spec.subresources.status = {}" "$${checlusterbackup_CRD_V1BETA1}"
+	yq -rYi ".spec.subresources.status = {}" "$${checlusterrestore_CRD_V1BETA1}"
 
-	yq -rYi "del(.spec.versions[1])" "$${crd_v1}"
-	yq -rYi "del(.spec.versions[1])" "$${crd_v1beta1}"
-	yq -rYi ".spec.subresources.status = {}" "$${crd_v1beta1}"
+	# remove "required" attributes from v1beta1 crd files 
+	$(MAKE) removeRequiredAttribute "filePath=$${checluster_CRD_V1BETA1}"
+	$(MAKE) removeRequiredAttribute "filePath=$${chebackupserverconfiguration_CRD_V1BETA1}"
+	$(MAKE) removeRequiredAttribute "filePath=$${checlusterbackup_CRD_V1BETA1}"
+	$(MAKE) removeRequiredAttribute "filePath=$${checlusterrestore_CRD_V1BETA1}"
 
-	$(MAKE) add-license-header FILE="$${crd_v1}"
-	$(MAKE) add-license-header FILE="$${crd_v1beta1}"
-
-	$(MAKE) removeRequiredAttribute "filePath=$${crd_v1beta1}"
+	$(MAKE) ensure-license-header FILE="$${checluster_CRD_V1BETA1}"
+	$(MAKE) ensure-license-header FILE="$${chebackupserverconfiguration_CRD_V1BETA1}"
+	$(MAKE) ensure-license-header FILE="$${checlusterbackup_CRD_V1BETA1}"
+	$(MAKE) ensure-license-header FILE="$${checlusterrestore_CRD_V1BETA1}"
+	$(MAKE) ensure-license-header FILE="$${checluster_CRD_V1_LEGACY}"
+	$(MAKE) ensure-license-header FILE="$${chebackupserverconfiguration_CRD_V1_LEGACY}"
+	$(MAKE) ensure-license-header FILE="$${checlusterbackup_CRD_V1_LEGACY}"
+	$(MAKE) ensure-license-header FILE="$${checlusterrestore_CRD_V1_LEGACY}"
 
 generate: controller-gen ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
 	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./..."
@@ -235,6 +286,10 @@ deploy: manifests kustomize ## Deploy controller to the K8s cluster specified in
 	cd config/manager || true && $(KUSTOMIZE) edit set image controller=${IMG} && cd ../..
 	$(KUSTOMIZE) build config/default | kubectl apply -f -
 
+	echo "[INFO] Start printing logs..."
+	oc wait --for=condition=ready pod -l app.kubernetes.io/component=che-operator -n ${ECLIPSE_CHE_NAMESPACE} --timeout=60s
+	oc logs $$(oc get pods -o json -n ${ECLIPSE_CHE_NAMESPACE} | jq -r '.items[] | select(.metadata.name | test("che-operator-")).metadata.name') -n ${ECLIPSE_CHE_NAMESPACE} --all-containers -f
+
 undeploy: ## Undeploy controller from the K8s cluster specified in ~/.kube/config.
 	$(KUSTOMIZE) build config/default | kubectl delete -f -
 
@@ -242,6 +297,9 @@ ENV_FILE="/tmp/che-operator-debug.env"
 ECLIPSE_CHE_NAMESPACE="eclipse-che"
 ECLIPSE_CHE_CR=config/samples/org.eclipse.che_v1_checluster.yaml
 ECLIPSE_CHE_CRD=config/crd/bases/org_v1_che_crd.yaml
+ECLIPSE_CHE_BACKUP_SERVER_CONFIGURATION_CRD=config/crd/bases/org.eclipse.che_chebackupserverconfigurations_crd.yaml
+ECLIPSE_CHE_BACKUP_CRD=config/crd/bases/org.eclipse.che_checlusterbackups_crd.yaml
+ECLIPSE_CHE_RESTORE_CRD=config/crd/bases/org.eclipse.che_checlusterrestores_crd.yaml
 DEV_WORKSPACE_CONTROLLER_VERSION="main"
 DEV_WORKSPACE_CHE_OPERATOR_VERSION="main"
 
@@ -261,8 +319,8 @@ prepare-templates:
 
 	curl -sL https://api.github.com/repos/devfile/devworkspace-operator/zipball/${DEV_WORKSPACE_CONTROLLER_VERSION} > /tmp/devworkspace-operator.zip
 
-	unzip /tmp/devworkspace-operator.zip '*/deploy/deployment/*' -d /tmp
-	cp -r /tmp/devfile-devworkspace-operator*/deploy/* /tmp/devworkspace-operator/templates
+	unzip -q /tmp/devworkspace-operator.zip '*/deploy/deployment/*' -d /tmp
+	cp -rf /tmp/devfile-devworkspace-operator*/deploy/* /tmp/devworkspace-operator/templates
 	echo "[INFO] Downloading Dev Workspace operator templates completed."
 
 	# Download Dev Workspace Che operator templates
@@ -274,9 +332,9 @@ prepare-templates:
 
 	curl -sL https://api.github.com/repos/che-incubator/devworkspace-che-operator/zipball/${DEV_WORKSPACE_CHE_OPERATOR_VERSION} > /tmp/devworkspace-che-operator.zip
 
-	unzip /tmp/devworkspace-che-operator.zip '*/deploy/deployment/*' -d /tmp
+	unzip -q /tmp/devworkspace-che-operator.zip '*/deploy/deployment/*' -d /tmp
 	cp -r /tmp/che-incubator-devworkspace-che-operator*/deploy/* /tmp/devworkspace-che-operator/templates
-	echo "[INFO] Downloading Dev Workspace Che operator templates completed."
+	echo "[INFO] Downloading Dev Workspace operator templates completed."
 
 create-namespace:
 	set +e
@@ -285,6 +343,9 @@ create-namespace:
 
 apply-cr-crd:
 	kubectl apply -f ${ECLIPSE_CHE_CRD}
+	kubectl apply -f ${ECLIPSE_CHE_BACKUP_SERVER_CONFIGURATION_CRD}
+	kubectl apply -f ${ECLIPSE_CHE_BACKUP_CRD}
+	kubectl apply -f ${ECLIPSE_CHE_RESTORE_CRD}	
 	kubectl apply -f ${ECLIPSE_CHE_CR} -n ${ECLIPSE_CHE_NAMESPACE}
 
 create-env-file: prepare-templates
@@ -337,6 +398,66 @@ endef
 
 NIGHTLY_CHANNEL="nightly"
 
+update-roles:
+	echo "[INFO] Updating roles with DW and DWCO roles"
+
+	CLUSTER_ROLES=(
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-view-workspaces.ClusterRole.yaml
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-edit-workspaces.ClusterRole.yaml
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-leader-election-role.Role.yaml
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-proxy-role.ClusterRole.yaml
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-role.ClusterRole.yaml
+	https://raw.githubusercontent.com/devfile/devworkspace-operator/main/deploy/deployment/openshift/objects/devworkspace-controller-view-workspaces.ClusterRole.yaml
+	https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-role.ClusterRole.yaml
+	https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-metrics-reader.ClusterRole.yaml
+	)
+
+	# Updates cluster_role.yaml based on DW and DWCO roles
+	## Removes old cluster roles
+	cat config/rbac/cluster_role.yaml | sed '/CHE-OPERATOR ROLES ONLY: END/q0' > config/rbac/cluster_role.yaml.tmp
+	mv config/rbac/cluster_role.yaml.tmp config/rbac/cluster_role.yaml
+
+	# Copy new cluster roles
+	for roles in "$${CLUSTER_ROLES[@]}"; do
+		echo "  # "$$(basename $$roles) >> config/rbac/cluster_role.yaml
+
+		CONTENT=$$(curl -sL $$roles | sed '1,/rules:/d')
+		while IFS= read -r line; do
+			echo "  $$line" >> config/rbac/cluster_role.yaml
+		done <<< "$$CONTENT"
+	done
+
+	ROLES=(
+	https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-leader-election-role.Role.yaml
+	)
+
+	# Updates role.yaml
+	## Removes old roles
+	cat config/rbac/role.yaml | sed '/CHE-OPERATOR ROLES ONLY: END/q0' > config/rbac/role.yaml.tmp
+	mv config/rbac/role.yaml.tmp config/rbac/role.yaml
+
+	## Copy new roles
+	for roles in "$${ROLES[@]}"; do
+		echo "# "$$(basename $$roles) >> config/rbac/role.yaml
+
+		CONTENT=$$(curl -sL $$roles | sed '1,/rules:/d')
+		while IFS= read -r line; do
+			echo "$$line" >> config/rbac/role.yaml
+		done <<< "$$CONTENT"
+	done
+
+	# Updates proxy_cluster_role.yaml based on DWCO
+	## Remove old roles
+	cat config/rbac/proxy_cluster_role.yaml | sed '/rules:/q0' > config/rbac/proxy_cluster_role.yaml.tmp
+	mv config/rbac/proxy_cluster_role.yaml.tmp config/rbac/proxy_cluster_role.yaml
+
+	## Copy new roles
+	CLUSTER_PROXY_ROLES=https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-proxy-role.ClusterRole.yaml
+	CONTENT=$$(curl -sL $$CLUSTER_PROXY_ROLES | sed '1,/rules:/d')
+	while IFS= read -r line; do
+	echo "$$line" >> config/rbac/proxy_cluster_role.yaml
+	done <<< "$$CONTENT"
+
 .PHONY: bundle
 bundle: generate manifests kustomize ## Generate bundle manifests and metadata, then validate generated files.
 	if [ -z "$(platform)" ]; then
@@ -351,8 +472,7 @@ bundle: generate manifests kustomize ## Generate bundle manifests and metadata, 
 	echo "[INFO] Updating OperatorHub bundle for platform '$${platform}'"
 
 	NIGHTLY_BUNDLE_PATH=$$($(MAKE) getBundlePath platform="$${platform}" channel="nightly" -s)
-	bundleCSVName="che-operator.clusterserviceversion.yaml"
-	NEW_CSV=$${NIGHTLY_BUNDLE_PATH}/manifests/$${bundleCSVName}
+	NEW_CSV=$${NIGHTLY_BUNDLE_PATH}/manifests/che-operator.clusterserviceversion.yaml
 	newNightlyBundleVersion=$$(yq -r ".spec.version" "$${NEW_CSV}")
 	echo "[INFO] Creation new nightly bundle version: $${newNightlyBundleVersion}"
 
@@ -400,7 +520,7 @@ bundle: generate manifests kustomize ## Generate bundle manifests and metadata, 
 	if [ "$${platform}" = "openshift" ]; then
 		yq -riY  '.spec.preserveUnknownFields = false' $${platformCRD}
 	fi
-	$(MAKE) add-license-header FILE="$${platformCRD}"
+	$(MAKE) ensure-license-header FILE="$${platformCRD}"
 
 	if [ -n "$(TAG)" ]; then
 		echo "[INFO] Set tags in nightly OLM files"
@@ -494,11 +614,15 @@ bundle: generate manifests kustomize ## Generate bundle manifests and metadata, 
 	if [ "$${platform}" = "openshift" ]; then
 		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."allowPrivilegeEscalation") = false' "$${NEW_CSV}"
 		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[0].securityContext."runAsNonRoot") = true' "$${NEW_CSV}"
+		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[1].securityContext."allowPrivilegeEscalation") = false' "$${NEW_CSV}"
+		yq -riSY  '(.spec.install.spec.deployments[0].spec.template.spec.containers[1].securityContext."runAsNonRoot") = true' "$${NEW_CSV}"
 	fi
 
 	# Format code.
 	yq -rY "." "$${NEW_CSV}" > "$${NEW_CSV}.old"
 	mv "$${NEW_CSV}.old" "$${NEW_CSV}"
+
+	# $(MAKE) ensure-license-header "$${NEW_CSV}"
 
 getPackageName:
 	if [ -z "$(platform)" ]; then
@@ -581,7 +705,7 @@ get-nightly-version-increment:
 
 	echo "$${incrementPart}"
 
-update-resources: check-requirements update-resource-images
+update-resources: check-requirements update-resource-images update-roles
 	for platform in 'kubernetes' 'openshift'
 	do
 		$(MAKE) bundle "platform=$${platform}"
@@ -612,12 +736,47 @@ update-deployment-yaml-images:
 		echo "[ERROR] Define required arguments: `UBI8_MINIMAL_IMAGE`, `PLUGIN_BROKER_METADATA_IMAGE`, `PLUGIN_BROKER_ARTIFACTS_IMAGE`, `JWT_PROXY_IMAGE`"
 		exit 1
 	fi
+	# todo make this variable global
 	OPERATOR_YAML="config/manager/manager.yaml"
 	yq -riY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_pvc_jobs\") | .value ) = \"$(UBI8_MINIMAL_IMAGE)\"" $${OPERATOR_YAML}
 	yq -riY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_che_workspace_plugin_broker_metadata\") | .value ) = \"$(PLUGIN_BROKER_METADATA_IMAGE)\"" $${OPERATOR_YAML}
 	yq -riY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_che_workspace_plugin_broker_artifacts\") | .value ) = \"$(PLUGIN_BROKER_ARTIFACTS_IMAGE)\"" $${OPERATOR_YAML}
 	yq -riY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_che_server_secure_exposer_jwt_proxy_image\") | .value ) = \"$(JWT_PROXY_IMAGE)\"" $${OPERATOR_YAML}
-	$(MAKE) add-license-header FILE="config/manager/manager.yaml"
+	$(MAKE) ensure-license-header FILE="config/manager/manager.yaml"
+
+update-devworkspace-container:
+	echo "[INFO] Update devworkspace container in the che-operator deployment"
+	# Deletes old DWCO container
+	OPERATOR_YAML="config/manager/manager.yaml"
+	yq -riY "del(.spec.template.spec.containers[1])" $${OPERATOR_YAML}
+	yq -riY ".spec.template.spec.containers[1].name = \"devworkspace-container\"" $${OPERATOR_YAML}
+
+	# Extract DWCO container spec from deployment
+	DWCO_CONTAINER=$$(curl -sL https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-manager.Deployment.yaml \
+	| sed '1,/containers:/d' \
+	| sed -n '/serviceAccountName:/q;p' \
+	| sed -e 's/^/  /')
+	echo "$${DWCO_CONTAINER}" > dwcontainer
+
+	# Add DWCO container to manager.yaml
+	sed -i -e '/- name: devworkspace-container/{r dwcontainer' -e 'd}' $${OPERATOR_YAML}
+	rm dwcontainer
+
+	# update securityContext
+	yq -riY ".spec.template.spec.containers[1].securityContext.privileged = false" $${OPERATOR_YAML}
+	yq -riY ".spec.template.spec.containers[1].securityContext.readOnlyRootFilesystem = false" $${OPERATOR_YAML}
+	yq -riY ".spec.template.spec.containers[1].securityContext.capabilities.drop[0] = \"ALL\"" $${OPERATOR_YAML}
+
+	# update env variable
+	yq -riY "del( .spec.template.spec.containers[1].env[] | select(.name == \"CONTROLLER_SERVICE_ACCOUNT_NAME\") | .valueFrom)" $${OPERATOR_YAML}
+	yq -riY "( .spec.template.spec.containers[1].env[] | select(.name == \"CONTROLLER_SERVICE_ACCOUNT_NAME\") | .value) = \"che-operator\"" $${OPERATOR_YAML}
+	yq -riY "del( .spec.template.spec.containers[1].env[] | select(.name == \"WATCH_NAMESPACE\") | .value)" $${OPERATOR_YAML}
+	yq -riY "( .spec.template.spec.containers[1].env[] | select(.name == \"WATCH_NAMESPACE\") | .valueFrom.fieldRef.fieldPath) = \"metadata.namespace\"" $${OPERATOR_YAML}
+
+	yq -riY ".spec.template.spec.containers[1].args[1] =  \"--metrics-addr\"" $${OPERATOR_YAML}
+	yq -riY ".spec.template.spec.containers[1].args[2] =  \"0\"" $${OPERATOR_YAML}
+
+	# $(MAKE) ensureLicense $${OPERATOR_YAML}
 
 update-dockerfile-image:
 	if [ -z $(UBI8_MINIMAL_IMAGE) ]; then
@@ -629,10 +788,10 @@ update-dockerfile-image:
 update-resource-images:
 	# Detect newer images
 	echo "[INFO] Check update some base images..."
-	ubiMinimal8Version=$$(skopeo inspect docker://registry.access.redhat.com/ubi8-minimal:latest | jq -r '.Labels.version')
-	ubiMinimal8Release=$$(skopeo inspect docker://registry.access.redhat.com/ubi8-minimal:latest | jq -r '.Labels.release')
+	ubiMinimal8Version=$$(skopeo --override-os linux inspect docker://registry.access.redhat.com/ubi8-minimal:latest | jq -r '.Labels.version')
+	ubiMinimal8Release=$$(skopeo --override-os linux inspect docker://registry.access.redhat.com/ubi8-minimal:latest | jq -r '.Labels.release')
 	UBI8_MINIMAL_IMAGE="registry.access.redhat.com/ubi8-minimal:$${ubiMinimal8Version}-$${ubiMinimal8Release}"
-	skopeo inspect docker://$${UBI8_MINIMAL_IMAGE} > /dev/null
+	skopeo --override-os linux inspect docker://$${UBI8_MINIMAL_IMAGE} > /dev/null
 
 	echo "[INFO] Check update broker and jwt proxy images..."
 	wget https://raw.githubusercontent.com/eclipse-che/che-server/main/assembly/assembly-wsmaster-war/src/main/webapp/WEB-INF/classes/che/che.properties -q -O /tmp/che.properties
@@ -654,6 +813,8 @@ update-resource-images:
 
 	# Update che-operator Dockerfile
 	$(MAKE) update-dockerfile-image UBI8_MINIMAL_IMAGE="$${UBI8_MINIMAL_IMAGE}"
+
+	$(MAKE) update-devworkspace-container
 
 .PHONY: bundle-build
 bundle-build: ## Build the bundle image.

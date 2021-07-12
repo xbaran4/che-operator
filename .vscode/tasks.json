@@ -98,8 +98,8 @@
             "group": "build"
         },
         {
-            "label": "Build and push custom che-operator image: '${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly'",
-            "command": "make docker-build docker-push IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly\"",
+            "label": "Build and push custom che-operator image: '${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next'",
+            "command": "make docker-build docker-push IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next\"",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -125,7 +125,7 @@
         },
         {
             "label": "Build and push test bundle Kubernetes platform",
-            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"kubernetes\" -s; make bundle-build bundle-push -s BUNDLE_IMG=${BUNDLE_IMG} platform=\"kubernetes\"",
+            "command": "export BUNDLE_IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator-bundle:v0.0.1\"; make bundle IMG=${BUNDLE_IMG} platform=\"kubernetes\" -s; make bundle-build bundle-push -s BUNDLE_IMG=${BUNDLE_IMG} platform=\"kubernetes\"",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -165,11 +165,11 @@
                 "env": {
                     "NAMESPACE": "eclipse-che"
                 }
-            },
+            }
         },
         {
             "label": "UnInstall che-operator via OLM Openshift",
-            "command": "operator-sdk cleanup eclipse-che-preview-openshift",
+            "command": "operator-sdk cleanup eclipse-che-preview-openshift --namespace ${NAMESPACE}",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -178,11 +178,16 @@
             "presentation": {
                 "reveal": "always"
             },
-            "group": "build"
+            "group": "build",
+            "options": {
+                "env": {
+                    "NAMESPACE": "eclipse-che"
+                }
+            }
         },
         {
             "label": "UnInstall che-operator via OLM Kubernetes",
-            "command": "operator-sdk cleanup eclipse-che-preview-kubernetes",
+            "command": "operator-sdk cleanup eclipse-che-preview-kubernetes --namespace ${NAMESPACE}",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -191,9 +196,13 @@
             "presentation": {
                 "reveal": "always"
             },
-            "group": "build"
+            "group": "build",
+            "options": {
+                "env": {
+                    "NAMESPACE": "eclipse-che"
+                }
+            }
         },
-
         {
             "label": "Install che-operator outside cluster",
             "command": "make create-full-env-file -s; set -a; . /tmp/che-operator-debug.env; set +a; kubectl apply -f config/samples/org.eclipse.che_v1_checluster.yaml -n ${WATCH_NAMESPACE}; make install run",
@@ -233,10 +242,9 @@
             },
             "group": "build"
         },
-
         {
             "label": "Deploy che-operator",
-            "command": "make deploy IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly\"; kubectl apply -f config/samples/org.eclipse.che_v1_checluster.yaml -n eclipse-che",
+            "command": "make deploy IMG=\"${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next\" -s; kubectl apply -f config/samples/org.eclipse.che_v1_checluster.yaml -n eclipse-che",
             "type": "shell",
             "args": [],
             "problemMatcher": [
@@ -285,6 +293,6 @@
                 "reveal": "always"
             },
             "group": "build"
-        },
+        }
     ]
 }

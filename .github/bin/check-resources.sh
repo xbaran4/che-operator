@@ -13,6 +13,8 @@
 # Checks if repository resources are up to date:
 # - CRDs
 # - nightly olm bundle
+# - Dockerfile & operator.yaml
+# - DW resources
 
 set -e
 
@@ -48,12 +50,23 @@ checkCRDs() {
     echo "[INFO] Checking CRDs"
 
     # files to check
-    local CRD_V1="config/crd/bases/org_v1_che_crd.yaml"
-    local CRD_V1BETA1="config/crd/bases/org_v1_che_crd-v1beta1.yaml"
+    local checluster_CRD_V1="config/crd/bases/org_v1_che_crd.yaml"
+    local chebackupserverconfiguration_CRD_V1="config/crd/bases/org.eclipse.che_chebackupserverconfigurations_crd.yaml"
+    local checlusterbackup_CRD_V1="config/crd/bases/org.eclipse.che_checlusterbackups_crd.yaml"
+    local checlusterrestore_CRD_V1="config/crd/bases/org.eclipse.che_checlusterrestores_crd.yaml"
+
+    local checluster_CRD_V1BETA1="config/crd/bases/org_v1_che_crd-v1beta1.yaml"
+    local chebackupserverconfiguration_CRD_V1BETA1="config/crd/bases/org.eclipse.che_chebackupserverconfigurations_crd-v1beta1.yaml"
+    local checlusterbackup_CRD_V1BETA1="config/crd/bases/org.eclipse.che_checlusterbackups_crd-v1beta1.yaml"
+    local checlusterrestore_CRD_V1BETA1="config/crd/bases/org.eclipse.che_checlusterrestores_crd-v1beta1.yaml"
 
     changedFiles=($(cd ${ROOT_PROJECT_DIR}; git diff --name-only))
     # Check if there are any difference in the crds. If yes, then fail check.
-    if [[ " ${changedFiles[*]} " =~ $CRD_V1 ]] || [[ " ${changedFiles[*]} " =~ $CRD_V1BETA1 ]]; then
+    if [[ " ${changedFiles[*]} " =~ $checluster_CRD_V1 ]] || [[ " ${changedFiles[*]} " =~ $checluster_CRD_V1BETA1 ]] || \
+       [[ " ${changedFiles[*]} " =~ $chebackupserverconfiguration_CRD_V1 ]] || [[ " ${changedFiles[*]} " =~ $chebackupserverconfiguration_CRD_V1BETA1 ]] || \
+       [[ " ${changedFiles[*]} " =~ $checlusterbackup_CRD_V1 ]] || [[ " ${changedFiles[*]} " =~ $checlusterbackup_CRD_V1BETA1 ]] || \
+       [[ " ${changedFiles[*]} " =~ $checlusterrestore_CRD_V1 ]] || [[ " ${changedFiles[*]} " =~ $checlusterrestore_CRD_V1BETA1 ]]
+    then
         echo "[ERROR] CRD file is not up to date: ${BASH_REMATCH}"
         echo "[ERROR] Run 'make update-resources -s' to regenerate CRD files."
         exit 1
@@ -108,11 +121,35 @@ checkOperatorYaml() {
   fi
 }
 
+checkRoles() {
+  # files to check
+  local RoleYaml="deploy/role.yaml"
+  local ClusterRoleYaml="deploy/cluster_role.yaml"
+  local ProxyClusterRoleYaml="deploy/proxy_cluster_role.yaml"
+
+  changedFiles=(
+    $(git diff --name-only)
+  )
+  if [[ " ${changedFiles[*]} " =~ $RoleYaml ]] || [[ " ${changedFiles[*]} " =~ $ClusterRoleYaml ]] || [[ " ${changedFiles[*]} " =~ $ProxyClusterRoleYaml ]]; then
+    echo "[ERROR] Roles are not up to date: ${BASH_REMATCH}"
+    echo "[ERROR] Run 'olm/update-resources.sh' to update them."
+    exit 1
+  else
+    echo "[INFO] Roles are up to date."
+  fi
+}
+
 installOperatorSDK
+
+pushd "${ROOT_PROJECT_DIR}" || true
+
 updateResources
 checkCRDs
+checkRoles
 checkNightlyOlmBundle
 checkDockerfile
 checkOperatorYaml
+
+popd || true
 
 echo "[INFO] Done."

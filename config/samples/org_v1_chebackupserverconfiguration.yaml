@@ -1,0 +1,7 @@
+apiVersion: org.eclipse.che/v1
+kind: CheBackupServerConfiguration
+metadata:
+  name: chebackupserverconfiguration-sample
+spec:
+  # Add fields here
+  foo: bar

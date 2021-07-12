@@ -13,6 +13,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"os"
 
@@ -37,7 +38,9 @@ import (
 	oauth "github.com/openshift/api/oauth/v1"
 
 	orgv1 "github.com/eclipse-che/che-operator/api/v1"
-	"github.com/eclipse-che/che-operator/controllers"
+	checontroller "github.com/eclipse-che/che-operator/controllers/che"
+	backupcontroller "github.com/eclipse-che/che-operator/controllers/checlusterbackup"
+	restorecontroller "github.com/eclipse-che/che-operator/controllers/checlusterrestore"
 	"github.com/eclipse-che/che-operator/pkg/deploy"
 	"github.com/eclipse-che/che-operator/pkg/signal"
 	"github.com/eclipse-che/che-operator/pkg/util"
@@ -59,8 +62,8 @@ import (
 	userv1 "github.com/openshift/api/user/v1"
 	corev1 "k8s.io/api/core/v1"
 
-	// orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
 	orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
+	"github.com/operator-framework/operator-lib/leader"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -202,16 +205,30 @@ func main() {
 		os.Exit(1)
 	}
 
-	reconciler, err := controllers.NewReconciler(mgr)
+	cheReconciler, err := checontroller.NewReconciler(mgr)
 	if err != nil {
 		setupLog.Error(err, "unable to create checluster reconciler")
 		os.Exit(1)
 	}
+	backupReconciler := backupcontroller.NewReconciler(mgr)
+	restoreReconciler := restorecontroller.NewReconciler(mgr)
 
-	if err = reconciler.SetupWithManager(mgr); err != nil {
+	// Become the leader before proceeding
+	leader.Become(context.TODO(), "che-operator-lock")
+
+	if err = cheReconciler.SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to set up controller", "controller", "CheCluster")
 		os.Exit(1)
 	}
+	if err = backupReconciler.SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterBackup")
+		os.Exit(1)
+	}
+	if err = restoreReconciler.SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterRestore")
+		os.Exit(1)
+	}
+
 	// +kubebuilder:scaffold:builder
 
 	if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {

@@ -6,7 +6,7 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Developer Tools
     certified: "false"
-    containerImage: quay.io/eclipse/che-operator:nightly
+    containerImage: quay.io/eclipse/che-operator:next
     createdAt: "2021-05-11T18:38:31Z"
     description: A Kube-native development solution that delivers portable and collaborative developer workspaces.
     operatorframework.io/suggested-namespace: eclipse-che
@@ -18,6 +18,16 @@ spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
+    - description: CheBackupServerConfiguration is the Schema for the chebackupserverconfigurations API
+      displayName: Che Backup Server Configuration
+      kind: CheBackupServerConfiguration
+      name: chebackupserverconfigurations.org.eclipse.che
+      version: v1
+    - description: CheClusterBackup is the Schema for the checlusterbackups API
+      displayName: Che Cluster Backup
+      kind: CheClusterBackup
+      name: checlusterbackups.org.eclipse.che
+      version: v1
     - description: The `CheCluster` custom resource allows defining and managing a Che server installation
       displayName: Eclipse Che Cluster
       kind: CheCluster

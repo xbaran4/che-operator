@@ -60,7 +60,7 @@ init() {
 }
 
 usage () {
-	echo "Usage:   $0 [RELEASE_VERSION] --push-olm-files --push-git-changes"
+  echo "Usage:   $0 [RELEASE_VERSION] --push-olm-bundles --push-git-changes"
   echo -e "\t--push-olm-bundles: to push OLM bundle images to quay.io and update catalog image. This flag should be omitted "
   echo -e "\t\tif already a greater version released. For instance, we are releasing 7.9.3 version but"
   echo -e "\t\t7.10.0 already exists. Otherwise it breaks the linear update path of the stable channel."
@@ -130,7 +130,12 @@ if ! grep -q "value: quay.io/eclipse/che-dashboard:$RELEASE" $filename; then
     echo "[ERROR] Unable to find ubi8_minimal image in the $filename"; exit 1
   fi
 
+  # use ${RELEASE} instead of master
   wget https://raw.githubusercontent.com/eclipse-che/che-server/${RELEASE}/assembly/assembly-wsmaster-war/src/main/webapp/WEB-INF/classes/che/che.properties -q -O /tmp/che.properties
+
+  if ! grep -q "value: quay.io/che-incubator/devworkspace-che-operator:$RELEASE" $filename; then
+    echo "[ERROR] Unable to find devworkspace che operator image with version ${RELEASE} in the $filename"; exit 1
+  fi
 
   plugin_broker_meta_image=$(cat /tmp/che.properties | grep  che.workspace.plugin_broker.metadata.image | cut -d '=' -f2)
   if ! grep -q "value: $plugin_broker_meta_image" $filename; then
@@ -202,6 +207,7 @@ replaceImagesTags() {
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_keycloak\") | .value ) = \"${KEYCLOAK_IMAGE_RELEASE}\"" | \
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_plugin_registry\") | .value ) = \"${PLUGIN_REGISTRY_IMAGE_RELEASE}\"" | \
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_devfile_registry\") | .value ) = \"${DEVFILE_REGISTRY_IMAGE_RELEASE}\"" \
+  yq -ryY "( .spec.template.spec.containers[] | select(.name == \"devworkspace-che-operator\") | .image ) = \"quay.io/che-incubator/devworkspace-che-operator:${RELEASE}\"" | \
   >> "${NEW_OPERATOR_YAML}"
   mv "${NEW_OPERATOR_YAML}" "${OPERATOR_YAML}"
 }
@@ -233,7 +239,14 @@ releaseOlmFiles() {
   grep -q "version: "$RELEASE $kubernetes/che-operator.clusterserviceversion.yaml
 
   test -f $kubernetes/org_v1_che_crd.yaml
+  test -f $kubernetes/org.eclipse.che_chebackupserverconfigurations_crd.yaml
+  test -f $kubernetes/org.eclipse.che_checlusterbackups_crd.yaml
+  test -f $kubernetes/org.eclipse.che_checlusterrestores_crd.yaml
+
   test -f $openshift/org_v1_che_crd.yaml
+  test -f $openshift/org.eclipse.che_chebackupserverconfigurations_crd.yaml
+  test -f $openshift/org.eclipse.che_checlusterbackups_crd.yaml
+  test -f $openshift/org.eclipse.che_checlusterrestores_crd.yaml
 
   echo "[INFO] releaseOlmFiles :: Commit changes"
   if git status --porcelain; then

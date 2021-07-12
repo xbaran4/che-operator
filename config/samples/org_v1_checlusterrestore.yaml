@@ -1,0 +1,7 @@
+apiVersion: org.eclipse.che/v1
+kind: CheClusterRestore
+metadata:
+  name: checlusterrestore-sample
+spec:
+  # Add fields here
+  foo: bar

@@ -51,7 +51,7 @@ Where:
 2. Run VSCode task `Build and push custom che-operator image` or use the terminal:
 
 ```bash
-$ make docker-build docker-push IMG="${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nigthly"
+$ make docker-build docker-push IMG="${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next"
 ```
 
 ## Deploy Che operator using make
@@ -81,7 +81,7 @@ To deploy Che operator you can use [chectl](https://github.com/che-incubator/che
 2. Deploy Eclipse Che on a running k8s cluster:
 
 ```bash
-$ chectl server:deploy --installer operator -p <PLATFORM> --che-operator-image=${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly
+$ chectl server:deploy --installer operator -p <PLATFORM> --che-operator-image=${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next
 ```
 
 Where:
@@ -96,7 +96,7 @@ $ make chectl-templ TARGET=<SOME_PATH>/che-operator
 Execute chectl:
 
 ```bash
-$ chectl server:deploy --installer operator -p <PLATFORM> --che-operator-image=${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:nightly --templates <SOME_PATH>
+$ chectl server:deploy --installer operator -p <PLATFORM> --che-operator-image=${IMAGE_REGISTRY_HOST}/${IMAGE_REGISTRY_USER_NAME}/che-operator:next --templates <SOME_PATH>/templates
 ```
 
 #### Deploy Che operator with chectl using `--installer olm` flag

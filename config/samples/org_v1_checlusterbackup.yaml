@@ -1,0 +1,7 @@
+apiVersion: org.eclipse.che/v1
+kind: CheClusterBackup
+metadata:
+  name: checlusterbackup-sample
+spec:
+  # Add fields here
+  foo: bar
