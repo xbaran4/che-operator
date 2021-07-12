@@ -446,18 +446,6 @@ update-roles:
 		done <<< "$$CONTENT"
 	done
 
-	# Updates proxy_cluster_role.yaml based on DWCO
-	## Remove old roles
-	cat config/rbac/proxy_cluster_role.yaml | sed '/rules:/q0' > config/rbac/proxy_cluster_role.yaml.tmp
-	mv config/rbac/proxy_cluster_role.yaml.tmp config/rbac/proxy_cluster_role.yaml
-
-	## Copy new roles
-	CLUSTER_PROXY_ROLES=https://raw.githubusercontent.com/che-incubator/devworkspace-che-operator/main/deploy/deployment/openshift/objects/devworkspace-che-proxy-role.ClusterRole.yaml
-	CONTENT=$$(curl -sL $$CLUSTER_PROXY_ROLES | sed '1,/rules:/d')
-	while IFS= read -r line; do
-	echo "$$line" >> config/rbac/proxy_cluster_role.yaml
-	done <<< "$$CONTENT"
-
 .PHONY: bundle
 bundle: generate manifests kustomize ## Generate bundle manifests and metadata, then validate generated files.
 	if [ -z "$(platform)" ]; then
@@ -705,6 +693,7 @@ get-nightly-version-increment:
 
 	echo "$${incrementPart}"
 
+update-resources: SHELL := /bin/bash
 update-resources: check-requirements update-resource-images update-roles
 	for platform in 'kubernetes' 'openshift'
 	do
