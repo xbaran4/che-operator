@@ -19,6 +19,12 @@ metadata:
     app.kubernetes.io/component: che-operator
 rules:
   ### CHE-OPERATOR ROLES ONLY: BEGIN
+    - apiGroups:
+      - ""
+    resources:
+      - nodes
+    verbs:
+      - get
   - apiGroups:
       - oauth.openshift.io
     resources:
