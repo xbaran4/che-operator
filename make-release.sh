@@ -133,8 +133,8 @@ if ! grep -q "value: quay.io/eclipse/che-dashboard:$RELEASE" $filename; then
   # use ${RELEASE} instead of master
   wget https://raw.githubusercontent.com/eclipse-che/che-server/${RELEASE}/assembly/assembly-wsmaster-war/src/main/webapp/WEB-INF/classes/che/che.properties -q -O /tmp/che.properties
 
-  if ! grep -q "value: quay.io/che-incubator/devworkspace-che-operator:$RELEASE" $filename; then
-    echo "[ERROR] Unable to find devworkspace che operator image with version ${RELEASE} in the $filename"; exit 1
+  if ! grep -q "value: quay.io/che-incubator/devworkspace-che-operator:$DEV_WORKSPACE_CHE_OPERATOR_VERSION" $filename; then
+    echo "[ERROR] Unable to find devworkspace che operator image with version ${DEV_WORKSPACE_CHE_OPERATOR_VERSION} in the $filename"; exit 1
   fi
 
   plugin_broker_meta_image=$(cat /tmp/che.properties | grep  che.workspace.plugin_broker.metadata.image | cut -d '=' -f2)
@@ -187,8 +187,8 @@ replaceImagesTags() {
 
   CHE_SERVER_IMAGE_REALEASE=$(replaceTag "${lastDefaultCheServerImage}" "${RELEASE}")
   DASHBOARD_IMAGE_REALEASE=$(replaceTag "${lastDefaultDashboardImage}" "${RELEASE}")
-  DEVWORKSPACE_CONTROLLER_IMAGE_RELEASE=$(replaceTag "${lastDefaultDevWorkspaceControllerImage}" "${RELEASE}")
-  DEVWORKSPACE_CHE_OPERATOR_IMAGE_RELEASE=$(replaceTag "${lastDefaultDevWorkspaceCheOperatorImage}" "${RELEASE}")
+  DEVWORKSPACE_CONTROLLER_IMAGE_RELEASE=$(replaceTag "${lastDefaultDevWorkspaceControllerImage}" "${DEV_WORKSPACE_CONTROLLER_VERSION}")
+  DEVWORKSPACE_CHE_OPERATOR_IMAGE_RELEASE=$(replaceTag "${lastDefaultDevWorkspaceCheOperatorImage}" "${DEV_WORKSPACE_CHE_OPERATOR_VERSION}")
   KEYCLOAK_IMAGE_RELEASE=$(replaceTag "${lastDefaultKeycloakImage}" "${RELEASE}")
   PLUGIN_REGISTRY_IMAGE_RELEASE=$(replaceTag "${lastDefaultPluginRegistryImage}" "${RELEASE}")
   DEVFILE_REGISTRY_IMAGE_RELEASE=$(replaceTag "${lastDefaultDevfileRegistryImage}" "${RELEASE}")
@@ -206,8 +206,8 @@ replaceImagesTags() {
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_devworkspace_che_operator\") | .value ) = \"${DEVWORKSPACE_CHE_OPERATOR_IMAGE_RELEASE}\"" | \
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_keycloak\") | .value ) = \"${KEYCLOAK_IMAGE_RELEASE}\"" | \
   yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_plugin_registry\") | .value ) = \"${PLUGIN_REGISTRY_IMAGE_RELEASE}\"" | \
-  yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_devfile_registry\") | .value ) = \"${DEVFILE_REGISTRY_IMAGE_RELEASE}\"" \
-  yq -ryY "( .spec.template.spec.containers[] | select(.name == \"devworkspace-che-operator\") | .image ) = \"quay.io/che-incubator/devworkspace-che-operator:${RELEASE}\"" | \
+  yq -ryY "( .spec.template.spec.containers[] | select(.name == \"che-operator\").env[] | select(.name == \"RELATED_IMAGE_devfile_registry\") | .value ) = \"${DEVFILE_REGISTRY_IMAGE_RELEASE}\"" | \
+  yq -ryY "( .spec.template.spec.containers[] | select(.name == \"devworkspace-che-operator\") | .image ) = \"quay.io/che-incubator/devworkspace-che-operator:${DEV_WORKSPACE_CHE_OPERATOR_VERSION}\"" \
   >> "${NEW_OPERATOR_YAML}"
   mv "${NEW_OPERATOR_YAML}" "${OPERATOR_YAML}"
 }
@@ -228,7 +228,7 @@ releaseOlmFiles() {
   echo "[INFO] releaseOlmFiles :: Release OLM files"
   echo "[INFO] releaseOlmFiles :: Launch 'olm/release-olm-files.sh' script"
   cd $RELEASE_DIR/olm
-  . release-olm-files.sh $RELEASE
+  . release-olm-files.sh --release-version $RELEASE --dev-workspace-controller-version $DEV_WORKSPACE_CONTROLLER_VERSION --dev-workspace-che-operator-version $DEV_WORKSPACE_CHE_OPERATOR_VERSION
   cd $RELEASE_DIR
 
   local openshift=$RELEASE_DIR/bundle/stable/eclipse-che-preview-openshift/manifests

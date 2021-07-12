@@ -61,6 +61,9 @@ setImagesFromDeploymentEnv
 setOperatorImage
 echo "${OPERATOR_IMAGE}"
 
+setDevWorkspaceCheOperatorImage
+echo ${DEVWORKSPACE_CHE_OPERATOR_IMAGE}
+
 setPluginRegistryList
 echo "${PLUGIN_REGISTRY_LIST}"
 
@@ -102,7 +105,7 @@ writeDigest() {
       digest="$(skopeo inspect --tls-verify=false docker://${image} 2>/dev/null | jq -r '.Digest')"
       fi
       if [[ -z ${digest} ]]; then
-        echo "==================== Failed to get digest for image: ${image}======================"
+        echo "[ERROR] Failed to get digest for image: ${image}"
         withoutTag=""
         withDigest=""
       else
@@ -127,9 +130,10 @@ rm -Rf "${DIGEST_FILE}"
 touch "${DIGEST_FILE}"
 
 writeDigest "${OPERATOR_IMAGE}" "operator-image"
+writeDigest "${DEVWORKSPACE_CHE_OPERATOR_IMAGE}" "devworkspace-che-operator-image"
 
 for image in ${REQUIRED_IMAGES}; do
-  writeDigest "${image}" "required-image" 
+  writeDigest "${image}" "required-image"
 done
 
 for image in ${PLUGIN_REGISTRY_LIST}; do
