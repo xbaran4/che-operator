@@ -75,7 +75,7 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/eclipse-che/che-operator
     support: Eclipse Foundation
-  name: eclipse-che-preview-openshift.v7.33.0-252.nightly
+  name: eclipse-che-preview-openshift.v7.33.0-253.nightly
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -1081,10 +1081,28 @@ spec:
                         value: ca-certs
                     image: quay.io/aandriienko/che-operator:next
                     imagePullPolicy: Always
+                    livenessProbe:
+                      failureThreshold: 10
+                      httpGet:
+                        path: /healthz
+                        port: 6789
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
                     name: che-operator
                     ports:
                       - containerPort: 60000
                         name: metrics
+                    readinessProbe:
+                      failureThreshold: 10
+                      httpGet:
+                        path: /readyz
+                        port: 6789
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
                     resources: {}
                     securityContext:
                       allowPrivilegeEscalation: false
@@ -1346,4 +1364,4 @@ spec:
   maturity: stable
   provider:
     name: Eclipse Foundation
-  version: 7.33.0-252.nightly
+  version: 7.33.0-253.nightly
