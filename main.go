@@ -13,7 +13,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"os"
 
@@ -33,7 +32,6 @@ import (
 
 	"github.com/go-logr/logr"
 	configv1 "github.com/openshift/api/config/v1"
-	oauthv1 "github.com/openshift/api/config/v1"
 	consolev1 "github.com/openshift/api/console/v1"
 	oauth "github.com/openshift/api/oauth/v1"
 
@@ -55,15 +53,12 @@ import (
 	rbac "k8s.io/api/rbac/v1"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 
-	cachev1 "github.com/eclipse-che/che-operator/api/v1"
-
 	image_puller_api "github.com/che-incubator/kubernetes-image-puller-operator/pkg/apis"
 	routev1 "github.com/openshift/api/route/v1"
 	userv1 "github.com/openshift/api/user/v1"
 	corev1 "k8s.io/api/core/v1"
 
 	orgv2alpha1 "github.com/eclipse-che/che-operator/api/v2alpha1"
-	"github.com/operator-framework/operator-lib/leader"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -109,7 +104,6 @@ func init() {
 	utilruntime.Must(orgv2alpha1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
-	utilruntime.Must(cachev1.AddToScheme(scheme))
 	utilruntime.Must(admissionregistrationv1.AddToScheme(scheme))
 	utilruntime.Must(apiextensionsv1.AddToScheme(scheme))
 	utilruntime.Must(rbac.AddToScheme(scheme))
@@ -125,7 +119,6 @@ func init() {
 		utilruntime.Must(routev1.AddToScheme(scheme))
 		utilruntime.Must(oauth.AddToScheme(scheme))
 		utilruntime.Must(userv1.AddToScheme(scheme))
-		utilruntime.Must(oauthv1.AddToScheme(scheme))
 		utilruntime.Must(configv1.AddToScheme(scheme))
 		utilruntime.Must(corev1.AddToScheme(scheme))
 		utilruntime.Must(consolev1.AddToScheme(scheme))
@@ -213,26 +206,18 @@ func main() {
 	backupReconciler := backupcontroller.NewReconciler(mgr)
 	restoreReconciler := restorecontroller.NewReconciler(mgr)
 
-	go func() {
-		// Become the leader before proceeding
-		if err := leader.Become(context.TODO(), "che-operator-lock"); err != nil {
-			setupLog.Error(err, "Failed to retry for leader lock")
-			os.Exit(1)
-		}
-
-		if err = cheReconciler.SetupWithManager(mgr); err != nil {
-			setupLog.Error(err, "unable to set up controller", "controller", "CheCluster")
-			os.Exit(1)
-		}
-		if err = backupReconciler.SetupWithManager(mgr); err != nil {
-			setupLog.Error(err, "unable to set up controller", "controller", "CheClusterBackup")
-			os.Exit(1)
-		}
-		if err = restoreReconciler.SetupWithManager(mgr); err != nil {
-			setupLog.Error(err, "unable to set up controller", "controller", "CheClusterRestore")
-			os.Exit(1)
-		}
-	}()
+	if err = cheReconciler.SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "CheCluster")
+		os.Exit(1)
+	}
+	if err = backupReconciler.SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterBackup")
+		os.Exit(1)
+	}
+	if err = restoreReconciler.SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterRestore")
+		os.Exit(1)
+	}
 
 	// +kubebuilder:scaffold:builder
 
