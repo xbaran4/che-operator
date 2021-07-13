@@ -93,7 +93,10 @@ github.com/matttproud/golang_protobuf_extensions/pbutil
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.1 => github.com/modern-go/reflect2 v1.0.1
 github.com/modern-go/reflect2
+# github.com/onsi/ginkgo v1.16.4 => github.com/onsi/ginkgo v1.11.0
+## explicit
 # github.com/onsi/gomega v1.13.0 => github.com/onsi/gomega v1.7.0
+## explicit
 github.com/onsi/gomega/gstruct/errors
 github.com/onsi/gomega/types
 # github.com/openshift/api v3.9.1-0.20190924102528-32369d4db2ad+incompatible => github.com/openshift/api v0.0.0-20190924102528-32369d4db2ad
@@ -109,10 +112,6 @@ github.com/operator-framework/api/pkg/lib/version
 github.com/operator-framework/api/pkg/operators
 github.com/operator-framework/api/pkg/operators/v1
 github.com/operator-framework/api/pkg/operators/v1alpha1
-# github.com/operator-framework/operator-lib v0.5.0
-## explicit
-github.com/operator-framework/operator-lib/internal/utils
-github.com/operator-framework/operator-lib/leader
 # github.com/operator-framework/operator-lifecycle-manager v0.18.1 => github.com/operator-framework/operator-lifecycle-manager v0.18.1
 ## explicit
 github.com/operator-framework/operator-lifecycle-manager/pkg/package-server/apis/operators
@@ -124,6 +123,7 @@ github.com/operator-framework/operator-registry/pkg/registry
 # github.com/pkg/errors v0.9.1 => github.com/pkg/errors v0.0.0-20200114194744-614d223910a1
 github.com/pkg/errors
 # github.com/prometheus/client_golang v1.11.0 => github.com/prometheus/client_golang v1.2.1
+## explicit
 github.com/prometheus/client_golang/prometheus
 github.com/prometheus/client_golang/prometheus/internal
 github.com/prometheus/client_golang/prometheus/promhttp

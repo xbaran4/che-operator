@@ -450,8 +450,6 @@ github.com/openshift/prom-label-proxy v0.1.1-0.20191016113035-b8153a7f39f1/go.mo
 github.com/opentracing/opentracing-go v1.1.0/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
 github.com/operator-framework/api v0.8.0 h1:S1R5BaPKeZoACbu0913mPnG33s7GOA2VrT9gvOeBjbU=
 github.com/operator-framework/api v0.8.0/go.mod h1:L7IvLd/ckxJEJg/t4oTTlnHKAJIP/p51AvEslW3wYdY=
-github.com/operator-framework/operator-lib v0.5.0 h1:Jmhz/WjcstEyBBM9IFUiHEgKg5bd43uF4ej/ZY2S0rM=
-github.com/operator-framework/operator-lib v0.5.0/go.mod h1:33Skl0vjauYx3nAS+cSFbHNkX8do7weQ6s5siIV/w1E=
 github.com/operator-framework/operator-lifecycle-manager v0.18.1 h1:Sp5EqkUR3udHysNAHQAFLAhnZBdZ4Gzhl9+nxL+sOjc=
 github.com/operator-framework/operator-lifecycle-manager v0.18.1/go.mod h1:zFexXul1dzWyM1fe6ZymNvTo9nqPCFJ370AVmZB43lc=
 github.com/operator-framework/operator-registry v1.13.6 h1:h/dIjQQS7uneQNRifrSz7h0xg4Xyjg6C9f6XZofbMPg=
