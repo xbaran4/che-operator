@@ -28,8 +28,6 @@ spec:
           image: quay.io/aandriienko/che-operator:next
           command:
             - /manager
-          args:
-            - -leader-elect
           imagePullPolicy: Always
           ports:
             - containerPort: 60000

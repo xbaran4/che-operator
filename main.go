@@ -213,21 +213,26 @@ func main() {
 	backupReconciler := backupcontroller.NewReconciler(mgr)
 	restoreReconciler := restorecontroller.NewReconciler(mgr)
 
-	// Become the leader before proceeding
-	leader.Become(context.TODO(), "che-operator-lock")
+	go func() {
+		// Become the leader before proceeding
+		if err := leader.Become(context.TODO(), "che-operator-lock"); err != nil {
+			setupLog.Error(err, "Failed to retry for leader lock")
+			os.Exit(1)
+		}
 
-	if err = cheReconciler.SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to set up controller", "controller", "CheCluster")
-		os.Exit(1)
-	}
-	if err = backupReconciler.SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterBackup")
-		os.Exit(1)
-	}
-	if err = restoreReconciler.SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to set up controller", "controller", "CheClusterRestore")
-		os.Exit(1)
-	}
+		if err = cheReconciler.SetupWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to set up controller", "controller", "CheCluster")
+			os.Exit(1)
+		}
+		if err = backupReconciler.SetupWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to set up controller", "controller", "CheClusterBackup")
+			os.Exit(1)
+		}
+		if err = restoreReconciler.SetupWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to set up controller", "controller", "CheClusterRestore")
+			os.Exit(1)
+		}
+	}()
 
 	// +kubebuilder:scaffold:builder
 

@@ -84,7 +84,7 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/eclipse-che/che-operator
     support: Eclipse Foundation
-  name: eclipse-che-preview-kubernetes.v7.33.0-251.nightly
+  name: eclipse-che-preview-kubernetes.v7.33.0-252.nightly
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -288,6 +288,12 @@ spec:
     spec:
       clusterPermissions:
         - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - nodes
+              verbs:
+                - get
             - apiGroups:
                 - rbac.authorization.k8s.io
               resources:
@@ -870,9 +876,7 @@ spec:
                   app.kubernetes.io/name: che
               spec:
                 containers:
-                  - args:
-                      - -leader-elect
-                    command:
+                  - command:
                       - /manager
                     env:
                       - name: WATCH_NAMESPACE
@@ -1217,4 +1221,4 @@ spec:
   maturity: stable
   provider:
     name: Eclipse Foundation
-  version: 7.33.0-251.nightly
+  version: 7.33.0-252.nightly
