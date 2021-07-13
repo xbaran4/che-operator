@@ -123,7 +123,7 @@ runTest() {
   waitWorkspaceStart
 }
 
-prepareTemplates() {
+patchTemplates() {
   disableUpdateAdminPassword ${TEMPLATES}
   setIngressDomain ${TEMPLATES} "$(minikube ip).nip.io"
   setCustomOperatorImage ${TEMPLATES} ${OPERATOR_IMAGE}
@@ -131,7 +131,7 @@ prepareTemplates() {
 
 initDefaults
 initLatestTemplates
-prepareTemplates
+patchTemplates
 buildCheOperatorImage
 copyCheOperatorImageToMinikube
 runTest
