@@ -281,8 +281,6 @@ RATE 61
 https://clearlydefined.io/definitions/git/github/gorilla/websocket/b65e62901fc1c0d968042419e74789f6af455eb9
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23308
 
-== 50
-
 k8s.io/kube-openapi
 https://github.com/kubernetes/kube-openapi/tree/7eba4cbaebdf47b0542b619cdd2f0195279d38cd
 RATE 89
@@ -586,8 +584,6 @@ https://github.com/kubernetes-sigs/controller-tools/tree/2bc3f5eb99cc72cc15775c1
 RATE 89
 https://clearlydefined.io/definitions/git/github/kubernetes-sigs/controller-tools/2bc3f5eb99cc72cc15775c1f3314cba8c1093627
 
-== 100
-
 sigs.k8s.io/controller-runtime
 https://github.com/kubernetes-sigs/controller-runtime/tree/v0.6.3
 v0.6.3
@@ -755,8 +751,6 @@ github.com/xordataexchange/crypt
 https://github.com/xordataexchange/crypt/tree/b2862e3d0a775f18c7cfe02273500ae307b61218
 RATE 77
 https://clearlydefined.io/definitions/git/github/xordataexchange/crypt/b2862e3d0a775f18c7cfe02273500ae307b61218
-
-=================130
 
 github.com/xeipuuv/gojsonschema
 https://github.com/xeipuuv/gojsonschema/tree/82fcdeb203eb6ab2a67d0a623d9c19e5e5a64927
@@ -953,8 +947,6 @@ https://github.com/pquerna/ffjson/tree/d49c2bc1aa135aad0c6f4fc2056623ec78f5d5ac
 RATE 75
 https://clearlydefined.io/definitions/git/github/pquerna/ffjson/d49c2bc1aa135aad0c6f4fc2056623ec78f5d5ac
 
-=== 166
-
 github.com/pquerna/cachecontrol
 https://github.com/pquerna/cachecontrol/tree/0dec1b30a0215bb68605dfc568e8855066c9202d
 RATE 75
@@ -993,8 +985,6 @@ https://github.com/pborman/uuid/tree/v1.2.0
 https://github.com/pborman/uuid/commit/8b1b92947f46224e3b97bb1a3a5b0382be00d31e
 RATE 93
 https://clearlydefined.io/definitions/git/github/pborman/uuid/8b1b92947f46224e3b97bb1a3a5b0382be00d31e
-
-===173
 
 github.com/openzipkin/zipkin-go
 https://github.com/openzipkin/zipkin-go/tree/v0.2.2
@@ -1037,8 +1027,6 @@ https://github.com/nats-io/nuid/tree/v1.0.1
 https://github.com/nats-io/nuid/commit/4b96681fa6d28dd0ab5fe79bac63b3a493d9ee94
 RATE 83
 https://clearlydefined.io/definitions/git/github/nats-io/nuid/4b96681fa6d28dd0ab5fe79bac63b3a493d9ee94
-
-== 180
 
 github.com/nats-io/nkeys
 https://github.com/nats-io/nkeys/tree/v0.1.3
@@ -1099,8 +1087,6 @@ https://github.com/mitchellh/mapstructure/commit/3536a929edddb9a5b34bd6861dc4a96
 RATE 77
 https://clearlydefined.io/definitions/git/github/mitchellh/mapstructure/3536a929edddb9a5b34bd6861dc4a9647cb459fe
 
-== 190
-
 github.com/mitchellh/hashstructure
 https://github.com/mitchellh/hashstructure/tree/v1.0.0
 https://github.com/mitchellh/hashstructure/commit/a38c50148365edc8df43c1580c48fb2b3a1e9cd7
@@ -1158,8 +1144,6 @@ github.com/matttproud/golang_protobuf_extensions
 https://github.com/matttproud/golang_protobuf_extensions/tree/c182affec369e30f25d3eb8cd8a478dee585ae7d
 RATE 75
 https://clearlydefined.io/definitions/git/github/matttproud/golang_protobuf_extensions/c182affec369e30f25d3eb8cd8a478dee585ae7d
-
-== 200
 
 github.com/mattn/go-sqlite3
 https://github.com/mattn/go-sqlite3/tree/b612a2feea6aa87c6d052d9086572551df06497e
@@ -1246,8 +1230,6 @@ https://github.com/jmoiron/sqlx/commit/d161d7a76b5661016ad0b085869f77fd410f3e6a
 RATE 76
 https://clearlydefined.io/definitions/git/github/jmoiron/sqlx/d161d7a76b5661016ad0b085869f77fd410f3e6a
 
-== 215
-
 github.com/jmespath/go-jmespath
 https://github.com/jmespath/go-jmespath/tree/0.3.0
 https://github.com/jmespath/go-jmespath/tree/3f887ed31e21667600265f39fc0df20430b42d62
@@ -1276,8 +1258,6 @@ https://github.com/huandu/xstrings/tree/v1.2.0
 https://github.com/huandu/xstrings/commit/f02667b379e2fb5916c3cda2cf31e0eb885d79f8
 RATE 76
 https://clearlydefined.io/definitions/git/github/huandu/xstrings/f02667b379e2fb5916c3cda2cf31e0eb885d79f8
-
-== 220
 
 github.com/hashicorp/memberlist
 https://github.com/hashicorp/memberlist/tree/v0.1.3
@@ -1339,8 +1319,6 @@ https://github.com/hashicorp/go-immutable-radix/commit/27df80928bb34bb1b0d6d0e01
 RATE 75
 git/github/hashicorp/go-immutable-radix/27df80928bb34bb1b0d6d0e01b9e679902e7a6b5
 
-== 230
-
 github.com/hashicorp/go-cleanhttp
 github.com/hashicorp/go-cleanhttp/tree/v0.5.1
 https://github.com/hashicorp/go-cleanhttp/commit/eda1e5db218aad1db63ca4642c8906b26bcf2744
@@ -1398,8 +1376,6 @@ https://github.com/gophercloud/gophercloud/tree/v0.1.0
 https://github.com/gophercloud/gophercloud/commit/c2d73b246b48e239d3f03c455905e06fe26e33c3
 RATE 75
 git/github/gophercloud/gophercloud/c2d73b246b48e239d3f03c455905e06fe26e33c3
-
-== 240
 
 github.com/google/go-querystring
 https://github.com/google/go-querystring/tree/v1.0.0
@@ -1477,8 +1453,6 @@ https://github.com/gobuffalo/packr/commit/e4f52d87ce714b0cda77bf66e4eadd57cada24
 RATE 75
 git/github/gobuffalo/packr/e4f52d87ce714b0cda77bf66e4eadd57cada24cf
 
-== 250
-
 github.com/go-stack/stack
 https://github.com/go-stack/stack/tree/v1.8.0
 https://github.com/go-stack/stack/commit/2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
@@ -1542,8 +1516,6 @@ https://github.com/globalsign/mgo/commit/72aab81a5dece0687b5fc6323b37521741501e1
 RATE 80
 git/github/globalsign/mgo/72aab81a5dece0687b5fc6323b37521741501e1a 
 
-== 260
-
 github.com/fortytw2/leaktest
 https://github.com/fortytw2/leaktest/tree/v1.3.0
 https://github.com/fortytw2/leaktest/commit/9a23578d06a26ec1b47bfc8965bf5e7011df8bd6
@@ -1598,8 +1570,6 @@ github.com/containerd/go-runc
 https://github.com/containerd/go-runc/tree/5a6d9f37cfa3
 RATE 75
 git/github/containerd/go-runc/5a6d9f37cfa36b15efba46dc7ea349fa9b7143c3
-
-== 270
 
 github.com/containerd/fifo
 https://github.com/containerd/fifo/commit/a9fb20d87448d386e6d50b1f2e1fa70dcf0de43c
@@ -1683,8 +1653,6 @@ https://github.com/bitly/go-hostpool/tree/5d3b4dc6ed4701a761ee884fd803b0a0879744
 RATE 77
 git/github/bitly/go-hostpool/5d3b4dc6ed4701a761ee884fd803b0a0879744f1
 
-== 285
-
 github.com/bgentry/speakeasy
 https://github.com/bgentry/speakeasy/tree/v0.1.0
 https://github.com/bgentry/speakeasy/commit/4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
@@ -1767,8 +1735,6 @@ https://github.com/Masterminds/semver/tree/v3.0.3
 https://github.com/Masterminds/semver/commit/910aa146bd66780c2815d652b92a7fc5331e533c
 RATE 75
 git/github/masterminds/semver/910aa146bd66780c2815d652b92a7fc5331e533c
-
-== 300
 
 github.com/Masterminds/semver
 https://github.com/Masterminds/semver/tree/v1.5.0
@@ -2978,8 +2944,6 @@ RATE 70
 https://clearlydefined.io/definitions/git/github/go-check/check/64131543e7896d5bcc6bd5a76287eb75ea96c673
 http://dev.eclipse.org/ipzilla/show_bug.cgi?id=23345
 
-==================== In progress
-
 cloud.google.com/go/firestore
 https://github.com/googleapis/google-cloud-go/tree/firestore/v1.1.0
 https://github.com/googleapis/google-cloud-go/tree/20091f47d3c522ea545f358dd9ac1cdb326bba6f
@@ -3007,6 +2971,18 @@ https://github.com/opencontainers/runtime-spec/tree/02137cd4e50b37a01665e1731fcd
 RATE 61
 https://clearlydefined.io/definitions/git/github/opencontainers/runtime-spec/02137cd4e50b37a01665e1731fcd4ac2d2178230
 https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23585
+
+github.com/maxbrunsfeld/counterfeiter/v6
+https://github.com/maxbrunsfeld/counterfeiter/tree/v6.2.2
+https://github.com/maxbrunsfeld/counterfeiter/tree/f85ca4bb42af50d8d82153cb4f8cce804a1532f6
+RATE UNKNOWN
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23610
+
+github.com/evanphx/json-patch/v5
+https://github.com/evanphx/json-patch/tree/v5.1.0
+https://github.com/evanphx/json-patch/tree/162e5629780b286cc21cd80f1114a71f5917951f
+RATE UNKNOWN
+https://dev.eclipse.org/ipzilla/show_bug.cgi?id=23609
 
 === Test tools, we can skip them ======
 

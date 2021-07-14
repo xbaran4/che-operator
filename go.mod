@@ -34,6 +34,7 @@ replace (
 	cloud.google.com/go => cloud.google.com/go v0.54.0
 	cloud.google.com/go/bigquery => cloud.google.com/go/bigquery v1.4.0
 	cloud.google.com/go/datastore => cloud.google.com/go/datastore v1.2.0
+	cloud.google.com/go/firestore => cloud.google.com/go/firestore v1.1.0
 	cloud.google.com/go/pubsub => cloud.google.com/go/pubsub v1.2.0
 	cloud.google.com/go/spanner => cloud.google.com/go/spanner v1.2.0
 	cloud.google.com/go/storage => cloud.google.com/go/storage v1.5.0
@@ -147,6 +148,7 @@ replace (
 	github.com/emicklei/go-restful => github.com/emicklei/go-restful v0.0.0-20200129102538-a2fa14558f9a
 	github.com/envoyproxy/go-control-plane => github.com/envoyproxy/go-control-plane v0.0.0-20200213201256-ba8e577f987f
 	github.com/envoyproxy/protoc-gen-validate => github.com/envoyproxy/protoc-gen-validate v0.1.0
+	github.com/evanphx/json-patch/v5 => github.com/evanphx/json-patch/v5 v5.1.0
 
 	github.com/exponent-io/jsonpath => github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d
 	github.com/fastly/go-utils => github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239
@@ -224,6 +226,7 @@ replace (
 	github.com/grpc-ecosystem/grpc-gateway => github.com/grpc-ecosystem/grpc-gateway v1.9.5
 	github.com/hailocab/go-hostpool => github.com/hailocab/go-hostpool v0.0.0-20160125115350-e80d13ce29ed
 	github.com/hashicorp/consul/api => github.com/hashicorp/consul/api v1.1.0
+	github.com/hashicorp/consul/sdk => github.com/hashicorp/consul/sdk v0.1.1
 	github.com/hashicorp/errwrap => github.com/hashicorp/errwrap v1.0.0
 	github.com/hashicorp/go-cleanhttp => github.com/hashicorp/go-cleanhttp v0.5.1
 	github.com/hashicorp/go-immutable-radix => github.com/hashicorp/go-immutable-radix v1.0.0
@@ -253,6 +256,7 @@ replace (
 	github.com/itchyny/go-flags => github.com/itchyny/go-flags v1.5.0
 	github.com/itchyny/gojq => github.com/itchyny/gojq v0.11.0
 	github.com/jackc/chunkreader => github.com/jackc/chunkreader v1.0.0
+	github.com/jackc/chunkreader/v2 => github.com/jackc/chunkreader/v2 v2.0.1
 	github.com/jackc/pgconn => github.com/jackc/pgconn v1.3.2
 	github.com/jackc/pgio => github.com/jackc/pgio v1.0.0
 	github.com/jackc/pgmock => github.com/jackc/pgmock v0.0.0-20190831213851-13a1b77aafa2
@@ -280,6 +284,7 @@ replace (
 	github.com/kr/logfmt => github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515
 	github.com/kr/pretty => github.com/kr/pretty v0.0.0-20200729040243-ead452280cd0
 	github.com/kr/pty => github.com/kr/pty v0.0.0-20180113180813-282ce0e5322c
+	github.com/kr/text => github.com/kr/text v0.2.0
 	github.com/kylelemons/godebug => github.com/kylelemons/godebug v1.1.0
 	github.com/leodido/go-urn => github.com/leodido/go-urn v0.0.0-20201213191625-6c96508144d0
 	github.com/lestrrat-go/envload => github.com/lestrrat-go/envload v0.0.0-20180220234015-a3eb8ddeffcc
@@ -288,7 +293,6 @@ replace (
 	github.com/liggitt/tabwriter => github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de
 	github.com/lithammer/dedent => github.com/lithammer/dedent v1.1.0
 	github.com/magiconair/properties => github.com/magiconair/properties v1.8.1
-	// github.com/kr/text v0.2.0 => github.com/kr/text v0.2.0 todo
 	github.com/mailru/easyjson => github.com/mailru/easyjson v0.0.0-20200218084223-8edcc4e51f39
 	github.com/marstr/guid => github.com/marstr/guid v1.1.0
 	github.com/mattn/go-colorable => github.com/mattn/go-colorable v0.1.7
@@ -297,6 +301,7 @@ replace (
 	github.com/mattn/go-shellwords => github.com/mattn/go-shellwords v0.0.0-20180201004752-39dbbfa24bbc
 	github.com/mattn/go-sqlite3 => github.com/mattn/go-sqlite3 v0.0.0-20190716055609-b612a2feea6a
 	github.com/matttproud/golang_protobuf_extensions => github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369
+	github.com/maxbrunsfeld/counterfeiter/v6 => github.com/maxbrunsfeld/counterfeiter/v6 v6.2.2
 	github.com/miekg/dns => github.com/miekg/dns v1.0.14
 	github.com/mikefarah/yq/v3 => github.com/mikefarah/yq/v3 v3.0.0-20201202084205-8846255d1c37
 	github.com/mindprince/gonvml => github.com/mindprince/gonvml v0.0.0-20190828220739-9ebdce4bb989
@@ -338,6 +343,7 @@ replace (
 	github.com/opencontainers/go-digest => github.com/opencontainers/go-digest v1.0.0
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2-0.20190823105129-775207bd45b6
 	github.com/opencontainers/runc => github.com/opencontainers/runc v1.0.0-rc2.0.20190611121236-6cc515888830
+	github.com/opencontainers/runtime-spec => github.com/opencontainers/runtime-spec v1.0.0
 	github.com/openshift/api => github.com/openshift/api v0.0.0-20190924102528-32369d4db2ad
 	github.com/openshift/client-go => github.com/openshift/client-go v0.0.0-20200326155132-2a6cd50aedd0
 	github.com/opentracing/basictracer-go => github.com/opentracing/basictracer-go v1.0.0
@@ -514,14 +520,6 @@ replace (
 	sigs.k8s.io/structured-merge-diff/v3 => sigs.k8s.io/structured-merge-diff/v3 v3.0.0-20200116222232-67a7b8c61874
 	sigs.k8s.io/structured-merge-diff/v4 => sigs.k8s.io/structured-merge-diff/v4 v4.1.0
 	sigs.k8s.io/yaml => sigs.k8s.io/yaml v1.2.0
-)
-
-// In progress
-replace (
-	cloud.google.com/go/firestore => cloud.google.com/go/firestore v1.1.0
-	github.com/hashicorp/consul/sdk => github.com/hashicorp/consul/sdk v0.1.1
-	github.com/jackc/chunkreader/v2 => github.com/jackc/chunkreader/v2 v2.0.1
-	github.com/opencontainers/runtime-spec => github.com/opencontainers/runtime-spec v1.0.0
 )
 
 replace (
