@@ -73,7 +73,7 @@ func RestoreChe(rctx *RestoreContext, dataDir string) (bool, error) {
 
 	// Wait until Che deployed and ready
 	if !rctx.state.cheAvailable {
-		if rctx.cheCR.Status.CheClusterRunning != "Available" {
+		if rctx.cheCR == nil || rctx.cheCR.Status.CheClusterRunning != "Available" {
 			logrus.Info("Restore: Waiting for Che to be ready")
 			return false, nil
 		}
