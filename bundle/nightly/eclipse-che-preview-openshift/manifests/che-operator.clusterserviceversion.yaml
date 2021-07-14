@@ -66,8 +66,8 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Developer Tools
     certified: "false"
-    containerImage: quay.io/aandriienko/che-operator:next
-    createdAt: "2021-05-11T18:38:31Z"
+    containerImage: quay.io/eclipse/che-operator:next
+    createdAt: "2021-07-14T07:20:04Z"
     description: A Kube-native development solution that delivers portable and collaborative
       developer workspaces.
     operatorframework.io/suggested-namespace: eclipse-che
@@ -75,7 +75,7 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/eclipse-che/che-operator
     support: Eclipse Foundation
-  name: eclipse-che-preview-openshift.v7.33.0-253.nightly
+  name: eclipse-che-preview-openshift.v7.33.0-256.nightly
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -1366,4 +1366,4 @@ spec:
   maturity: stable
   provider:
     name: Eclipse Foundation
-  version: 7.33.0-253.nightly
+  version: 7.33.0-256.nightly
