@@ -74,8 +74,6 @@ const (
 	howToConfigureOAuthLinkOS3      = "https://docs.openshift.com/container-platform/3.11/install_config/configuring_authentication.html"
 )
 
-// TODO maybe new operator framework client is universal and we don't need noncached client any more ?
-
 // CheClusterReconciler reconciles a CheCluster object
 type CheClusterReconciler struct {
 	Log    logr.Logger

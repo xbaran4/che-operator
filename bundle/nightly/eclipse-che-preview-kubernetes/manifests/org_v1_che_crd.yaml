@@ -250,7 +250,6 @@ spec:
                       imagePullSecrets:
                         type: string
                       images:
-                        description: If empty, a set of recommended workspace-related images will be automatically detected and pre-pulled after installation.
                         type: string
                       nodeSelector:
                         type: string
