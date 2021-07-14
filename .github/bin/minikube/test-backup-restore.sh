@@ -76,7 +76,7 @@ waitBackupFinished() {
 }
 
 waitRestoreFinished() {
-  maxAttempts=75
+  maxAttempts=100
   count=0
   while [ $count -le $maxAttempts ]; do
     state=$(kubectl get checlusterrestore eclipse-che-restore -n ${NAMESPACE} -o jsonpath='{.status.state}')
