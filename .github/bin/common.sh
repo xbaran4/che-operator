@@ -371,7 +371,7 @@ setCustomOperatorImage() {
 }
 
 insecurePrivateDockerRegistry() {
-  IMAGE_REGISTRY_HOST="127.0.0.1:5000"
+  IMAGE_REGISTRY_HOST="api.crc.testing:5000"
   export IMAGE_REGISTRY_HOST
 }
 
