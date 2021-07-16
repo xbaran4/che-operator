@@ -50,7 +50,6 @@ metadata:
               "serverExposureStrategy": "",
               "serverTrustStoreConfigMapName": "",
               "tlsSupport": true,
-              "useInternalClusterSVCNames": true,
               "workspaceNamespaceDefault": "<username>-che"
             },
             "storage": {
@@ -66,8 +65,8 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Developer Tools
     certified: "false"
-    containerImage: quay.io/aandriienko/che-operator:next
-    createdAt: "2021-05-11T18:38:31Z"
+    containerImage: quay.io/eclipse/che-operator:next
+    createdAt: "2021-07-15T07:38:20Z"
     description: A Kube-native development solution that delivers portable and collaborative
       developer workspaces.
     operatorframework.io/suggested-namespace: eclipse-che
