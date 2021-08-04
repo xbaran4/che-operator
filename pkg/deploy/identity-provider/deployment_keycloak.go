@@ -13,6 +13,7 @@ package identity_provider
 
 import (
 	"context"
+	"io/ioutil"
 	"net/url"
 	"regexp"
 	"strconv"
@@ -28,7 +29,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
-	"k8s.io/apimachinery/pkg/util/intstr"
+	// "k8s.io/apimachinery/pkg/util/intstr"
 )
 
 const (
@@ -234,6 +235,18 @@ func GetSpecKeycloakDeployment(
 			Value: "POSTGRES",
 		},
 		{
+			Name:  "DB_USERNAME",
+			Value: "keycloak",
+		},
+		{
+			Name: "DB_ADDR", 
+			Value: util.GetValue(deployContext.CheCluster.Spec.Database.ChePostgresHostName, deploy.DefaultChePostgresHostName),
+		},
+		{
+			Name:  "DB_DATABASE",
+			Value: "keycloak",
+		},
+		{
 			Name:  "POSTGRES_PORT_5432_TCP_ADDR",
 			Value: util.GetValue(deployContext.CheCluster.Spec.Database.ChePostgresHostName, deploy.DefaultChePostgresHostName),
 		},
@@ -298,7 +311,7 @@ func GetSpecKeycloakDeployment(
 	identityProviderPostgresSecret := deployContext.CheCluster.Spec.Auth.IdentityProviderPostgresSecret
 	if len(identityProviderPostgresSecret) > 0 {
 		keycloakEnv = append(keycloakEnv, corev1.EnvVar{
-			Name: "POSTGRES_PASSWORD",
+			Name: "DB_PASSWORD",
 			ValueFrom: &corev1.EnvVarSource{
 				SecretKeyRef: &corev1.SecretKeySelector{
 					Key: "password",
@@ -310,7 +323,7 @@ func GetSpecKeycloakDeployment(
 		})
 	} else {
 		keycloakEnv = append(keycloakEnv, corev1.EnvVar{
-			Name:  "POSTGRES_PASSWORD",
+			Name: "DB_PASSWORD",
 			Value: deployContext.CheCluster.Spec.Auth.IdentityProviderPostgresPassword,
 		})
 	}
@@ -384,6 +397,11 @@ func GetSpecKeycloakDeployment(
 				Name:  "DB_VENDOR",
 				Value: "POSTGRES",
 			},
+			// fix dublication...
+			// {
+			// 	Name: "DB_ADDR", 
+			// 	Value: "postgres",
+			// },
 			{
 				Name:  "SSO_TRUSTSTORE",
 				Value: "openshift.jks",
@@ -563,7 +581,7 @@ func GetSpecKeycloakDeployment(
 		" && " + evaluateExpectContinueEnabled +
 		" && " + evaluateReuseConnections +
 		" && " + changeConfigCommand + enableFixedHostNameProvider +
-		" && /opt/jboss/docker-entrypoint.sh -b 0.0.0.0 -c standalone.xml $KEYCLOAK_SYS_PROPS"
+		" && /opt/jboss/tools/docker-entrypoint.sh -b 0.0.0.0 -c standalone.xml $KEYCLOAK_SYS_PROPS"
 
 	if cheFlavor == "codeready" {
 		addUsernameReadonlyTheme := "baseTemplate=/opt/eap/themes/base/login/login-update-profile.ftl" +
@@ -600,6 +618,13 @@ func GetSpecKeycloakDeployment(
 		command = "echo \"ssl_required WAS UPDATED for master realm.\" && " + command
 	}
 
+	logrus.Info("===============================", evaluateKeycloakSystemProperties)
+	err = ioutil.WriteFile("/tmp/keycloak-command", []byte(command), 0644)
+	if err != nil {
+		logrus.Error(err.Error())
+	}
+
+	// args := []string{"INFINITY"}
 	args := []string{"-c", command}
 
 	deployment := &appsv1.Deployment{
@@ -636,6 +661,7 @@ func GetSpecKeycloakDeployment(
 							Image:           keycloakImage,
 							ImagePullPolicy: pullPolicy,
 							Command: []string{
+								// "sleep",
 								"/bin/sh",
 							},
 							Args: args,
@@ -643,6 +669,12 @@ func GetSpecKeycloakDeployment(
 								{
 									Name:          deploy.IdentityProviderName,
 									ContainerPort: 8080,
+									Protocol:      "TCP",
+								},
+								{
+									Name:          "js-adapters",
+									// js adapters
+									ContainerPort: 8082,
 									Protocol:      "TCP",
 								},
 							},
@@ -664,35 +696,35 @@ func GetSpecKeycloakDeployment(
 										deploy.DefaultIdentityProviderCpuLimit),
 								},
 							},
-							ReadinessProbe: &corev1.Probe{
-								Handler: corev1.Handler{
-									HTTPGet: &corev1.HTTPGetAction{
-										Path: "auth/js/keycloak.js",
-										Port: intstr.IntOrString{
-											Type:   intstr.Int,
-											IntVal: int32(8080),
-										},
-										Scheme: corev1.URISchemeHTTP,
-									},
-								},
-								InitialDelaySeconds: 30,
-								FailureThreshold:    10,
-								TimeoutSeconds:      5,
-								PeriodSeconds:       10,
-								SuccessThreshold:    1,
-							},
-							LivenessProbe: &corev1.Probe{
-								Handler: corev1.Handler{
-									TCPSocket: &corev1.TCPSocketAction{
-										Port: intstr.FromInt(8080),
-									},
-								},
-								InitialDelaySeconds: 300,
-								FailureThreshold:    10,
-								TimeoutSeconds:      5,
-								PeriodSeconds:       10,
-								SuccessThreshold:    1,
-							},
+							// ReadinessProbe: &corev1.Probe{
+							// 	Handler: corev1.Handler{
+							// 		HTTPGet: &corev1.HTTPGetAction{
+							// 			Path: "auth/js/keycloak.js",
+							// 			Port: intstr.IntOrString{
+							// 				Type:   intstr.Int,
+							// 				IntVal: int32(8080),
+							// 			},
+							// 			Scheme: corev1.URISchemeHTTP,
+							// 		},
+							// 	},
+							// 	InitialDelaySeconds: 30,
+							// 	FailureThreshold:    10,
+							// 	TimeoutSeconds:      5,
+							// 	PeriodSeconds:       10,
+							// 	SuccessThreshold:    1,
+							// },
+							// LivenessProbe: &corev1.Probe{
+							// 	Handler: corev1.Handler{
+							// 		TCPSocket: &corev1.TCPSocketAction{
+							// 			Port: intstr.FromInt(8080),
+							// 		},
+							// 	},
+							// 	InitialDelaySeconds: 300,
+							// 	FailureThreshold:    10,
+							// 	TimeoutSeconds:      5,
+							// 	PeriodSeconds:       10,
+							// 	SuccessThreshold:    1,
+							// },
 							SecurityContext: &corev1.SecurityContext{
 								Capabilities: &corev1.Capabilities{
 									Drop: []corev1.Capability{"ALL"},
