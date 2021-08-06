@@ -49,7 +49,7 @@ EOF
 }
 
 waitBackupFinished() {
-  maxAttempts=25
+  maxAttempts=50
   count=0
   while [ $count -le $maxAttempts ]; do
     state=$(kubectl get checlusterbackup eclipse-che-backup -n ${NAMESPACE} -o jsonpath='{.status.state}')
@@ -76,7 +76,7 @@ waitBackupFinished() {
 }
 
 waitRestoreFinished() {
-  maxAttempts=130
+  maxAttempts=260
   count=0
   while [ $count -le $maxAttempts ]; do
     state=$(kubectl get checlusterrestore eclipse-che-restore -n ${NAMESPACE} -o jsonpath='{.status.state}')
@@ -118,9 +118,9 @@ runTest() {
   createRestoreCR
   waitRestoreFinished
   # Wait some time to let Keycloak finish its initialization after restoring of the database
-  sleep 60
-  startExistedWorkspace
-  waitWorkspaceStart
+  # sleep 60
+  # startExistedWorkspace
+  # waitWorkspaceStart
 }
 
 patchTemplates() {
