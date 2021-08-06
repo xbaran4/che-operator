@@ -118,9 +118,9 @@ runTest() {
   createRestoreCR
   waitRestoreFinished
   # Wait some time to let Keycloak finish its initialization after restoring of the database
-  # sleep 60
-  # startExistedWorkspace
-  # waitWorkspaceStart
+  sleep 60
+  startExistedWorkspace
+  waitWorkspaceStart
 }
 
 patchTemplates() {
