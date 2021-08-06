@@ -242,6 +242,7 @@ func (r *ReconcileCheClusterRestore) UpdateCR(cr *chev1.CheClusterRestore) error
 }
 
 func (r *ReconcileCheClusterRestore) UpdateCRStatus(cr *chev1.CheClusterRestore) error {
+	logrus.Infof("Status: %v", cr.Status)
 	err := r.client.Status().Update(context.TODO(), cr)
 	if err != nil {
 		logrus.Errorf("Failed to update %s CR status: %s", cr.Name, err.Error())
