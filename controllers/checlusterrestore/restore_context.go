@@ -118,7 +118,8 @@ func (s *RestoreState) GetPhaseMessage() string {
 	if !s.cheRestored {
 		return restoreStateIn_cheRestored
 	}
-	return ""
+
+	return chev1.STATE_SUCCEEDED
 }
 
 func NewRestoreState(restoreCR *chev1.CheClusterRestore) (*RestoreState, error) {
