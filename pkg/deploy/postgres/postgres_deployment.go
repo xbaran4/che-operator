@@ -33,7 +33,7 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 
 	if clusterDeployment != nil {
 		clusterContainer := &clusterDeployment.Spec.Template.Spec.Containers[0]
-		env := util.FindEnv(clusterContainer.Env, "POSTGRESQL_ADMIN_PASSWORD")
+		env := util.FindEnv(clusterContainer.Env, "POSTGRES_ADMIN_PASSWORD")
 		if env != nil {
 			postgresAdminPassword = env.Value
 		}
@@ -112,7 +112,7 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 											"/bin/sh",
 											"-i",
 											"-c",
-											"psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d " + chePostgresDb + " -c 'SELECT 1'",
+											"psql -h 127.0.0.1 -U $POSTGRES_USER -q -d " + chePostgresDb + " -c 'SELECT 1'",
 										},
 									},
 								},
@@ -141,11 +141,11 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 							},
 							Env: []corev1.EnvVar{
 								{
-									Name:  "POSTGRESQL_DATABASE",
+									Name:  "POSTGRES_DB",
 									Value: chePostgresDb,
 								},
 								{
-									Name:  "POSTGRESQL_ADMIN_PASSWORD",
+									Name:  "POSTGRES_ADMIN_PASSWORD",
 									Value: postgresAdminPassword,
 								},
 							}},
@@ -163,7 +163,7 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 	if len(chePostgresSecret) > 0 {
 		container.Env = append(container.Env,
 			corev1.EnvVar{
-				Name: "POSTGRESQL_USER",
+				Name: "POSTGRES_USER",
 				ValueFrom: &corev1.EnvVarSource{
 					SecretKeyRef: &corev1.SecretKeySelector{
 						Key: "user",
@@ -173,7 +173,7 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 					},
 				},
 			}, corev1.EnvVar{
-				Name: "POSTGRESQL_PASSWORD",
+				Name: "POSTGRES_PASSWORD",
 				ValueFrom: &corev1.EnvVarSource{
 					SecretKeyRef: &corev1.SecretKeySelector{
 						Key: "password",
@@ -186,10 +186,10 @@ func (p *Postgres) GetDeploymentSpec(clusterDeployment *appsv1.Deployment) (*app
 	} else {
 		container.Env = append(container.Env,
 			corev1.EnvVar{
-				Name:  "POSTGRESQL_USER",
+				Name:  "POSTGRES_USER",
 				Value: p.deployContext.CheCluster.Spec.Database.ChePostgresUser,
 			}, corev1.EnvVar{
-				Name:  "POSTGRESQL_PASSWORD",
+				Name:  "POSTGRES_PASSWORD",
 				Value: p.deployContext.CheCluster.Spec.Database.ChePostgresPassword,
 			})
 	}
